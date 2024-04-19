@@ -1,17 +1,24 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import Login from './components/Login';
+// import { Route, Routes } from "react-router-dom";
+// import reactLogo from './assets/react.svg';
+// // import Login from './components/Login';
+import  Navigations from './components/Navbar';
+import Menubuttons from "./components/NavButtons";
+import Reviewslist from './components/ReviewsList';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Recentreleasesbanner from './components/Recentreleases';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className='App'>
-        <h1>Boilerplate</h1>
-        <img id='comp-img' src='./computer.png'></img>
-        <p>Replace the starter code in this template with something cool</p>
-        <Login />
-    </div>
+    <>
+      <Navigations />
+      <Menubuttons />
+      <Recentreleasesbanner />
+      <Reviewslist/>
+
+    </>
   );
 }
 
