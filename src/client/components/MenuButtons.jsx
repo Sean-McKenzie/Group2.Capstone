@@ -12,6 +12,8 @@ function Menubuttons() {
           listStyleType: "none",
           justifyContent: "space-around",
           textDecoration: "none",
+          // backgroundColor: "#DFD7F3",
+          
         }}
       >
         <li>

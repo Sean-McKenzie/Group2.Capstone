@@ -50,11 +50,11 @@ const Navigations = () => {
       style={{
         display: "flex",
         justifyContent: "space-between",
-        color: "blue",
+        color: "#3E3B43",
         alignItems: "center",
         padding: "15px",
         margin: "0px",
-        backgroundColor: "#efe3f9",
+        backgroundColor: "#8072A4",
         backgroundSize: "contain",
         opacity: "0.9",
       }}
@@ -71,7 +71,6 @@ const Navigations = () => {
       </h1>
       {/* {token ? signedIn : registerAccount} */}
       {signedIn ? registerAccount : hello}
-      
     </div>
   );
 };

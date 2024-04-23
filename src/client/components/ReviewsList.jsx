@@ -1,35 +1,74 @@
-//call reviews table 
+//call reviews table
 import Table from "react-bootstrap/Table";
 
 function Reviewslist() {
   return (
-    <Table striped="columns" style={{maxWidth: "25%", marginLeft: "50px"}}>
+    <Table
+      striped
+      bordered
+      hover
+      style={{ maxWidth: "35vw" }}
+    >
       <thead>
         <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>A Look at recent reviews</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <td style={{ display: "flex" }}>
+            <img
+              style={{ maxHeight: "45px" }}
+              src=".../../../images/user_imagePlaceholder.png"
+            />
+            <p>ivettem23 reviews Victoria Monet</p>
+          </td>
         </tr>
         <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
+          <td style={{ display: "flex" }}>
+            <img
+              style={{ maxHeight: "45px" }}
+              src=".../../../images/user_imagePlaceholder.png"
+            />
+            <p>ivettem23 reviews Victoria Monet</p>
+          </td>
         </tr>
         <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
+          <td style={{ display: "flex" }}>
+            <img
+              style={{ maxHeight: "45px" }}
+              src=".../../../images/user_imagePlaceholder.png"
+            />
+            <p>ivettem23 reviews Victoria Monet</p>
+          </td>
         </tr>
+        <tr>
+          <td style={{ display: "flex" }}>
+            <img
+              style={{ maxHeight: "45px" }}
+              src=".../../../images/user_imagePlaceholder.png"
+            />
+            <p>ivettem23 reviews Victoria Monet</p>
+          </td>
+        </tr>
+        <tr>
+          <td style={{ display: "flex" }}>
+            <img
+              style={{ maxHeight: "45px" }}
+              src=".../../../images/user_imagePlaceholder.png"
+            />
+            <p>ivettem23 reviews Victoria Monet</p>
+          </td>
+        </tr>
+        {/* <tr>
+          <td style={{ display: "flex" }}>
+            <img
+              style={{ maxHeight: "45px" }}
+              src=".../../../images/user_imagePlaceholder.png"
+            />
+            <p>ivettem23 reviews Victoria Monet</p>
+          </td>
+        </tr> */}
       </tbody>
     </Table>
   );
