@@ -6,10 +6,12 @@ import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 
 import Reviewslist from "./ReviewsList";
+import Recentreleasesbanner from "./Recentreleases";
 
-function Recentreleasesbanner() {
+function Homepage() {
   return (
     <>
+      
       <Carousel>
         <Carousel.Item
           interval={2000}
@@ -155,32 +157,4 @@ function Recentreleasesbanner() {
   );
 }
 
-export default Recentreleasesbanner;
-
-//  <div style={{ maxHeight: "200px", maxWidth: "75%" }}>
-//         <Image src=".../../../images/therose_webbanner.png" fluid />
-//       </div>
-//       <div style={{ maxHeight: "200px", maxWidth: "75%" }}>
-//         <Image src=".../../../images/therose_webbanner.png" fluid />
-//       </div>
-//       <div style={{ maxHeight: "200px", maxWidth: "75%" }}>
-//         <Image src=".../../../images/therose_webbanner.png" fluid />
-//       </div>
-
-//  <Col style={{ justifyContent: "flex-start" }} xs={3} md={5}>
-//           <Reviewslist />
-//         </Col>
-//         <Col style={{ justifyContent: "flex-end" }} xs={9} md={7}>
-//           <Row style={{ justifyContent: "flex-end" }}>
-//             <h2>ARTIST</h2>
-//             <Image src=".../../../images/therose_webbanner.png" thumbnail />
-//           </Row>
-//           <Row style={{ justifyContent: "flex-end" }}>
-//             <h2>ALBUM</h2>
-//             <Image src=".../../../images/therose_webbanner.png" thumbnail />
-//           </Row>
-//           <Row style={{ justifyContent: "flex-end" }}>
-//             <h2>SONG</h2>
-//             <Image src=".../../../images/therose_webbanner.png" thumbnail />
-//           </Row>
-//         </Col>
+export default Homepage;

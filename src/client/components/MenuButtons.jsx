@@ -13,15 +13,26 @@ function Menubuttons() {
           justifyContent: "space-around",
           textDecoration: "none",
           // backgroundColor: "#DFD7F3",
-          
         }}
       >
         <li>
-          <Link style={{ textDecoration: "none" }}>Artists </Link>
+          <Link
+            to="/artist"
+            className="artists"
+            style={{ textDecoration: "none" }}
+          >
+            Artists{" "}
+          </Link>
         </li>
         <li>/</li>
         <li>
-          <Link style={{ textDecoration: "none" }}>Genres </Link>
+          <Link
+            to="/genres"
+            className="genres"
+             style={{ textDecoration: "none" }}
+          >
+            Genres{" "}
+          </Link>
         </li>
         <li>/</li>
         <li>

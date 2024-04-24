@@ -71,6 +71,9 @@ const Navigations = () => {
       </h1>
       {/* {token ? signedIn : registerAccount} */}
       {signedIn ? registerAccount : hello}
+      
+       
+    
     </div>
   );
 };

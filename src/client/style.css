@@ -17,3 +17,33 @@
 }
 
 /* Add more styling for other elements if needed */
+
+
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+}
+.socialIcons a {
+  text-decoration: none;
+  padding: 10px;
+  background-color: white;
+  margin: 10px;
+  border-radius: 50%;
+}
+
+.socialIcons a i {
+  font-size: 2em;
+  color: #8E81AE;
+}
+
+.footerContainer {
+  position:sticky;
+  /* bottom: 0; */
+  /* top: 100%; */
+  width: 100vw;
+  /* padding-top: 25px; */
+  /* padding-bottom: 2.5rem; */
+  background-color: #8E81AE;
+  
+}
