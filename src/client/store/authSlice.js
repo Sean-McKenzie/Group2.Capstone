@@ -1,13 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { fetchArtist } from "../api";
+import { searchArtist } from "../api";
 
 const artistSlice = createSlice({
      name: "artists",
      initialState: {
-          token: null,
-          artist: null,
+          artists: [],
           error: null,
-          loading: false,
+          status: 'idle',
      },
-    })
+     reducers: {},
+     extraReducers: (builder) => {
+          builder
+               .addCase(searchArtist.pending, (state) => {
+                    state.status = "loading";
+               })
+               .addCase(searchArtist.fulfilled, (state, action) => {
+                    state.status = "succeeded";
+                    state.artists = action.payload;
+               })
+               .addCase(searchArtist.rejected, (state, action) => {
+                    state.status = "failed";
+                    state.error = action.error.message;
+               });
+     },
+});
+
+export const { setArtists } = artistSlice.actions;
+
 export default artistSlice.reducer;
+
+// reducers: {
+//         setArtists: (state, action) => {
+//             state.artists = action.payload;
+//         },
+
+//      }

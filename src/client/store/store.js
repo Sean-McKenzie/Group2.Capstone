@@ -3,7 +3,7 @@ import spotifyReducer from './authSlice';
 
 const store = configureStore({
     reducer: {
-        spotifyArtist: spotifyReducer,
+        artists: spotifyReducer,
     }
 })
 
