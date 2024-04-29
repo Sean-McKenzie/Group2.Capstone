@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 
 import Reviewslist from "./ReviewsList";
-import Recentreleasesbanner from "./Recentreleases";
+// import Recentreleasesbanner from "./Recentreleases";
 
 function Homepage() {
   return (

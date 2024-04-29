@@ -4,7 +4,8 @@ const usersRouter = express.Router();
 const {
     createUser,
     getUser,
-    getUserByEmail
+    getUserByEmail,
+  
 } = require('../db');
 
 const jwt = require('jsonwebtoken')
@@ -89,5 +90,17 @@ usersRouter.post('/register', async(req, res, next) => {
         next({name, message})
     }
 })
+
+
+// usersRouter.get('/:id', async(req, res) => {
+// const reviewId = req.params.id;
+// try {
+//   const review = await getReviewByID(reviewId);
+//   res.json(review);
+// } catch (error) {
+//   console.error("Error fetching review:", error);
+//   res.status(500).json({ error: "Internal Server Error" });
+// }
+// });
 
 module.exports = usersRouter;

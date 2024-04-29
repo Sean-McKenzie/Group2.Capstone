@@ -12,7 +12,6 @@ const Navigations = () => {
   const signout = () => {
     // dispatch(setToken(null));
     // console.log()
-
     localStorage.removeItem("token");
     // console.log("Signout:", "" );
 
@@ -71,9 +70,6 @@ const Navigations = () => {
       </h1>
       {/* {token ? signedIn : registerAccount} */}
       {signedIn ? registerAccount : hello}
-      
-       
-    
     </div>
   );
 };
