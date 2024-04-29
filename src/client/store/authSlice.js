@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { searchArtist } from "../api";
+import { searchArtist, fetchArtist } from "../api";
 
 const artistSlice = createSlice({
      name: "artists",
@@ -19,6 +19,17 @@ const artistSlice = createSlice({
                     state.artists = action.payload;
                })
                .addCase(searchArtist.rejected, (state, action) => {
+                    state.status = "failed";
+                    state.error = action.error.message;
+               })
+               .addCase(fetchArtist.pending, (state) => {
+                    state.status = "loading";
+               })
+               .addCase(fetchArtist.fulfilled, (state, action) => {
+                    state.status = "succeeded";
+                    state.artists = action.payload;
+               })
+               .addCase(fetchArtist.rejected, (state, action) => {
                     state.status = "failed";
                     state.error = action.error.message;
                });

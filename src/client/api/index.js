@@ -30,7 +30,7 @@ export async function getSpotifyToken() {
 }
 
 export const searchArtist = createAsyncThunk(
-     "artists/fetchArtists",
+     "artists/searchArtists",
      async (artistName, { rejectWithValue }) => {
           try {
                let token = await getSpotifyToken();
@@ -61,7 +61,7 @@ export const fetchArtist = createAsyncThunk(
           try {
                let token = await getSpotifyToken();
                const response = await fetch(
-                    `https://api.spotify.com/v1/artists/${id}${token}`,
+                    `https://api.spotify.com/v1/artists/${id}`,
                     {
                          headers: {
                               Authorization: "Bearer " + token,
@@ -72,7 +72,34 @@ export const fetchArtist = createAsyncThunk(
                     throw new Error("Failed to fetch artists");
                }
                const data = await response.json();
-               return data.artists.items;
+               return data;
+          } catch (error) {
+               return rejectWithValue(error.message);
+          }
+     }
+);
+
+// 37i9dQZEVXbMDoHDwVN2tF?si=d11f2970b48e4f8a
+
+export const fetchPlaylist = createAsyncThunk(
+     "playlists/fetchPlayList",
+     async (playlist_id, { rejectWithValue }) => {
+          try {
+               let token = await getSpotifyToken();
+               const response = await fetch(
+                    `https://api.spotify.com/v1/playlists/${playlist_id}`,
+                    {
+                         headers: {
+                              Authorization: "Bearer " + token,
+                         },
+                    }
+               );
+               if (!response.ok) {
+                    throw new Error("Failed to fetch playlist");
+               }
+               const data = await response.json();
+               console.log(data)
+               return data;
           } catch (error) {
                return rejectWithValue(error.message);
           }

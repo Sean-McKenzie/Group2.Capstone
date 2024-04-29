@@ -1,9 +1,11 @@
 import { configureStore} from '@reduxjs/toolkit';
-import spotifyReducer from './authSlice';
+import artistReducer from './authSlice';
+import playlistReducer from './playlistSlice'
 
 const store = configureStore({
     reducer: {
-        artists: spotifyReducer,
+        artists: artistReducer,
+        playlist: playlistReducer,
     }
 })
 
