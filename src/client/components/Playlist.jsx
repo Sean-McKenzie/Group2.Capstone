@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPlaylist } from "../api";
 import { useEffect } from "react";
+import { Container, Row, Card,  } from "react-bootstrap";
 
 export default function Playlist({playlistId}) {
     const dispatch = useDispatch();
@@ -24,22 +25,25 @@ export default function Playlist({playlistId}) {
     }
 
     return (
-         <div>
-              {playlist && (
-                   
-                        <div>{playlist.tracks?.items.map((item) => 
-                            
-                            <h2 key={item.track.id}>{item.track.name}
-                                <h4 key={item.track.artists.id}>{item.track.artist?.map((art) =>
-                                    <h4>{art.name}</h4>
-                                )}</h4>
-                            </h2>
-
-                        )}</div>
-                        
-                   
-              )}
-         </div>
+      <div>
+        {playlist && (
+          <Container>
+            <Row className="mx-2 row row-cols-4">
+              {playlist.tracks?.items.map((item) => (
+                <Card key={item.track.id}>
+                  <Card.Img src="#" />
+                  <Card.Body>
+                    <Card.Title>{item.track.name}</Card.Title>
+                    {item.track.artists?.map((artist) => (
+                      <Card.Text key={artist.id}>{artist.name}</Card.Text>
+                    ))}
+                  </Card.Body>
+                </Card>
+              ))}
+            </Row>
+          </Container>
+        )}
+      </div>
     );
 
 }

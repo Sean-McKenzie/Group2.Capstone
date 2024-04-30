@@ -9,8 +9,10 @@ export async function getSpotifyToken() {
                     "Basic " +
                     btoa(
                          "72a71fcfab554f7f92cd6e8437a68898" +
+                         //change to process.env.CLIENT_ID +
                               ":" +
                               "c35f5c49babd423a8265676f51f69a0a"
+                              //change to process.env.CLIENT_SECRET
                     ),
                "Content-Type": "application/x-www-form-urlencoded",
           },
