@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import Artist from "./components/Artist";
-import Playlist from "./components/Playlist";
+// import Playlist from "./components/Playlist";
 import { Route, Routes } from "react-router-dom";
 import Navigations from "./components/Navbar";
 import Menubuttons from "./components/MenuButtons";
@@ -35,10 +35,7 @@ function App() {
             />
           }
         /> */}
-        <Route
-          path="/artist"
-          element={<Playlist playlistId={"37i9dQZEVXbMDoHDwVN2tF"} />}
-        />
+       <Route path="/artist" element={<Playlist playlistId={"37i9dQZEVXbMDoHDwVN2tF"} />} />
         <Route path="/genres" element={<AllGenres />} />
       </Routes>
       <Footer />
