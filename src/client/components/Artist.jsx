@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { searchArtist, fetchArtist } from "../api";
-// import { setArtists} from "../store/authSlice";
+
 
 import {
   Container,
@@ -11,19 +11,16 @@ import {
   Card,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Artist({ artistId }) {
-  //  const dispatch = useDispatch();
-  // // const artists = useSelector((state) => state.artists.artists)
-  //  const { artists, error, loading} = useSelector((state) => state.artists)
-
   const dispatch = useDispatch();
   const artists = useSelector((state) => state.artists.artists);
   const status = useSelector((state) => state.artists.status);
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchArtist(artistId));
+      dispatch(fetchArtist(artistId.join(",")));
     }
   }, [dispatch, status]);
 
@@ -46,7 +43,7 @@ export default function Artist({ artistId }) {
               onKeyPress={(event) => {
                 if (event.key === "Enter") {
                   console.log("pressed enter");
-                  // console.log(event.target.value)
+                  
                 }
               }}
               onChange={(event) => setSearchInput(event.target.value)}
@@ -61,12 +58,23 @@ export default function Artist({ artistId }) {
           </InputGroup>
         </Container>
       </div>
-      {artists && (
-        <div>
-          <h2>{artists.name}</h2>
-          {/* <img src={artists.images[0]?.url} alt={artists.name} /> */}
-        </div>
-      )}
+      {/* <Link to={`/artist/${artist.id}`}> */}
+        <Container>
+          <Row className="mx-2 row row-cols-4">
+            {artists &&
+              artists.map((artist) => (
+                <Card key={artist.id}>
+                  <Card.Img
+                    style={{ borderRadius: "50%", justifyContent: "center" }}
+                    src={artist.images[0]?.url}
+                    alt={artist.name}
+                  />
+                  <Card.Title>{artist.name}</Card.Title>
+                </Card>
+              ))}
+          </Row>
+        </Container>
+      {/* </Link> */}
     </>
   );
 }

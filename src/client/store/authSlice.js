@@ -36,13 +36,5 @@ const artistSlice = createSlice({
      },
 });
 
-export const { setArtists } = artistSlice.actions;
-
 export default artistSlice.reducer;
 
-// reducers: {
-//         setArtists: (state, action) => {
-//             state.artists = action.payload;
-//         },
-
-//      }

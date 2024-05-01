@@ -24,23 +24,25 @@ function Menubuttons() {
             Artists{" "}
           </Link>
         </li>
-        <li>/</li>
-        <li>
+        {/* <li>/</li> */}
+        {/* <li>
           <Link
             to="/genres"
             className="genres"
-             style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none" }}
           >
             Genres{" "}
+          </Link>
+        </li> */}
+        <li>/</li>
+        <li>
+          <Link to="/topsongs" style={{ textDecoration: "none" }}>
+            Top Songs{" "}
           </Link>
         </li>
         <li>/</li>
         <li>
-          <Link style={{ textDecoration: "none" }}>Top Songs </Link>
-        </li>
-        <li>/</li>
-        <li>
-          <Link style={{ textDecoration: "none" }}>Top Artists </Link>
+          <Link style={{ textDecoration: "none" }}>Albums </Link>
         </li>
         <li>/</li>
         <li>
@@ -52,4 +54,3 @@ function Menubuttons() {
 }
 
 export default Menubuttons;
-
