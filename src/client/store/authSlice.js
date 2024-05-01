@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { searchArtist, fetchArtist } from "../api";
+import { searchArtist, fetchArtist, fetchArtistAlbums } from "../api";
 
 const artistSlice = createSlice({
      name: "artists",
      initialState: {
           artists: [],
+          albums: [],
           error: null,
-          status: 'idle',
+          status: "idle",
      },
      reducers: {},
      extraReducers: (builder) => {
@@ -27,9 +28,22 @@ const artistSlice = createSlice({
                })
                .addCase(fetchArtist.fulfilled, (state, action) => {
                     state.status = "succeeded";
-                    state.artists = action.payload;
+                    state.artists =  action.payload;
                })
                .addCase(fetchArtist.rejected, (state, action) => {
+                    state.status = "failed";
+                    state.error = action.error.message;
+               })
+
+               // cases for getting artist albums
+               .addCase(fetchArtistAlbums.pending, (state) => {
+                    state.status = "loading";
+               })
+               .addCase(fetchArtistAlbums.fulfilled, (state, action) => {
+                    state.status = "succeeded";
+                    state.albums = action.payload;
+               })
+               .addCase(fetchArtistAlbums.rejected, (state, action) => {
                     state.status = "failed";
                     state.error = action.error.message;
                });
