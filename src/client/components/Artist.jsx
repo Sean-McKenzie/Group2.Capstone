@@ -23,7 +23,7 @@ export default function Artist({ artistId }) {
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchArtist(artistId));
+      dispatch(fetchArtist(artistId.join(",")));
     }
   }, [dispatch, status]);
 
@@ -61,12 +61,22 @@ export default function Artist({ artistId }) {
           </InputGroup>
         </Container>
       </div>
-      {artists && (
-        <div>
-          <h2>{artists.name}</h2>
-          {/* <img src={artists.images[0]?.url} alt={artists.name} /> */}
-        </div>
-      )}
+
+      <Container>
+        <Row className="mx-2 row row-cols-4">
+          {artists &&
+            artists.map((artist) => (
+              <Card key={artist.id}>
+                <Card.Img
+                  style={{ borderRadius: "50%", justifyContent: "center" }}
+                  src={artist.images[0]?.url}
+                  alt={artist.name}
+                />
+                <Card.Title>{artist.name}</Card.Title>
+              </Card>
+            ))}
+        </Row>
+      </Container>
     </>
   );
 }
