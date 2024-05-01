@@ -54,7 +54,7 @@ export const searchArtist = createAsyncThunk(
     }
   }
 );
-
+//FETCH MULTIPLE ARTISTS
 export const fetchArtist = createAsyncThunk(
   "artists/fetchArtists",
   async (id, { rejectWithValue }) => {
@@ -79,7 +79,30 @@ export const fetchArtist = createAsyncThunk(
   }
 );
 
-// 37i9dQZEVXbMDoHDwVN2tF?si=d11f2970b48e4f8a
+//FETCH SINGLE ARTIST
+// export const fetchSingleArtist = createAsyncThunk(
+//   "artists/fetchSingleArtists",
+//   async (id, { rejectWithValue }) => {
+//     try {
+//       let token = await getSpotifyToken();
+//       const response = await fetch(
+//         `https://api.spotify.com/v1/artists/${id}`,
+//         {
+//           headers: {
+//             Authorization: "Bearer " + token,
+//           },
+//         }
+//       );
+//       if (!response.ok) {
+//         throw new Error("Failed to fetch artists");
+//       }
+//       const data = await response.json();
+//       return data.artists;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const fetchPlaylist = createAsyncThunk(
   "playlists/fetchPlayList",

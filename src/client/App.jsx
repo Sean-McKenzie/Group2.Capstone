@@ -12,6 +12,7 @@ import AllGenres from "./components/AllGenres";
 import Homepage from "./components/Home";
 import Artist from "./components/Artist";
 import Playlist from "./components/Playlist";
+import SingleArtist from "./components/SingleArtist";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -67,6 +68,7 @@ function App() {
           element={<Playlist playlistId={"37i9dQZEVXbMDoHDwVN2tF"} />}
         />
         <Route path="/genres" element={<AllGenres />} />
+        <Route path="/artist/:artistId" element={<SingleArtist />} />
       </Routes>
       <Footer />
     </>
