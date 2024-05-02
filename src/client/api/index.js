@@ -1,5 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+
+
 export async function getSpotifyToken() {
   const url = "https://accounts.spotify.com/api/token";
   let response = await fetch(url, {
