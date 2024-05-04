@@ -80,29 +80,30 @@ export const fetchArtist = createAsyncThunk(
 );
 
 //FETCH SINGLE ARTIST
-// export const fetchSingleArtist = createAsyncThunk(
-//   "artists/fetchSingleArtists",
-//   async (id, { rejectWithValue }) => {
-//     try {
-//       let token = await getSpotifyToken();
-//       const response = await fetch(
-//         `https://api.spotify.com/v1/artists/${id}`,
-//         {
-//           headers: {
-//             Authorization: "Bearer " + token,
-//           },
-//         }
-//       );
-//       if (!response.ok) {
-//         throw new Error("Failed to fetch artists");
-//       }
-//       const data = await response.json();
-//       return data.artists;
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const fetchSingleArtist = createAsyncThunk(
+  "artists/fetchSingleArtist",
+  async (artistId, { rejectWithValue }) => {
+    try {
+      let token = await getSpotifyToken();
+      const response = await fetch(
+        `https://api.spotify.com/v1/artists/${artistId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch artists");
+      }
+      const data = await response.json();
+      console.log("data is:", data);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const fetchPlaylist = createAsyncThunk(
   "playlists/fetchPlayList",
@@ -128,3 +129,100 @@ export const fetchPlaylist = createAsyncThunk(
     }
   }
 );
+
+export const fetchArtistAlbums = createAsyncThunk(
+  "albums/fetchArtistsAlbums",
+  async (id, { rejectWithValue }) => {
+    try {
+      let token = await getSpotifyToken();
+      const response = await fetch(
+        `https://api.spotify.com/v1/artists/${id}/albums`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch artist album");
+      }
+      const data = await response.json();
+      return data.items;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchManyAlbums = createAsyncThunk(
+  "albums/fetchManyAlbums",
+  async (album_id, { rejectWithValue }) => {
+    try {
+      let token = await getSpotifyToken();
+      const response = await fetch(
+        `https://api.spotify.com/v1/albums?ids=${album_id}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch artist album");
+      }
+      const data = await response.json();
+      return data.albums;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchAlbum = createAsyncThunk(
+  "albums/fetchAlbum",
+  async (album_id, { rejectWithValue }) => {
+    try {
+      let token = await getSpotifyToken();
+      const response = await fetch(
+        `https://api.spotify.com/v1/albums/${album_id}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch artist album");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchSingleTrack = createAsyncThunk(
+  "tracks/fetchSingleTrack",
+   async (track_id, { rejectWithValue }) => {
+    try {
+      let token = await getSpotifyToken();
+      const response = await fetch(
+        `https://api.spotify.com/v1/tracks/${track_id}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch track");
+      }
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+)

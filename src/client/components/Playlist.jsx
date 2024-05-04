@@ -9,6 +9,7 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function Playlist({ playlistId }) {
   const dispatch = useDispatch();
@@ -32,47 +33,24 @@ export default function Playlist({ playlistId }) {
 
   return (
     <>
-      <div>
-        <Container>
-          <InputGroup className="mb-3" size="lg">
-            <FormControl
-              placeholder="Search for an Song"
-              type="input"
-              onKeyPress={(event) => {
-                if (event.key === "Enter") {
-                  console.log("pressed enter");
-                  // console.log(event.target.value)
-                }
-              }}
-              onChange={(event) => setSearchInput(event.target.value)}
-            />
-            <Button
-              onClick={(event) => {
-                console.log("clickedButton");
-              }}
-            >
-              Search
-            </Button>
-          </InputGroup>
-        </Container>
-      </div>
-
       {playlist && (
         <Container>
           <Row className="mx-2 row row-cols-4">
             {playlist.tracks?.items.map((item) => (
-              <Card key={item.track.id}>
-                <Card.Img
-                  style={{ borderRadius: "50%", justifyContent: "center" }}
-                  src={item.track.album.images[0]?.url}
-                />
-                <Card.Body>
-                  <Card.Title>{item.track.name}</Card.Title>
-                  {item.track.artists?.map((artist) => (
-                    <Card.Text key={artist.id}>{artist.name}</Card.Text>
-                  ))}
-                </Card.Body>
-              </Card>
+              <Link to={`/topsongs/${item.track.id}`}>
+                <Card key={item.track.id}>
+                  <Card.Img
+                    style={{ borderRadius: "50%", justifyContent: "center" }}
+                    src={item.track.album.images[0]?.url}
+                  />
+                  <Card.Body>
+                    <Card.Title>{item.track.name}</Card.Title>
+                    {item.track.artists?.map((artist) => (
+                      <Card.Text key={artist.id}>{artist.name}</Card.Text>
+                    ))}
+                  </Card.Body>
+                </Card>
+              </Link>
             ))}
           </Row>
         </Container>

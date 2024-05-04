@@ -42,7 +42,7 @@ function Menubuttons() {
         </li>
         <li>/</li>
         <li>
-          <Link style={{ textDecoration: "none" }}>Albums </Link>
+          <Link to="albums" style={{ textDecoration: "none" }}>Albums </Link>
         </li>
         <li>/</li>
         <li>
