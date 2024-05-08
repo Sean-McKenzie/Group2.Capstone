@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 
+
+
 function Reviewslist() {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch("localhost:3000/api/reviews/:id"); // Example: fetch review with ID 123
+    
+        const response = await fetch("http://localhost:3000/api/reviews"); // Example: fetch review with ID 123
         const reviewsData = await response.json();
         console.log("reviews data", reviewsData);
         setReviews(reviewsData);
@@ -15,9 +18,9 @@ function Reviewslist() {
         console.error("Error fetching reviews:", error);
       }
     };
-
     fetchReviews();
     console.log("reviews:", reviews);
+
   }, []);
 
   return (
@@ -28,7 +31,8 @@ function Reviewslist() {
         </tr>
       </thead>
       <tbody>
-        {reviews.map((review) => (
+        {
+          reviews.map((review) => (
           <tr key={review.reviewid}>
             <td style={{ display: "flex" }}>
               {/* Assuming you have a reviewTXT property */}
