@@ -1,14 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPlaylist } from "../api";
 import { useEffect } from "react";
-import {
-  Container,
-  Row,
-  Card,
-  InputGroup,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import { Container, Row, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function Playlist({ playlistId }) {

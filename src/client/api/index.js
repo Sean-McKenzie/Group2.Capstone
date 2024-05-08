@@ -97,7 +97,7 @@ export const fetchSingleArtist = createAsyncThunk(
         throw new Error("Failed to fetch artists");
       }
       const data = await response.json();
-      console.log("data is:", data);
+      console.log("artist is:", data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -147,6 +147,7 @@ export const fetchArtistAlbums = createAsyncThunk(
         throw new Error("Failed to fetch artist album");
       }
       const data = await response.json();
+      console.log("Artist albums:", data);
       return data.items;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -204,7 +205,8 @@ export const fetchAlbum = createAsyncThunk(
 
 export const fetchSingleTrack = createAsyncThunk(
   "tracks/fetchSingleTrack",
-   async (track_id, { rejectWithValue }) => {
+  async (track_id, { rejectWithValue }) => {
+    console.log("hi abby");
     try {
       let token = await getSpotifyToken();
       const response = await fetch(
@@ -219,10 +221,10 @@ export const fetchSingleTrack = createAsyncThunk(
         throw new Error("Failed to fetch track");
       }
       const data = await response.json();
-      console.log(data);
+      console.log("single track:", data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
-)
+);

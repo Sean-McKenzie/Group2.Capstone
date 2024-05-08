@@ -4,11 +4,11 @@ import { fetchManyAlbums, fetchAlbum } from "../api";
 const albumSlice = createSlice({
   name: "albums",
   initialState: {
-    albums: [],
+    albums: null,
     error: null,
     status: "idle",
   },
-  reducers: {},
+  reducers: {},   
   extraReducers: (builder) => {
     builder
       .addCase(fetchAlbum.pending, (state) => {
