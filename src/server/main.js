@@ -3,6 +3,10 @@ require('dotenv').config()
 const express = require('express');
 const router = require('vite-express');
 const app = express();
+const path = require('path');
+const pg = require('pg');
+
+const client = new pg.Client(process.env.DATABASE_URL || 'http://localhost:3000/api')
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());

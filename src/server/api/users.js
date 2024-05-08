@@ -3,6 +3,7 @@ const usersRouter = express.Router();
 
 const {
     createUser,
+    getAllUsers,
     getUser,
     getUserByEmail,
   

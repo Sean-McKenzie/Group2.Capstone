@@ -18,6 +18,16 @@ const createRating = async ({ rate, songID, albumID, artistID, user_ID }) => {
   }
 };
 
+const getAllRatings = async () => {
+  try {
+    const { rows: ratings } = await db.query(`SELECT * FROM ratings;`);
+    console.log(ratings);
+    return ratings;
+  } catch (err) {
+    throw err;
+  }
+};
+
 const getSongAverageRating = async (songID) => {
   try {
     const {
@@ -84,4 +94,5 @@ module.exports = {
   getSongAverageRating,
   getAlbumAverageRating,
   getArtistAverageRating,
+  getAllRatings,
 };
