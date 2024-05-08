@@ -53,15 +53,16 @@ const getAllReviews = async () => {
         SELECT * FROM reviews;
       `
     );
-
+    console.log(reviews);
     return reviews;
   } catch (err) {
     throw err;
   }
 };
 
+
 module.exports = {
   createReview,
   getReviewByID,
-  getAllReviews,
+  getAllReviews
 };

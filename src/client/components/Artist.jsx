@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchArtist, fetchArtist } from "../api";
 import { fetchArtistInfo } from "../../server/api/spotify";
 
-
 import {
   Container,
   InputGroup,
@@ -35,7 +34,7 @@ export default function Artist({ artistId }) {
 
   return (
     <>
-      <div>
+      {/* <div>
         <Container>
           <InputGroup className="mb-3" size="lg">
             <FormControl
@@ -44,7 +43,6 @@ export default function Artist({ artistId }) {
               onKeyPress={(event) => {
                 if (event.key === "Enter") {
                   console.log("pressed enter");
-                  
                 }
               }}
               onChange={(event) => setSearchInput(event.target.value)}
@@ -58,24 +56,26 @@ export default function Artist({ artistId }) {
             </Button>
           </InputGroup>
         </Container>
-      </div>
-      {/* <Link to={`/artist/${artist.id}`}> */}
-        <Container>
-          <Row className="mx-2 row row-cols-4">
-            {artists &&
-              artists.map((artist) => (
+      </div> */}
+
+      <Container>
+        <Row className="mx-2 row row-cols-4">
+          {artists &&
+            artists.map((artist) => (
+              <Link to={`/artist/${artist.id}`}>
                 <Card key={artist.id}>
                   <Card.Img
+                    key={artist.images[0]?.url}
                     style={{ borderRadius: "50%", justifyContent: "center" }}
                     src={artist.images[0]?.url}
                     alt={artist.name}
                   />
-                  <Card.Title>{artist.name}</Card.Title>
+                  <Card.Title key={artist.name}>{artist.name}</Card.Title>
                 </Card>
-              ))}
-          </Row>
-        </Container>
-      {/* </Link> */}
+              </Link>
+            ))}
+        </Row>
+      </Container>
     </>
   );
 }
