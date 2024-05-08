@@ -1,4 +1,6 @@
-export default function SingleArtist(artistId) {
+export default function SingleArtist() {
+
+
     return 
     <>
         <h1>Single artist page</h1>

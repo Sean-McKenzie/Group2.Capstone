@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPlaylist } from "../api";
 import { useEffect } from "react";
+import { fetchPlaylistInfo } from "../../server/api/spotify";
 import {
   Container,
   Row,
@@ -18,7 +19,7 @@ export default function Playlist({ playlistId }) {
   useEffect(() => {
     console.log(status);
     if (status === "idle") {
-      dispatch(fetchPlaylist(playlistId));
+      dispatch(fetchPlaylistInfo(playlistId));
     }
   }, [dispatch, status]);
 

@@ -1,11 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { searchArtist, fetchArtist, fetchArtistAlbums } from "../api";
+import {
+     searchArtist,
+     fetchArtist,
+     fetchSingleArtist,
+     fetchArtistAlbums,
+} from "../api";
+
+import { fetchArtistInfo } from "../../server/api/spotify";
 
 const artistSlice = createSlice({
      name: "artists",
      initialState: {
           artists: [],
-          albums: [],
           error: null,
           status: "idle",
      },
@@ -28,27 +34,46 @@ const artistSlice = createSlice({
                })
                .addCase(fetchArtist.fulfilled, (state, action) => {
                     state.status = "succeeded";
-                    state.artists =  action.payload;
+                    state.artists = action.payload;
                })
                .addCase(fetchArtist.rejected, (state, action) => {
                     state.status = "failed";
                     state.error = action.error.message;
                })
-
-               // cases for getting artist albums
+               .addCase(fetchSingleArtist.pending, (state) => {
+                    state.status = "loading";
+               })
+               .addCase(fetchSingleArtist.fulfilled, (state, action) => {
+                    state.status = "succeeded";
+                    state.artists = action.payload;
+               })
+               .addCase(fetchSingleArtist.rejected, (state, action) => {
+                    state.status = "failed";
+                    state.error = action.error.message;
+               })
                .addCase(fetchArtistAlbums.pending, (state) => {
                     state.status = "loading";
                })
                .addCase(fetchArtistAlbums.fulfilled, (state, action) => {
                     state.status = "succeeded";
-                    state.albums = action.payload;
+                    state.artists = action.payload;
                })
                .addCase(fetchArtistAlbums.rejected, (state, action) => {
+                    state.status = "failed";
+                    state.error = action.error.message;
+               })
+               .addCase(fetchArtistInfo.pending, (state) => {
+                    state.status = "loading";
+               })
+               .addCase(fetchArtistInfo.fulfilled, (state, action) => {
+                    state.status = "succeeded";
+                    state.artists = action.payload;
+               })
+               .addCase(fetchArtistInfo.rejected, (state, action) => {
                     state.status = "failed";
                     state.error = action.error.message;
                });
      },
 });
-
 export default artistSlice.reducer;
 

@@ -17,6 +17,7 @@ import SingleArtist from "./components/SingleArtist";
 function App() {
   const [count, setCount] = useState(0);
   const [token, setToken] = useState(null);
+  const [selectedArtist, setSelectedArtist] = useState(null);
   return (
     <>
       <Navigations />
@@ -69,6 +70,7 @@ function App() {
         />
         <Route path="/genres" element={<AllGenres />} />
         <Route path="/artist/:artistId" element={<SingleArtist />} />
+        
       </Routes>
       <Footer />
     </>
