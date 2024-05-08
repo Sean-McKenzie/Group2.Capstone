@@ -8,11 +8,15 @@ import Reviewslist from "./components/ReviewsList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./components/Footer";
 // import AllArtists from "./components/AllArtists";
-import AllGenres from "./components/AllGenres";
+import AllGenres from "./components/SearchBar";
 import Homepage from "./components/Home";
 import Artist from "./components/Artist";
 import Playlist from "./components/Playlist";
 import SingleArtist from "./components/SingleArtist";
+import ManyAlbums from "./components/Albums";
+import SingleAlbum from "./components/SingleAlbum";
+import SingleTrack from "./components/SingleTrack";
+// import SingleAlbum from "./components/SingleAlbum";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -69,7 +73,43 @@ function App() {
         />
         <Route path="/genres" element={<AllGenres />} />
         <Route path="/artist/:artistId" element={<SingleArtist />} />
+        <Route
+          path="/albums"
+          element={
+            <ManyAlbums
+              albumId={[
+                "5H7ixXZfsNMGbIE5OBSpcb",
+                "6BzxX6zkDsYKFJ04ziU5xQ",
+                "4iqbFIdGOTzXeDtt9owjQn",
+                "5EYKrEDnKhhcNxGedaRQeK",
+                "575TQDOQqc0MAheeEeKWUR",
+                "30zwjSQEodaUXCn11nmiVF",
+                "2RRYaYHY7fIIdvFlvgb5vq",
+                "6i7mF7whyRJuLJ4ogbH2wh",
+                "64LU4c1nfjz1t4VnGhagcg",
+                "2bYCNZfxZrTUv1CHXkz2d2",
+                "1r0F1EzzNOaJyB7U0Jp5RH",
+                "4czdORdCWP9umpbhFXK2fW",
+                "0aJnGEZWIc1VCYlZOXv05a",
+                "00txDYFrU4LjWqwKE8iQJA",
+                "4FftCsAcXXD1nFO9RFUNFO",
+                "0xojHpNNGFiPqc3TXmh6Gv",
+                "1xJHno7SmdVtZAtXbdbDZp",
+                "6PbnGueEO6LGodPfvNldYf",
+                "18NOKLkZETa4sWwLMIm0UZ",
+                "4N1fROq2oeyLGAlQ1C1j18",
+              ]}
+            />
+          }
+        />
+        {/* <Route
+          path="/albums"
+          element={<SingleAlbum album_Id={"07w0rG5TETcyihsEIZR3qG"} />}
+        /> */}
+        <Route path="/topsongs/:trackId" element={<SingleTrack />} />
+        <Route path="/albums/:albumId" element={<SingleAlbum />} />
       </Routes>
+
       <Footer />
     </>
   );
