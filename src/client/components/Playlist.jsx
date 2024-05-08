@@ -12,7 +12,7 @@ export default function Playlist({ playlistId }) {
   useEffect(() => {
     console.log(status);
     if (status === "idle") {
-      dispatch(fetchPlaylist(playlistId));
+      dispatch(fetchPlaylistInfo(playlistId));
     }
   }, [dispatch, status]);
 

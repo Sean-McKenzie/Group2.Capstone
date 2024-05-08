@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { searchArtist, fetchArtist } from "../api";
+import { fetchArtistInfo } from "../../server/api/spotify";
 
 import {
   Container,
@@ -19,10 +20,10 @@ export default function Artist({ artistId }) {
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchArtist(artistId.join(",")));
+      dispatch(fetchArtistInfo(artistId.join(",")));
     }
   }, [dispatch, status]);
-
+  
   if (status === "loading") {
     return <div>Loading...</div>;
   }
