@@ -2,7 +2,7 @@
 import axios from "axios";
 // const qs = require("qs");
 import qs from 'qs'
-import { createAsyncThunk } from "@reduxjs/toolkit";
+
 
 
 const getSpotifyToken = async () => {
@@ -45,19 +45,18 @@ function refreshTokenIfNeeded() {
      }
     
      getSpotifyToken().then((newToken) => {
-          tokenCache.token = newToken;
+          tokenCache = newToken;
           tokenCache.exp = Date.now();
           setTimeout(refreshTokenIfNeeded, 60 * 60 * 1000);
      });
 }
 
 
-export const fetchArtistInfo = createAsyncThunk(
-     "artists/fetchArtistInfo",
-     async (id, thunkAPI) => {
+export const fetchArtistInfo = 
+     async (id) => {
           try {
             // let token =  await getSpotifyToken()
-            refreshTokenIfNeeded();
+            // refreshTokenIfNeeded();
                const response = await axios.get(
                     `https://api.spotify.com/v1/artists?ids=${id}`,
                     {
@@ -66,20 +65,20 @@ export const fetchArtistInfo = createAsyncThunk(
                          },
                     }
                );
+               console.log(response.data.artists)
                return response.data.artists;
           } catch (error) {
                console.error("Error fetching artist info:", error);
                throw error;
           }
-     }
-);
+     };
 
-export const fetchPlaylistInfo = createAsyncThunk(
-     "playlists/fetchPlayList",
+
+export const fetchPlaylistInfo = 
      async (playlist_id, { rejectWithValue }) => {
           try {
             //    let token = await getSpotifyToken();
-            refreshTokenIfNeeded();
+            // refreshTokenIfNeeded();
                const response = await axios.get(
                     `https://api.spotify.com/v1/playlists/${playlist_id}`,
                     {
@@ -92,7 +91,6 @@ export const fetchPlaylistInfo = createAsyncThunk(
           } catch (error) {
                return rejectWithValue(error.message);
           }
-     }
-);
+     };
 
-// `https://api.spotify.com/v1/artists/${id}`
+
