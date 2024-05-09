@@ -2,6 +2,7 @@ const db = require("./client");
 const { createUser } = require("./users");
 const { createReview } = require("./reviews");
 const { createRating } = require("./ratings");
+const { createTags } = require("./tags");
 
 const users = [
   {
@@ -95,6 +96,16 @@ const ratings = [
     user_ID: 1,
   },
 ];
+const tags = [
+  {
+    tagTXT: "Study Music",
+    songID: "lkjiLIJLILIlkjijlkl"
+  },
+  {
+    tagTXT: "Programming Music",
+    songID: "adfaDFSFES5018540SDF"
+  },
+];
 
 const dropTables = async () => {
   try {
@@ -102,6 +113,7 @@ const dropTables = async () => {
         DROP TABLE IF EXISTS users CASCADE;
         DROP TABLE IF EXISTS reviews;
         DROP TABLE IF EXISTS ratings;
+        DROP TABLE IF EXISTS tags;
         `);
   } catch (err) {
     throw err;
@@ -133,8 +145,14 @@ const createTables = async () => {
           albumID VARCHAR(255),
           artistID VARCHAR(255),
           user_id INT NOT NULL,
-          rating_id INT NOT NULL
+          rating_id INT NOT NULL,
+          
       );
+        Create TABLE tags(
+          tagID SERIAL PRIMARY KEY,
+          tagTXT VARCHAR(255) NOT NULL,
+          songID VARCHAR(255)
+        );
 
        `);
   } catch (err) {
@@ -150,7 +168,8 @@ const addConstraints = async () => {
       ALTER TABLE reviews
       ADD FOREIGN KEY (user_id) REFERENCES users(userID);
       ALTER TABLE reviews
-      ADD FOREIGN KEY (rating_id) REFERENCES ratings(ratingID);`
+      ADD FOREIGN KEY (rating_id) REFERENCES ratings(ratingID);
+      `
     );
   } catch (err) {
     throw err;
@@ -207,6 +226,22 @@ const insertRatings = async () => {
   }
 };
 
+const insertTags = async () => {
+  try{
+    for (const tag of tags) {
+      await createTags({
+        tagTXT: tag.tagTXT,
+        songID: tag.songID,
+      });
+    }
+    console.log("seed data inserted successfully.");
+  }
+  catch (error)
+  {
+    console.error("Error inserting seed data:", error);
+  }
+}
+
 const seedDatabse = async () => {
   try {
     db.connect();
@@ -215,6 +250,7 @@ const seedDatabse = async () => {
     await insertUsers();
     await insertReviews();
     await insertRatings();
+    await insertTags();
     await addConstraints();
   } catch (err) {
     throw err;

@@ -13,7 +13,7 @@ function Reviewslist() {
         const response = await fetch("http://localhost:3000/api/reviews"); // Example: fetch review with ID 123
         const reviewsData = await response.json();
         //const convertedReviewsData = Object.keys(reviewsData).map((key) => [key, reviewsData[key]])
-        console.log("reviews data", reviewsData);
+       // console.log("reviews data", reviewsData);
         //console.log(convertedReviewsData);
         setReviews(reviewsData.reviews);
       } catch (error) {
@@ -21,7 +21,7 @@ function Reviewslist() {
       }
     };
     fetchReviews();
-    console.log("reviews:", reviews);
+    //console.log("reviews:", reviews);
 
   }, []);
 

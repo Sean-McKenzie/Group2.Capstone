@@ -17,5 +17,15 @@ reviewsRouter.get('/', async (req, res, next) => {
   }
 });
 
+reviewsRouter.post('/comment', async(req, next) => {
+  const {reviewTxT, rating, songid, albumid, artistid,user_id, rating_id} = req.body;
+  try{
+  const review = await createReview({reviewTxT, rating, songid, albumid, artistid, user_id,rating_id });
+  }
+  catch (err){
+next (err)
+  }
+});
+
 module.exports = reviewsRouter;
 
