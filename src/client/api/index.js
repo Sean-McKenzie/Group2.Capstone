@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
+import { fetchArtistInfo } from "../../server/api/spotify";
 
 
 export async function getSpotifyToken() {
@@ -58,28 +58,41 @@ export const searchArtist = createAsyncThunk(
      }
 );
 //FETCH MULTIPLE ARTISTS
+// export const fetchArtist = createAsyncThunk(
+//      "artists/fetchArtists",
+//      async (id, { rejectWithValue }) => {
+//           try {
+//                let token = await getSpotifyToken();
+//                const response = await fetch(
+//                     `https://api.spotify.com/v1/artists?ids=${id}`,
+//                     {
+//                          headers: {
+//                               Authorization: "Bearer " + token,
+//                          },
+//                     }
+//                );
+//                if (!response.ok) {
+//                     throw new Error("Failed to fetch artists");
+//                }
+//                const data = await response.json();
+//                return data.artists;
+//           } catch (error) {
+//                return rejectWithValue(error.message);
+//           }
+//      }
+// );
+
 export const fetchArtist = createAsyncThunk(
      "artists/fetchArtists",
-     async (id, { rejectWithValue }) => {
-          try {
-               let token = await getSpotifyToken();
-               const response = await fetch(
-                    `https://api.spotify.com/v1/artists?ids=${id}`,
-                    {
-                         headers: {
-                              Authorization: "Bearer " + token,
-                         },
-                    }
-               );
-               if (!response.ok) {
-                    throw new Error("Failed to fetch artists");
-               }
-               const data = await response.json();
-               return data.artists;
+     async(id) => {
+          try{
+               const artists =  await fetchArtistInfo(id);
+               return artists;
           } catch (error) {
-               return rejectWithValue(error.message);
+               console.error("failed to fetch artist", error )
           }
      }
+     
 );
 
 //FETCH SINGLE ARTIST

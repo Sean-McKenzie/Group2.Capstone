@@ -20,8 +20,9 @@ export default function Artist({ artistId }) {
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchArtistInfo(artistId.join(",")));
+      dispatch(fetchArtist(artistId.join(",")));
     }
+    console.log(status)
   }, [dispatch, status]);
   
   if (status === "loading") {
@@ -31,7 +32,7 @@ export default function Artist({ artistId }) {
   if (status === "failed") {
     return <div>Error loading artists</div>;
   }
-
+  
   return (
     <>
       {/* <div>
