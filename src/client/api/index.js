@@ -81,7 +81,7 @@ export const searchArtist = createAsyncThunk(
 //           }
 //      }
 // );
-
+ 
 export const fetchArtist = createAsyncThunk(
      "artists/fetchArtists",
      async(id) => {
