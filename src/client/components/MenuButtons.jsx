@@ -19,7 +19,7 @@ function Menubuttons() {
           <Link
             to="/artist"
             className="artists"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", color: "white" }}
           >
             Artists{" "}
           </Link>
@@ -36,17 +36,22 @@ function Menubuttons() {
         </li> */}
         <li>/</li>
         <li>
-          <Link to="/topsongs" style={{ textDecoration: "none" }}>
+          <Link
+            to="/topsongs"
+            style={{ textDecoration: "none", color: "white" }}
+          >
             Top Songs{" "}
           </Link>
         </li>
         <li>/</li>
         <li>
-          <Link to="albums" style={{ textDecoration: "none" }}>Albums </Link>
+          <Link to="albums" style={{ textDecoration: "none", color: "white" }}>
+            Albums{" "}
+          </Link>
         </li>
         <li>/</li>
         <li>
-          <Link style={{ textDecoration: "none" }}>About</Link>
+          <Link style={{ textDecoration: "none", color: "white" }}>About</Link>
         </li>
       </ul>
     </>

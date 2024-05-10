@@ -22,9 +22,9 @@ export default function Artist({ artistId }) {
     if (status === "idle") {
       dispatch(fetchArtist(artistId.join(",")));
     }
-    console.log(status)
+    console.log(status);
   }, [dispatch, status]);
-  
+
   if (status === "loading") {
     return <div>Loading...</div>;
   }
@@ -32,42 +32,22 @@ export default function Artist({ artistId }) {
   if (status === "failed") {
     return <div>Error loading artists</div>;
   }
-  
+
   return (
     <>
-      {/* <div>
-        <Container>
-          <InputGroup className="mb-3" size="lg">
-            <FormControl
-              placeholder="Search for an Artist"
-              type="input"
-              onKeyPress={(event) => {
-                if (event.key === "Enter") {
-                  console.log("pressed enter");
-                }
-              }}
-              onChange={(event) => setSearchInput(event.target.value)}
-            />
-            <Button
-              onClick={(event) => {
-                console.log("clickedButton");
-              }}
-            >
-              Search
-            </Button>
-          </InputGroup>
-        </Container>
-      </div> */}
-
       <Container>
         <Row className="mx-2 row row-cols-4">
           {artists &&
             artists.map((artist) => (
               <Link to={`/artist/${artist.id}`}>
-                <Card key={artist.id}>
+                <Card key={artist.id} className="cards">
                   <Card.Img
                     key={artist.images[0]?.url}
-                    style={{ borderRadius: "50%", justifyContent: "center" }}
+                    style={{
+                      // borderRadius: "50%",
+                      justifyContent: "center",
+                      stroke: "50px",
+                    }}
                     src={artist.images[0]?.url}
                     alt={artist.name}
                   />

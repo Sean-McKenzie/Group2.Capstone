@@ -33,7 +33,7 @@ const Navigations = () => {
 
   const signedIn = (
     <ul style={{ display: "flex", listStyleType: "none" }}>
-      <li style={{ marginRight: 18 }}>
+      <li style={{ marginRight: 18, color: "white" }}>
         <Link to="/account" className="login">
           Account
         </Link>
@@ -53,7 +53,7 @@ const Navigations = () => {
         alignItems: "center",
         padding: "15px",
         margin: "0px",
-        backgroundColor: "#8072A4",
+        backgroundColor: "#26025f",
         backgroundSize: "contain",
         opacity: "0.9",
       }}

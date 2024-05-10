@@ -2,15 +2,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchArtistAlbums } from "../api";
 import { useParams, Link } from "react-router-dom";
 import { Container, Row, Card } from "react-bootstrap";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function SingleArtist() {
   const dispatch = useDispatch();
   const artists = useSelector((state) => state.artists.artists);
-  const albums = useSelector((state) => state.artists.albums);
+  // const albums = useSelector((state) => state.artists.albums);
   const artistStatus = useSelector((state) => state.artists.status);
   const albumsStatus = useSelector((state) => state.artists.albumsStatus);
   const { artistId } = useParams();
+  const [albums, setAlbums] =useState();
+
 
   useEffect(() => {
     // if (artistStatus === "idle") {
@@ -34,11 +36,15 @@ export default function SingleArtist() {
 
   return (
     <>
-      <Container>
+      <Container stlye={{ maxWidth: "400px" }}>
         {artist && (
           <Card key={artist.id}>
             <Card.Img
-              style={{ borderRadius: "50%", justifyContent: "center" }}
+              style={{
+                borderRadius: "50%",
+                justifyContent: "center",
+                maxWidth: "50%",
+              }}
               key={artist.images[0]?.url}
               src={artist.images[0]?.url}
               alt={artist.name}
@@ -49,7 +55,7 @@ export default function SingleArtist() {
           </Card>
         )}
       </Container>
-      <Container>
+      {/* <Container>
         <Row className="mx-2 row row-cols-4">
           {albums &&
             albums.map((album) => (
@@ -65,7 +71,7 @@ export default function SingleArtist() {
               </Link>
             ))}
         </Row>
-      </Container>
+      </Container> */}
     </>
   );
 }

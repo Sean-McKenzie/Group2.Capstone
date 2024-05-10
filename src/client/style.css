@@ -1,10 +1,43 @@
-.App {
+/* .App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
- background-color: #DFD7F3,
+  background-color: #6b0723,
+  /* background-image: linear-gradient(to bottom right, red, yellow); */
+
+:root {
+  --gradient: linear-gradient(
+    45deg,
+    #5f0256,
+    #26025f,
+    #0a04c9,
+    #0239cf,
+    #39a1a6,
+    #71f8ff
+  );
+}
+body {
+  background-image: var(--gradient);
+  background-size: 400%;
+  animation: bg-animation 15s infinite;
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.cards {
+  background-color: none;
 }
 
 .App-header {
@@ -17,8 +50,6 @@
 }
 
 /* Add more styling for other elements if needed */
-
-
 
 .socialIcons {
   display: flex;
@@ -34,16 +65,15 @@
 
 .socialIcons a i {
   font-size: 2em;
-  color: #8E81AE;
+  color: #8e81ae;
 }
 
 .footerContainer {
-  position:sticky;
+  position: sticky;
   /* bottom: 0; */
   /* top: 100%; */
   width: 100vw;
   /* padding-top: 25px; */
   /* padding-bottom: 2.5rem; */
-  background-color: #8E81AE;
-  
+  background-color: #26025f;
 }
