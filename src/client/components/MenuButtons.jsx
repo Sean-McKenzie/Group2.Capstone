@@ -24,16 +24,7 @@ function Menubuttons() {
             Artists{" "}
           </Link>
         </li>
-        {/* <li>/</li> */}
-        {/* <li>
-          <Link
-            to="/genres"
-            className="genres"
-            style={{ textDecoration: "none" }}
-          >
-            Genres{" "}
-          </Link>
-        </li> */}
+
         <li>/</li>
         <li>
           <Link
@@ -45,8 +36,14 @@ function Menubuttons() {
         </li>
         <li>/</li>
         <li>
-          <Link to="albums" style={{ textDecoration: "none", color: "white" }}>
+          <Link to="/albums" style={{ textDecoration: "none", color: "white" }}>
             Albums{" "}
+          </Link>
+        </li>
+        <li>/</li>
+        <li>
+          <Link to="/search" style={{ textDecoration: "none", color: "white" }}>
+            Search{" "}
           </Link>
         </li>
         <li>/</li>

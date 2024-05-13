@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchArtistAlbums } from "../api";
 import { useParams, Link } from "react-router-dom";
-import { Container, Row, Card } from "react-bootstrap";
+import { Container, Row, Card, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 export default function SingleArtist() {
@@ -54,8 +54,16 @@ export default function SingleArtist() {
             </Card.Body>
           </Card>
         )}
+        <Link to={ }>
+        <Button onClick={}>View Artists' Albums</Button>
+        </Link>
       </Container>
-      {/* <Container>
+    </>
+  );
+}
+
+{
+  /* <Container>
         <Row className="mx-2 row row-cols-4">
           {albums &&
             albums.map((album) => (
@@ -71,10 +79,9 @@ export default function SingleArtist() {
               </Link>
             ))}
         </Row>
-      </Container> */}
-    </>
-  );
+      </Container> */
 }
+
 
 // import { useDispatch, useSelector } from "react-redux";
 // import { fetchSingleArtist } from "../api";

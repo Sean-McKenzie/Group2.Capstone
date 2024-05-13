@@ -16,7 +16,7 @@ import SingleArtist from "./components/SingleArtist";
 import ManyAlbums from "./components/Albums";
 import SingleAlbum from "./components/SingleAlbum";
 import SingleTrack from "./components/SingleTrack";
-// import SingleAlbum from "./components/SingleAlbum";
+import SearchBar from "./components/SearchBar";
 
 function App() {
      const [count, setCount] = useState(0);
@@ -26,8 +26,8 @@ function App() {
           <>
                <Navigations />
                <Menubuttons />
-               {/* <Recentreleasesbanner /> */}
-               {/* <Reviewslist/> */}
+               {/* <SearchBar />
+            */}
 
                <Routes>
                     <Route path="/" element={<Homepage />} />
@@ -117,7 +117,9 @@ function App() {
                          element={<SingleTrack />}
                     />
                     <Route path="/albums/:albumId" element={<SingleAlbum />} />
+                    <Route path="/search" element={<SearchBar/> } />
                </Routes>
+
 
                <Footer />
           </>
