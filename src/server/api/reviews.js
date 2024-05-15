@@ -9,7 +9,7 @@ const {
 
 reviewsRouter.get('/', async (req, res, next) => {
   try {
-    const reviews = await getAllReviews(); // Fetch all reviews
+    const reviews = await getAllReviews(); // Fetch all review
     res.send({reviews});
   } catch (error) {
     console.error("Error fetching reviews:", error);

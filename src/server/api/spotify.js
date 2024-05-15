@@ -1,4 +1,4 @@
-// const axios = require("axios");
+//const axios = require("axios");
 import axios from "axios";
 // const qs = require("qs");
 import qs from 'qs'
@@ -34,7 +34,7 @@ const getSpotifyToken = async () => {
 };
 
 
-const tokenCache = await getSpotifyToken();
+let tokenCache = await getSpotifyToken();
 
 function refreshTokenIfNeeded() {
      const currentTime = Date.now() / 1000;

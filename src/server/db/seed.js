@@ -145,16 +145,15 @@ const createTables = async () => {
           albumID VARCHAR(255),
           artistID VARCHAR(255),
           user_id INT NOT NULL,
-          rating_id INT NOT NULL,
+          rating_id INT NOT NULL
           
       );
-        Create TABLE tags(
+        CREATE TABLE tags(
           tagID SERIAL PRIMARY KEY,
           tagTXT VARCHAR(255) NOT NULL,
           songID VARCHAR(255)
         );
-
-       `);
+        `);
   } catch (err) {
     throw err;
   }
