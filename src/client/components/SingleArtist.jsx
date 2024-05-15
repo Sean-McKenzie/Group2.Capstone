@@ -1,8 +1,13 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchArtistAlbums } from "../api";
 import { useParams, Link } from "react-router-dom";
 import { Container, Row, Card, Button } from "react-bootstrap";
+
 import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import ReviewModal from "./ReviewModal";
+
 
 export default function SingleArtist() {
   const dispatch = useDispatch();
@@ -11,7 +16,11 @@ export default function SingleArtist() {
   const artistStatus = useSelector((state) => state.artists.status);
   const albumsStatus = useSelector((state) => state.artists.albumsStatus);
   const { artistId } = useParams();
+
   const [albums, setAlbums] = useState();
+
+
+  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
     // if (artistStatus === "idle") {
@@ -79,6 +88,11 @@ export default function SingleArtist() {
             View Artist's Albums
           </Button>
         </Link> */}
+        <Button variant="primary" onClick={() => setModalShow(true)}>
+          Leave a review
+        </Button>
+
+        <ReviewModal show={modalShow} close={() => setModalShow(false)} />
       </Container>
     </>
   );
@@ -101,7 +115,18 @@ export default function SingleArtist() {
               </Link>
             ))}
         </Row>
-      </Container> */
+
+    
+
+      </Container>
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+        Leave a review
+      </Button>
+
+      <ReviewModal show={modalShow} close={() => setModalShow(false)} />
+    </>
+  );
+
 }
 
 // import { useDispatch, useSelector } from "react-redux";

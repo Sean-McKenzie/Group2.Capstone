@@ -1,4 +1,4 @@
-// const axios = require("axios");
+//const axios = require("axios");
 import axios from "axios";
 // const qs = require("qs");
 import qs from "qs";
@@ -32,6 +32,10 @@ const getSpotifyToken = async () => {
   }
 };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 let tokenCache = await getSpotifyToken();
 
 function refreshTokenIfNeeded() {
