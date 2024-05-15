@@ -13,16 +13,42 @@ export default function SingleAlbum() {
   }
 
   return (
-    <Container>
-      <Card key={album.id}>
+    <Container stlye={{ maxWidth: "400px", color: "blue" }}>
+      <Card
+        key={album.id}
+        style={{ background: "none", stroke: "none", padding: "15px" }}
+      >
         <Card.Img
           key={album.images[0]?.url}
           src={album.images[0]?.url}
           alt={album.name}
+          style={{
+            borderRadius: "50%",
+            justifyContent: "center",
+            maxWidth: "50%",
+          }}
         />
         <Card.Body>
-          <Card.Title>{album.name}</Card.Title>
-          <Card.Text>{album.artists[0]?.name}</Card.Text>
+          <Card.Title
+            style={{
+              fontFamily: "sans-serif",
+              fontWeight: "bolder",
+              fontSize: "25px",
+              paddingLeft: "100px",
+            }}
+          >
+            {album.name}
+          </Card.Title>
+          <Card.Text
+            style={{
+              fontFamily: "sans-serif",
+              fontWeight: "bolder",
+              fontSize: "25px",
+              paddingLeft: "100px",
+            }}
+          >
+            {album.artists[0]?.name}
+          </Card.Text>
         </Card.Body>
       </Card>
     </Container>

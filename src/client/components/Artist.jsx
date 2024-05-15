@@ -39,19 +39,48 @@ export default function Artist({ artistId }) {
         <Row className="mx-2 row row-cols-4">
           {artists &&
             artists.map((artist) => (
-              <Link to={`/artist/${artist.id}`}>
-                <Card key={artist.id} className="cards">
+              <Link
+                to={`/artist/${artist.id}`}
+                style={{
+                  textDecoration: "none",
+                }}
+              >
+                <Card
+                  key={artist.id}
+                  className="cards"
+                  style={{
+                    background: "none",
+                    stroke: "none",
+                    padding: "15px",
+                    transition: "1s",
+                    justifyContent: "space-around",
+                    margin: "8px"
+                  }}
+                >
                   <Card.Img
                     key={artist.images[0]?.url}
                     style={{
-                      // borderRadius: "50%",
+                      borderRadius: "50%",
                       justifyContent: "center",
-                      stroke: "50px",
+                      // stroke: "50px",
+                      strokeWidth: "12px",
                     }}
                     src={artist.images[0]?.url}
                     alt={artist.name}
                   />
-                  <Card.Title key={artist.name}>{artist.name}</Card.Title>
+                  <Card.Title
+                    key={artist.name}
+                    style={{
+                      fontFamily: "sans-serif",
+                      fontWeight: "bolder",
+                      fontSize: "25px",
+                      textAlign: "center",
+                      textDecoration: "none",
+                      paddingTop: "10px",
+                    }}
+                  >
+                    {artist.name}
+                  </Card.Title>
                 </Card>
               </Link>
             ))}

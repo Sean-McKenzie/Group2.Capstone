@@ -36,7 +36,7 @@ export default function SearchBar() {
       <Container>
         <InputGroup className="mb-3" size="lg">
           <FormControl
-            placeholder="Search"
+            placeholder="Search for an Artist..."
             type="input"
             onKeyPress={(event) => {
               if (event.key === "Enter") {
@@ -53,11 +53,41 @@ export default function SearchBar() {
       <Container>
         <Row className="mx-2 row row-cols-4">
           {artists.map((artist) => (
-            <Link to={`/artist/${artist.id}`}>
-              <Card key={artist.id}>
-                <Card.Img src={artist.images[0]?.url} />
+            <Link
+              to={`/artist/${artist.id}`}
+              style={{
+                textDecoration: "none",
+              }}
+            >
+              <Card
+                className="cards"
+                key={artist.id}
+                style={{
+                  background: "none",
+                  stroke: "none",
+                  padding: "15px",
+                  transition: "1s",
+                  justifyContent: "space-around",
+                  margin: "8px",
+                }}
+              >
+                <Card.Img
+                  src={artist.images[0]?.url}
+                  style={{ borderRadius: "50%", justifyContent: "center" }}
+                />
                 <Card.Body>
-                  <Card.Title>{artist.name}</Card.Title>
+                  <Card.Title
+                    style={{
+                      fontFamily: "sans-serif",
+                      fontWeight: "bolder",
+                      fontSize: "18px",
+                      textAlign: "center",
+                      textDecoration: "none",
+                      paddingTop: "10px",
+                    }}
+                  >
+                    {artist.name}
+                  </Card.Title>
                 </Card.Body>
               </Card>
             </Link>

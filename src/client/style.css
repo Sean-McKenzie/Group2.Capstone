@@ -19,7 +19,11 @@
   );
 }
 body {
-  background-image: var(--gradient);
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    var(--gradient);
   background-size: 400%;
   animation: bg-animation 15s infinite;
 }
@@ -36,8 +40,9 @@ body {
   }
 }
 
-.cards {
-  background-color: none;
+.cards:hover {
+  transform: scale(1.2);
+  z-index: 2;
 }
 
 .App-header {
@@ -69,11 +74,54 @@ body {
 }
 
 .footerContainer {
-  position: sticky;
+  position: static;
   /* bottom: 0; */
   /* top: 100%; */
   width: 100vw;
   /* padding-top: 25px; */
   /* padding-bottom: 2.5rem; */
   background-color: #26025f;
+}
+
+.center-form {
+  align-items: center;
+  padding: 2rem;
+  max-width: 250px;
+}
+.center-form label {
+  font-weight: bold;
+  display: block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.1rem;
+}
+
+.center-form button {
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.message {
+  padding: 0.2rem;
+  font-weight: bold;
+  display: none;
+}
+
+.message-danger {
+  border: rgb(237, 28, 28);
+  background: rgb(255, 113, 113);
+}
+
+.message-success {
+  border: rgb(17, 234, 133);
+  background: rgb(0, 255, 136);
+}
+
+.message-info {
+  border: rgb(76, 27, 211);
+  background: rgb(122, 88, 214);
+}
+
+.message-warning {
+  border: rgb(237, 28, 28);
+  background: rgb(255, 113, 113);
 }

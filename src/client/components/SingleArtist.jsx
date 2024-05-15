@@ -11,8 +11,7 @@ export default function SingleArtist() {
   const artistStatus = useSelector((state) => state.artists.status);
   const albumsStatus = useSelector((state) => state.artists.albumsStatus);
   const { artistId } = useParams();
-  const [albums, setAlbums] =useState();
-
+  const [albums, setAlbums] = useState();
 
   useEffect(() => {
     // if (artistStatus === "idle") {
@@ -34,11 +33,20 @@ export default function SingleArtist() {
   // Find the artist from the artists array
   const artist = artists.find((artist) => artist.id === artistId);
 
+  const handleArtistClick = (clickedArtistId) => {
+    //   // Fetch albums for the clicked artist
+    dispatch(fetchArtistAlbums(clickedArtistId));
+    const albums = useSelector((state) => console.log("state is:", state));
+  };
+
   return (
     <>
-      <Container stlye={{ maxWidth: "400px" }}>
+      <Container stlye={{ maxWidth: "400px", color: "blue" }}>
         {artist && (
-          <Card key={artist.id}>
+          <Card
+            key={artist.id}
+            style={{ background: "none", stroke: "none", padding: "15px" }}
+          >
             <Card.Img
               style={{
                 borderRadius: "50%",
@@ -50,13 +58,27 @@ export default function SingleArtist() {
               alt={artist.name}
             />
             <Card.Body>
-              <Card.Title>{artist.name}</Card.Title>
+              <Card.Title
+                style={{
+                  fontFamily: "sans-serif",
+                  fontWeight: "bolder",
+                  fontSize: "45px",
+                  paddingLeft: "160px",
+                }}
+              >
+                {artist.name}
+              </Card.Title>
             </Card.Body>
           </Card>
         )}
-        <Link to={ }>
-        <Button onClick={}>View Artists' Albums</Button>
-        </Link>
+        {/* <Link to={`/artist/albums`}>
+          <Button
+            variant="primary"
+            onClick={() => handleArtistClick(artist.id)}
+          >
+            View Artist's Albums
+          </Button>
+        </Link> */}
       </Container>
     </>
   );
@@ -81,7 +103,6 @@ export default function SingleArtist() {
         </Row>
       </Container> */
 }
-
 
 // import { useDispatch, useSelector } from "react-redux";
 // import { fetchSingleArtist } from "../api";

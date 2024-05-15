@@ -10,10 +10,7 @@ const Navigations = () => {
 
   //function to handle signout
   const signout = () => {
-    // dispatch(setToken(null));
-    // console.log()
     localStorage.removeItem("token");
-    // console.log("Signout:", "" );
 
     navigate("/");
   };
@@ -33,12 +30,12 @@ const Navigations = () => {
 
   const signedIn = (
     <ul style={{ display: "flex", listStyleType: "none" }}>
-      <li style={{ marginRight: 18, color: "white" }}>
-        <Link to="/account" className="login">
+      <li style={{ marginRight: 18 }}>
+        <Link to="/profile" className="login">
           Account
         </Link>
       </li>
-      <li onClick={signout} className="login">
+      <li onClick={signout} className="login" style={{ cursor: "pointer" }}>
         Logout
       </li>
     </ul>
@@ -53,7 +50,7 @@ const Navigations = () => {
         alignItems: "center",
         padding: "15px",
         margin: "0px",
-        backgroundColor: "#26025f",
+        backgroundColor: "#8072A4",
         backgroundSize: "contain",
         opacity: "0.9",
       }}
@@ -69,7 +66,7 @@ const Navigations = () => {
         </Link>
       </h1>
       {/* {token ? signedIn : registerAccount} */}
-      {signedIn ? registerAccount : hello}
+      {localStorage.getItem("token") ? signedIn : registerAccount}
     </div>
   );
 };
