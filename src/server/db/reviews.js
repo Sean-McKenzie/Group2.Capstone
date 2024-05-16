@@ -64,5 +64,6 @@ const getAllReviews = async () => {
 module.exports = {
   createReview,
   getReviewByID,
-  getAllReviews
+  getAllReviews,
+  
 };

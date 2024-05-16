@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { searchArtist, fetchArtist } from "../api";
 
-
 import {
   Container,
   InputGroup,
@@ -13,10 +12,12 @@ import {
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+
 export default function Artist({ artistId }) {
   const dispatch = useDispatch();
   const artists = useSelector((state) => state.artists.artists);
   const status = useSelector((state) => state.artists.status);
+  
 
   useEffect(() => {
     if (status === "idle") {
@@ -77,6 +78,7 @@ export default function Artist({ artistId }) {
             ))}
         </Row>
       </Container>
+
     </>
   );
 }

@@ -1,7 +1,10 @@
+
 const express = require("express");
 const axios = require("axios");
 const qs = require("qs");
 require("dotenv")
+
+
 
 // import express from "express";
 // import axios from "axios";
@@ -41,6 +44,7 @@ const getSpotifyToken = async () => {
 
 let tokenCache = getSpotifyToken();
 
+
 const fetchArtistInfo = async (id) => {
      try {
           const response = await axios.get(
@@ -58,6 +62,8 @@ const fetchArtistInfo = async (id) => {
           throw error;
      }
 };
+
+
 
 spotifyRouter.get("/artistInfo/id", async (req, res, next) => {
      try {
