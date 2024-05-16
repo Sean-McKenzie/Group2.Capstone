@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { searchArtist, fetchArtist } from "../api";
-import { fetchArtistInfo } from "../../server/api/spotify";
+
 import {
   Container,
   InputGroup,
@@ -33,7 +33,7 @@ export default function Artist({ artistId }) {
   if (status === "failed") {
     return <div>Error loading artists</div>;
   }
-  
+  console.log(artists)
   return (
     <>
       {/* <div>

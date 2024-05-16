@@ -3,4 +3,5 @@ module.exports = {
   ...require("./reviews"),
   ...require("./ratings"),
   ...require("./tags"),
+  ...require("./spotify")
 };
