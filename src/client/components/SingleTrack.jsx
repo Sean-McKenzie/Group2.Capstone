@@ -1,11 +1,14 @@
 import { useSelector } from "react-redux";
 import { Container, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import ReviewModal from "./ReviewModal";
+import { useEffect, useState } from "react";
 
 export default function SingleTrack() {
   const tracks = useSelector((state) => state.playlist.playlist?.tracks?.items);
   const { trackId } = useParams();
 
+  const [modalShow, setModalShow] = useState(false);
   const track = tracks.find((item) => item.track.id === trackId);
 
   if (!track) {
@@ -51,6 +54,7 @@ export default function SingleTrack() {
           ))}
         </Card.Body>
       </Card>
+      <ReviewModal show={modalShow} close={() => setModalShow(false)} />
     </Container>
   );
 }

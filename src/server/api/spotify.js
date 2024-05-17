@@ -3,6 +3,7 @@ import axios from "axios";
 // const qs = require("qs");
 import qs from "qs";
 
+
 const getSpotifyToken = async () => {
   const clientId = import.meta.env.VITE_CLIENT_ID;
   const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
@@ -32,10 +33,7 @@ const getSpotifyToken = async () => {
   }
 };
 
-<<<<<<< HEAD
-=======
 
->>>>>>> main
 let tokenCache = await getSpotifyToken();
 
 function refreshTokenIfNeeded() {

@@ -1,6 +1,7 @@
 const db = require("./client");
 const bcrypt = require("bcrypt");
 const SALT_COUNT = 10;
+const jwt = require("jsonwebtoken");
 
 const createUser = async ({ name = "first last", email, password }) => {
   const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
@@ -69,9 +70,39 @@ const getUserByEmail = async (email) => {
   }
 };
 
+
+
+
+
+
+
 module.exports = {
   createUser,
   getAllUsers,
   getUser,
   getUserByEmail,
+
 };
+
+
+// const getUerById = async (userId) => {
+//   try {
+//     const {
+//       rows: [user],
+//     } = await db.query(
+//       `
+//         SELECT *
+//         FROM users
+//         WHERE id=$1;`,
+//       [userId]
+//     );
+
+//     if (!user) {
+//       return null;
+//     }
+//     return user;
+//   } catch (err) {
+//     throw err;
+//   }
+// };
+

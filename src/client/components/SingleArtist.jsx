@@ -1,13 +1,11 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchArtistAlbums } from "../api";
 import { useParams, Link } from "react-router-dom";
 import { Container, Row, Card, Button } from "react-bootstrap";
 
 import { useEffect, useState } from "react";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import ReviewModal from "./ReviewModal";
-
 
 export default function SingleArtist() {
   const dispatch = useDispatch();
@@ -17,8 +15,7 @@ export default function SingleArtist() {
   const albumsStatus = useSelector((state) => state.artists.albumsStatus);
   const { artistId } = useParams();
 
-  const [albums, setAlbums] = useState();
-
+  // const [albums, setAlbums] = useState();
 
   const [modalShow, setModalShow] = useState(false);
 
@@ -80,19 +77,13 @@ export default function SingleArtist() {
             </Card.Body>
           </Card>
         )}
-        {/* <Link to={`/artist/albums`}>
-          <Button
-            variant="primary"
-            onClick={() => handleArtistClick(artist.id)}
-          >
-            View Artist's Albums
-          </Button>
-        </Link> */}
-        <Button variant="primary" onClick={() => setModalShow(true)}>
-          Leave a review
-        </Button>
 
-        <ReviewModal show={modalShow} close={() => setModalShow(false)} />
+        <ReviewModal
+          show={modalShow}
+          artistId={artistId}
+          // userId={userId}
+          close={() => setModalShow(false)}
+        />
       </Container>
     </>
   );
@@ -183,7 +174,8 @@ export default function SingleArtist() {
 //             <Card.Body>
 //               <Card.Title>{artist.name}</Card.Title>
 
-//               {/* <Card.Text>{artistId.description}</Card.Text> */}
+//               {/* <Card.Text>{artistId.description}</Card.Text> */
+}
 //             </Card.Body>
 //           </Card>
 //         )}
@@ -191,3 +183,20 @@ export default function SingleArtist() {
 //     </>
 //   );
 // }
+
+{
+  /* <Link to={`/artist/albums`}>
+          <Button
+            variant="primary"
+            onClick={() => handleArtistClick(artist.id)}
+          >
+            View Artist's Albums
+          </Button>
+        </Link> */
+}
+
+{
+  /* <Button variant="primary" onClick={() => setModalShow(true)}>
+          Leave a review
+        </Button> */
+}

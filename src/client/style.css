@@ -125,3 +125,18 @@ body {
   border: rgb(237, 28, 28);
   background: rgb(255, 113, 113);
 }
+
+.starsContainer {
+  display: flex;
+  width: 45px;
+}
+
+.star {
+  cursor: pointer;
+  transition: all 0.1s linear;
+  size: xxxlarge;
+}
+
+.star:hover {
+  transform: scale(1.1);
+}

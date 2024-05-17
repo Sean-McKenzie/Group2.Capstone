@@ -1,10 +1,13 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Container, Card } from "react-bootstrap";
+import ReviewModal from "./ReviewModal";
+import { useEffect, useState } from "react";
 
 export default function SingleAlbum() {
   const albums = useSelector((state) => state.albums.albums);
   const { albumId } = useParams();
+    const [modalShow, setModalShow] = useState(false);
 
   const album = albums.find((album) => album.id === albumId);
 
@@ -51,6 +54,7 @@ export default function SingleAlbum() {
           </Card.Text>
         </Card.Body>
       </Card>
+      <ReviewModal show={modalShow} close={() => setModalShow(false)} />
     </Container>
   );
 }
