@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
 import Stars from "./StarsRating";
 
+//instead of passing in artist, album etc, pass in type then ID 
 export default function ReviewModal({ artistId, albumId, songId, userId }) {
   const [show, setShow] = useState(false);
   const [reviewText, setReviewText] = useState("");
@@ -15,24 +16,28 @@ export default function ReviewModal({ artistId, albumId, songId, userId }) {
 
   const submitReview = async () => {
     try {
-      const response = await fetch("/api/reviews/comment", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          reviewTxT: reviewText,
-          rating: rating,
-          songid: songId,
-          albumid: albumId,
-          artistid: artistId,
-          user_id: userId,
-          rating_id: null,
-        }),
-      });
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        "http://localhost:3000/api/reviews/comment",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            reviewTXT: reviewText,
+            rating: rating,
+            songid: songId,
+            albumid: albumId,
+            artistid: artistId,
+            user_id: userId,
+          }),
+        }
+      );
       if (response.ok) {
         console.log("Review submitted successfully");
-        handleClose(); 
+        handleClose();
       } else {
         console.error("Failed to submit review:", response.statusText);
       }
@@ -58,7 +63,6 @@ export default function ReviewModal({ artistId, albumId, songId, userId }) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            
             <Form.Group
               className="mb-3"
               controlId="reviewForm.ControlTextarea1"
@@ -87,7 +91,8 @@ export default function ReviewModal({ artistId, albumId, songId, userId }) {
   );
 }
 
-{/* <Form.Group className="mb-3" controlId="reviewForm.ControlInput1">
+{
+  /* <Form.Group className="mb-3" controlId="reviewForm.ControlInput1">
   <Form.Label>Email address</Form.Label>
   <Form.Control
     type="email"
@@ -96,7 +101,8 @@ export default function ReviewModal({ artistId, albumId, songId, userId }) {
     onChange={(e) => setReviewEmail(e.target.value)}
     autoFocus
   />
-</Form.Group>; */}
+</Form.Group>; */
+}
 
 // import { useState } from "react";
 // import Button from "react-bootstrap/Button";

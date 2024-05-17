@@ -54,7 +54,7 @@ export default function SingleTrack() {
           ))}
         </Card.Body>
       </Card>
-      <ReviewModal show={modalShow} close={() => setModalShow(false)} />
+      <ReviewModal show={modalShow} songId={trackId} close={() => setModalShow(false)} />
     </Container>
   );
 }

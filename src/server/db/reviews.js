@@ -7,17 +7,17 @@ const createReview = async ({
   albumID,
   artistID,
   user_id,
-  rating_id,
+  // rating_id,
 }) => {
   try {
     const {
       rows: [review],
     } = await db.query(
       `
-        INSERT INTO reviews(reviewTXT, rating, songID, albumID, artistID, user_id, rating_id)
-        VALUES($1, $2, $3, $4, $5, $6, $7)
+        INSERT INTO reviews(reviewTXT, rating, songID, albumID, artistID, user_id)
+        VALUES($1, $2, $3, $4, $5, $6)
         RETURNING *`,
-      [reviewTXT, rating, songID, albumID, artistID, user_id, rating_id]
+      [reviewTXT, rating, songID, albumID, artistID, user_id]
     );
 
     return review;
@@ -60,10 +60,8 @@ const getAllReviews = async () => {
   }
 };
 
-
 module.exports = {
   createReview,
   getReviewByID,
   getAllReviews,
-  
 };

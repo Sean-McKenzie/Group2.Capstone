@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Container, Row, Card, Button } from "react-bootstrap";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -6,7 +7,29 @@ function Profile() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-})
+    async function fetchUser() {
+      try {
+        const token = localStorage.getItem("token");
+        console.log("token: " + token);
+        const response = await fetch("http://localhost:3000/api/users/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          console.log("data is,", data);
+          setUser(data.user);
+        } else {
+          throw new Error("Failed to fetch user");
+        }
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchUser();
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -22,10 +45,32 @@ function Profile() {
 
   return (
     <div>
-      <h1>Profile</h1>
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
-      {/* Render other user information */}
+      <Container style={{ maxwidth: "400px" }}>
+        <Card
+          style={{
+            maxwidth: "250px",
+            background: "none",
+            stroke: "none",
+            padding: "15px",
+          }}
+        >
+          <h1>Welcome {user.name} </h1>
+          <h3>User Information</h3>
+          <Card.Img
+            style={{
+              borderRadius: "50%",
+              justifyContent: "center",
+              maxWidth: "45px",
+            }}
+            src=".../../../images/profilepic.png"
+            alt="profile picture"
+          />
+          <Card.Body>
+            <Card.Title>{user.name}</Card.Title>
+            <Card.Title>{user.email}</Card.Title>
+          </Card.Body>
+        </Card>
+      </Container>
     </div>
   );
 }

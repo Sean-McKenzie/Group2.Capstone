@@ -24,7 +24,7 @@ const findUserWithToken = async (token) => {
 
   try {
     const res = await db.query(
-      "SELECT userId, email FROM users WHERE email = $1",
+      "SELECT userId, email, name FROM users WHERE email = $1",
       [email]
     );
 
@@ -39,9 +39,7 @@ const findUserWithToken = async (token) => {
   } catch (dbError) {
     console.error("Database query error:", dbError);
     throw new Error("User not found");
-  } finally {
-    await db.end();
-  }
+  } 
 };
 
 const isLoggedIn = async (req, res, next) => {

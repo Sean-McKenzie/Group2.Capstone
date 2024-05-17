@@ -65,7 +65,7 @@ const Navigations = () => {
           Music Review Site
         </Link>
       </h1>
-      {/* {token ? signedIn : registerAccount} */}
+
       {localStorage.getItem("token") ? signedIn : registerAccount}
     </div>
   );
