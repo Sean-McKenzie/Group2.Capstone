@@ -31,20 +31,47 @@ export default function ManyAlbums({ albumId }) {
 
   return (
     <>
-    
       <Container>
         <Row className="mx-2 row row-cols-4">
           {albums &&
             albums.map((album) => (
-              <Link to={`/albums/${album.id}`}>
-                <Card key={album.id}>
+              <Link
+                to={`/albums/${album.id}`}
+                style={{
+                  textDecoration: "none",
+                }}
+              >
+                <Card
+                  className="cards"
+                  key={album.id}
+                  style={{
+                    background: "none",
+                    stroke: "none",
+                    padding: "15px",
+                    transition: "1s",
+                    justifyContent: "space-around",
+                    margin: "8px",
+                  }}
+                >
                   <Card.Img
                     key={album.images[0]?.url}
                     style={{ borderRadius: "50%", justifyContent: "center" }}
                     src={album.images[0]?.url}
                     alt={album.name}
                   />
-                  <Card.Title key={album.name}>{album.name}</Card.Title>
+                  <Card.Title
+                    key={album.name}
+                    style={{
+                      fontFamily: "sans-serif",
+                      fontWeight: "bolder",
+                      fontSize: "18px",
+                      textAlign: "center",
+                      textDecoration: "none",
+                      paddingTop: "10px",
+                    }}
+                  >
+                    {album.name}{" "}
+                  </Card.Title>
                 </Card>
               </Link>
             ))}

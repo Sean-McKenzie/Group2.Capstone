@@ -7,25 +7,48 @@ const createReview = async ({
   albumID,
   artistID,
   user_id,
-
 }) => {
   try {
     const {
       rows: [review],
     } = await db.query(
       `
-        INSERT INTO reviews(reviewTXT, rating, songID, albumID, artistID, user_id
-        )
+        INSERT INTO reviews(reviewTXT, rating, songID, albumID, artistID, user_id)
         VALUES($1, $2, $3, $4, $5, $6)
         RETURNING *`,
       [reviewTXT, rating, songID, albumID, artistID, user_id]
     );
-
     return review;
   } catch (err) {
     throw err;
   }
 };
+
+// const createReview = async ({
+//   reviewTXT,
+//   rating,
+//   songID,
+//   albumID,
+//   artistID,
+//   user_id,
+//   // rating_id,
+// }) => {
+//   try {
+//     const {
+//       rows: [review],
+//     } = await db.query(
+//       `
+//         INSERT INTO reviews(reviewTXT, rating, songID, albumID, artistID, user_id)
+//         VALUES($1, $2, $3, $4, $5, $6)
+//         RETURNING *`,
+//       [reviewTXT, rating, songID, albumID, artistID, user_id]
+//     );
+
+//     return review;
+//   } catch (err) {
+//     throw err;
+//   }
+// };
 
 const getReviewByID = async (reviewID) => {
   try {
@@ -125,6 +148,7 @@ const getAllReviews = async () => {
 };
 
 
+
 const getSongAverageRating = async (songID) => {
   try {
     const {
@@ -188,14 +212,12 @@ const getArtistAverageRating = async (artistID) => {
 
 
 
+
 module.exports = {
   createReview,
   getReviewByArtistID,
   getReviewByAlbumID,
   getReviewBySongID,
   getAllReviews,
-  getAlbumAverageRating,
-  getArtistAverageRating,
-  getSongAverageRating
-  
+
 };

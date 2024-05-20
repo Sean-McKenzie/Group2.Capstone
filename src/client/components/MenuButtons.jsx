@@ -12,41 +12,80 @@ function Menubuttons() {
           listStyleType: "none",
           justifyContent: "space-around",
           textDecoration: "none",
-          // backgroundColor: "#DFD7F3",
+          fontSize: "25px",
+          fontWeight: "Bold",
         }}
       >
         <li>
           <Link
             to="/artist"
             className="artists"
-            style={{ textDecoration: "none" }}
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontSize: "25px",
+              fontWeight: "Bold",
+            }}
           >
             Artists{" "}
           </Link>
         </li>
-        {/* <li>/</li> */}
-        {/* <li>
-          <Link
-            to="/genres"
-            className="genres"
-            style={{ textDecoration: "none" }}
-          >
-            Genres{" "}
-          </Link>
-        </li> */}
-        <li>/</li>
+
+        <li style={{ color: "white" }}>/</li>
         <li>
-          <Link to="/topsongs" style={{ textDecoration: "none" }}>
+          <Link
+            to="/topsongs"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontSize: "25px",
+              fontWeight: "Bold",
+            }}
+          >
             Top Songs{" "}
           </Link>
         </li>
-        <li>/</li>
+        <li style={{ color: "white" }}>/</li>
         <li>
-          <Link to="albums" style={{ textDecoration: "none" }}>Albums </Link>
+          <Link
+            to="/albums"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontSize: "25px",
+              fontWeight: "Bold",
+            }}
+          >
+            Albums{" "}
+          </Link>
         </li>
-        <li>/</li>
+        <li style={{ color: "white" }}>/</li>
         <li>
-          <Link style={{ textDecoration: "none" }}>About</Link>
+          <Link
+            to="/search"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontSize: "25px",
+              fontWeight: "Bold",
+            }}
+          >
+            Search{" "}
+          </Link>
+        </li>
+        <li style={{ color: "white" }}>/</li>
+        <li>
+          <Link
+            to="/about"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontSize: "25px",
+              fontWeight: "Bold",
+            }}
+          >
+            About
+          </Link>
         </li>
       </ul>
     </>

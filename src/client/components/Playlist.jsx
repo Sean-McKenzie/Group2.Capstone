@@ -30,16 +30,55 @@ export default function Playlist({ playlistId }) {
         <Container>
           <Row className="mx-2 row row-cols-4">
             {playlist.tracks?.items.map((item) => (
-              <Link to={`/topsongs/${item.track.id}`}>
-                <Card key={item.track.id}>
+              <Link
+                to={`/topsongs/${item.track.id}`}
+                style={{
+                  textDecoration: "none",
+                }}
+              >
+                <Card
+                  className="cards"
+                  key={item.track.id}
+                  style={{
+                    background: "none",
+                    stroke: "none",
+                    padding: "15px",
+                    transition: "1s",
+                    justifyContent: "space-around",
+                    margin: "8px",
+                  }}
+                >
                   <Card.Img
                     style={{ borderRadius: "50%", justifyContent: "center" }}
                     src={item.track.album.images[0]?.url}
                   />
                   <Card.Body>
-                    <Card.Title>{item.track.name}</Card.Title>
+                    <Card.Title
+                      style={{
+                        fontFamily: "sans-serif",
+                        fontWeight: "bolder",
+                        fontSize: "18px",
+                        textAlign: "center",
+                        textDecoration: "none",
+                        paddingTop: "10px",
+                      }}
+                    >
+                      {item.track.name}
+                    </Card.Title>
                     {item.track.artists?.map((artist) => (
-                      <Card.Text key={artist.id}>{artist.name}</Card.Text>
+                      <Card.Text
+                        style={{
+                          fontFamily: "sans-serif",
+
+                          fontSize: "18px",
+                          textAlign: "center",
+                          textDecoration: "none",
+                          paddingTop: "10px",
+                        }}
+                        key={artist.id}
+                      >
+                        {artist.name}
+                      </Card.Text>
                     ))}
                   </Card.Body>
                 </Card>

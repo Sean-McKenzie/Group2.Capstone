@@ -10,10 +10,7 @@ const Navigations = () => {
 
   //function to handle signout
   const signout = () => {
-    // dispatch(setToken(null));
-    // console.log()
     localStorage.removeItem("token");
-    // console.log("Signout:", "" );
 
     navigate("/");
   };
@@ -34,11 +31,11 @@ const Navigations = () => {
   const signedIn = (
     <ul style={{ display: "flex", listStyleType: "none" }}>
       <li style={{ marginRight: 18 }}>
-        <Link to="/account" className="login">
+        <Link to="/profile" className="login">
           Account
         </Link>
       </li>
-      <li onClick={signout} className="login">
+      <li onClick={signout} className="login" style={{ cursor: "pointer" }}>
         Logout
       </li>
     </ul>
@@ -58,18 +55,15 @@ const Navigations = () => {
         opacity: "0.9",
       }}
     >
-      <h1>
-        <Link
-          style={{ textDecoration: "none" }}
-          to="/"
-          className="welcome
-        "
-        >
-          Music Review Site
-        </Link>
-      </h1>
-      {/* {token ? signedIn : registerAccount} */}
-      {signedIn ? registerAccount : hello}
+      <Link style={{ textDecoration: "none" }} to="/" className="welcome">
+        <img
+          src="../../images/tunetalklogo.png"
+          alt="tune talk logo"
+          style={{ maxWidth: "150px", marginLeft: "80px" }}
+        />
+      </Link>
+
+      {localStorage.getItem("token") ? signedIn : registerAccount}
     </div>
   );
 };

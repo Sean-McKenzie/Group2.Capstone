@@ -1,11 +1,14 @@
 import { useSelector } from "react-redux";
 import { Container, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import ReviewModal from "./ReviewModal";
+import { useEffect, useState } from "react";
 
 export default function SingleTrack() {
   const tracks = useSelector((state) => state.playlist.playlist?.tracks?.items);
   const { trackId } = useParams();
 
+  const [modalShow, setModalShow] = useState(false);
   const track = tracks.find((item) => item.track.id === trackId);
 
   if (!track) {
@@ -15,16 +18,43 @@ export default function SingleTrack() {
   const { name, artists, album } = track.track;
 
   return (
-    <Container>
-      <Card>
-        <Card.Img src={album.images[0]?.url} alt={name} />
+    <Container stlye={{ maxWidth: "400px", color: "blue" }}>
+      <Card style={{ background: "none", stroke: "none", padding: "15px" }}>
+        <Card.Img
+          src={album.images[0]?.url}
+          alt={name}
+          style={{
+            borderRadius: "50%",
+            justifyContent: "center",
+            maxWidth: "50%",
+          }}
+        />
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
+          <Card.Title
+            style={{
+              fontFamily: "sans-serif",
+              fontWeight: "bolder",
+              fontSize: "25px",
+              paddingLeft: "110px",
+            }}
+          >
+            {name}
+          </Card.Title>
           {artists.map((artist) => (
-            <Card.Text key={artist.id}>{artist.name}</Card.Text>
+            <Card.Text
+              key={artist.id}
+              style={{
+                fontFamily: "sans-serif",
+                paddingLeft: "110px",
+                fontSize: "25px",
+              }}
+            >
+              {artist.name}
+            </Card.Text>
           ))}
         </Card.Body>
       </Card>
+      <ReviewModal show={modalShow} songId={trackId} close={() => setModalShow(false)} />
     </Container>
   );
 }
