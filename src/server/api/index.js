@@ -31,12 +31,12 @@ apiRouter.use(async (req, res, next) => {
 
 const usersRouter = require("./users");
 const reviewsRouter = require("./reviews");
-const ratingsRouter = require("./ratings");
+//const ratingsRouter = require("./ratings");
 const tagsRouter = require("./tags");
 const spotifyRouter = require("./spotify");
 apiRouter.use("/users", usersRouter);
 apiRouter.use("/reviews", reviewsRouter);
-apiRouter.use("/ratings", ratingsRouter);
+//apiRouter.use("/ratings", ratingsRouter);
 apiRouter.use("/tags", tagsRouter);
 apiRouter.use("/spotify", spotifyRouter);
 apiRouter.use((err, req, res, next) => {

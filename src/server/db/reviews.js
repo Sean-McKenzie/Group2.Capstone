@@ -7,17 +7,18 @@ const createReview = async ({
   albumID,
   artistID,
   user_id,
-  rating_id,
+
 }) => {
   try {
     const {
       rows: [review],
     } = await db.query(
       `
-        INSERT INTO reviews(reviewTXT, rating, songID, albumID, artistID, user_id, rating_id)
-        VALUES($1, $2, $3, $4, $5, $6, $7)
+        INSERT INTO reviews(reviewTXT, rating, songID, albumID, artistID, user_id
+        )
+        VALUES($1, $2, $3, $4, $5, $6)
         RETURNING *`,
-      [reviewTXT, rating, songID, albumID, artistID, user_id, rating_id]
+      [reviewTXT, rating, songID, albumID, artistID, user_id]
     );
 
     return review;
@@ -46,6 +47,69 @@ const getReviewByID = async (reviewID) => {
   }
 };
 
+const getReviewByArtistID = async (artistID) => {
+  try {
+    const {
+      rows: [review],
+    } = await db.query(
+      `
+        SELECT reviewTXT, rating FROM reviews
+        WHERE artistID=$1;`,
+      [artistID]
+    );
+
+    if (!review) {
+      return;
+    }
+    return review;
+  } catch (err) {
+    throw err;
+  }
+};
+
+const getReviewByAlbumID = async (albumID) => {
+  try {
+    const {
+      rows: [review],
+    } = await db.query(
+      `
+        SELECT reviewTXT, rating FROM reviews
+        WHERE albumID=$1;`,
+      [albumID]
+    );
+
+    if (!review) {
+      return;
+    }
+    return review;
+  } catch (err) {
+    throw err;
+  }
+};
+
+const getReviewBySongID = async (songID) => {
+  try {
+    const {
+      rows: [review],
+    } = await db.query(
+      `
+        SELECT reviewTXT, rating FROM reviews
+        WHERE songID=$1;`,
+      [songID]
+    );
+
+    if (!review) {
+      return;
+    }
+    return review;
+  } catch (err) {
+    throw err;
+  }
+};
+
+
+
+
 const getAllReviews = async () => {
   try {
     const { rows: reviews } = await db.query(
@@ -61,9 +125,77 @@ const getAllReviews = async () => {
 };
 
 
+const getSongAverageRating = async (songID) => {
+  try {
+    const {
+      rows: [rating],
+    } = await db.query(
+      `
+        SELECT rating FROM reviews
+        WHERE songID=$1;`,
+      [songID]
+    );
+
+    if (!rating) {
+      return;
+    }
+    let avg = Math.avg.rating;
+    return avg;
+  } catch (err) {
+    throw err;
+  }
+};
+const getAlbumAverageRating = async (albumID) => {
+  try {
+    const {
+      rows: [rating],
+    } = await db.query(
+      `
+        SELECT rating FROM reviews
+        WHERE albumID=$1;`,
+      [albumID]
+    );
+
+    if (!rating) {
+      return;
+    }
+    let avg = Math.avg.rating;
+    return avg;
+  } catch (err) {
+    throw err;
+  }
+};
+const getArtistAverageRating = async (artistID) => {
+  try {
+    const {
+      rows: [rating],
+    } = await db.query(
+      `
+        SELECT rating FROM reviews
+        WHERE artistID=$1;`,
+      [artistID]
+    );
+
+    if (!rating) {
+      return;
+    }
+    let avg = Math.avg.rating;
+    return avg;
+  } catch (err) {
+    throw err;
+  }
+};
+
+
+
 module.exports = {
   createReview,
-  getReviewByID,
+  getReviewByArtistID,
+  getReviewByAlbumID,
+  getReviewBySongID,
   getAllReviews,
+  getAlbumAverageRating,
+  getArtistAverageRating,
+  getSongAverageRating
   
 };

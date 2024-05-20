@@ -1,7 +1,6 @@
 const db = require("./client");
 const { createUser } = require("./users");
 const { createReview } = require("./reviews");
-const { createRating } = require("./ratings");
 const { createTags } = require("./tags");
 
 const users = [
@@ -38,38 +37,33 @@ const reviews = [
     rating: 0,
     songID: "adfaDFSFES5018540SDF",
     user_id: 6,
-    rating_id: 1,
   },
   {
     reviewTXT: "mid",
     rating: 3,
     albumID: "lkjlisearfslEIRSJLFK",
     user_id: 5,
-    rating_id: 2,
   },
   {
     reviewTXT: "litty",
     rating: 10,
     artistID: "651518sfsawfeasfeSEWE",
     user_id: 10,
-    rating_id: 3,
   },
   {
     reviewTXT: "hot garbage",
     rating: 0,
     songID: "lkjiLIJLILIlkjijlkl",
     user_id: 3,
-    rating_id: 4,
   },
   {
     reviewTXT: "good",
     rating: 1,
     albumID: "oijOIUOIUOIJIOJOIoeioij",
     user_id: 1,
-    rating_id: 5,
   },
 ];
-const ratings = [
+/* const ratings = [
   {
     rate: 0,
     songID: "adfaDFSFES5018540SDF",
@@ -95,15 +89,15 @@ const ratings = [
     albumID: "oijOIUOIUOIJIOJOIoeioij",
     user_ID: 1,
   },
-];
+]; */
 const tags = [
   {
     tagTXT: "Study Music",
-    songID: "lkjiLIJLILIlkjijlkl"
+    songID: "lkjiLIJLILIlkjijlkl",
   },
   {
     tagTXT: "Programming Music",
-    songID: "adfaDFSFES5018540SDF"
+    songID: "adfaDFSFES5018540SDF",
   },
 ];
 
@@ -112,7 +106,6 @@ const dropTables = async () => {
     await db.query(`
         DROP TABLE IF EXISTS users CASCADE;
         DROP TABLE IF EXISTS reviews;
-        DROP TABLE IF EXISTS ratings;
         DROP TABLE IF EXISTS tags;
         `);
   } catch (err) {
@@ -129,14 +122,6 @@ const createTables = async () => {
             email VARCHAR(255) UNIQUE NOT NULL,
             password VARCHAR(255) NOT NULL
         );
-        CREATE TABLE ratings(
-          ratingID SERIAL PRIMARY KEY,
-          rate INT,
-          songID VARCHAR(255),
-          albumID VARCHAR(255),
-          artistID VARCHAR(255),
-          user_ID INT NOT NULL
-        );
         CREATE TABLE reviews(
           reviewID SERIAL PRIMARY KEY,
           reviewTXT VARCHAR(255) NOT NULL,
@@ -145,7 +130,6 @@ const createTables = async () => {
           albumID VARCHAR(255),
           artistID VARCHAR(255),
           user_id INT NOT NULL,
-          rating_id INT NOT NULL
           
       );
         CREATE TABLE tags(
@@ -162,12 +146,9 @@ const createTables = async () => {
 const addConstraints = async () => {
   try {
     await db.query(
-      `ALTER TABLE ratings
-      ADD FOREIGN KEY (user_ID) REFERENCES users(userID);
+      `
       ALTER TABLE reviews
       ADD FOREIGN KEY (user_id) REFERENCES users(userID);
-      ALTER TABLE reviews
-      ADD FOREIGN KEY (rating_id) REFERENCES ratings(ratingID);
       `
     );
   } catch (err) {
@@ -199,24 +180,6 @@ const insertReviews = async () => {
         albumID: review.albumID,
         artistID: review.artistID,
         user_id: review.user_id,
-        rating_id: review.rating_id,
-      });
-    }
-    console.log("seed datat inserted successfully.");
-  } catch (error) {
-    console.error("Error inserting seed data:", error);
-  }
-};
-
-const insertRatings = async () => {
-  try {
-    for (const rating of ratings) {
-      await createRating({
-        rate: rating.rate,
-        songID: rating.songID,
-        albumID: rating.albumID,
-        artistID: rating.artistID,
-        user_ID: rating.user_ID,
       });
     }
     console.log("seed datat inserted successfully.");
@@ -226,7 +189,7 @@ const insertRatings = async () => {
 };
 
 const insertTags = async () => {
-  try{
+  try {
     for (const tag of tags) {
       await createTags({
         tagTXT: tag.tagTXT,
@@ -234,12 +197,10 @@ const insertTags = async () => {
       });
     }
     console.log("seed data inserted successfully.");
-  }
-  catch (error)
-  {
+  } catch (error) {
     console.error("Error inserting seed data:", error);
   }
-}
+};
 
 const seedDatabse = async () => {
   try {
@@ -248,7 +209,7 @@ const seedDatabse = async () => {
     await createTables();
     await insertUsers();
     await insertReviews();
-    await insertRatings();
+
     await insertTags();
     await addConstraints();
   } catch (err) {
