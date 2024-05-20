@@ -32,7 +32,7 @@ export default function Artist({ artistId }) {
   if (status === "failed") {
     return <div>Error loading artists</div>;
   }
-  console.log(artists)
+  
   return (
     <>
       {/* <div>

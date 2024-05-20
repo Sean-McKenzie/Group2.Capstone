@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchManyAlbums, fetchAlbum } from "../api";
+import { fetchManyAlbums
+  // fetchAlbum 
+} from "../api";
 
 const albumSlice = createSlice({
   name: "albums",
@@ -11,17 +13,17 @@ const albumSlice = createSlice({
   reducers: {},   
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAlbum.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(fetchAlbum.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.albums = action.payload;
-      })
-      .addCase(fetchAlbum.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
-      })
+      // .addCase(fetchAlbum.pending, (state) => {
+      //   state.status = "loading";
+      // })
+      // .addCase(fetchAlbum.fulfilled, (state, action) => {
+      //   state.status = "succeeded";
+      //   state.albums = action.payload;
+      // })
+      // .addCase(fetchAlbum.rejected, (state, action) => {
+      //   state.status = "failed";
+      //   state.error = action.error.message;
+      // })
       .addCase(fetchManyAlbums.pending, (state) => {
         state.status = "loading";
       })
