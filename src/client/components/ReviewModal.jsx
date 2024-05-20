@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap";
 import Stars from "./StarsRating";
 
 //instead of passing in artist, album etc, pass in type then ID 
-export default function ReviewModal({ artistId, albumId, songId, userId }) {
+export default function ReviewModal({ artistId, albumId, songId, user_id }) {
   const [show, setShow] = useState(false);
   const [reviewText, setReviewText] = useState("");
   // const [reviewEmail, setReviewEmail] = useState("");
@@ -31,7 +31,7 @@ export default function ReviewModal({ artistId, albumId, songId, userId }) {
             songid: songId,
             albumid: albumId,
             artistid: artistId,
-            user_id: userId,
+            user_id: user_id,
           }),
         }
       );

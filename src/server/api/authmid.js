@@ -24,7 +24,7 @@ const findUserWithToken = async (token) => {
 
   try {
     const res = await db.query(
-      "SELECT userId, email, name FROM users WHERE email = $1",
+      "SELECT user_id, email, name FROM users WHERE email = $1",
       [email]
     );
 

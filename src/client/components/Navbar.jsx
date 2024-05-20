@@ -55,16 +55,13 @@ const Navigations = () => {
         opacity: "0.9",
       }}
     >
-      <h1>
-        <Link
-          style={{ textDecoration: "none" }}
-          to="/"
-          className="welcome
-        "
-        >
-          Music Review Site
-        </Link>
-      </h1>
+      <Link style={{ textDecoration: "none" }} to="/" className="welcome">
+        <img
+          src="../../images/tunetalklogo.png"
+          alt="tune talk logo"
+          style={{ maxWidth: "150px", marginLeft: "80px" }}
+        />
+      </Link>
 
       {localStorage.getItem("token") ? signedIn : registerAccount}
     </div>

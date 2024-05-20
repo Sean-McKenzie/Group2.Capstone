@@ -16,25 +16,43 @@ reviewsRouter.get("/", async (req, res, next) => {
   }
 });
 
-reviewsRouter.post("/comment", isLoggedIn, async (req, res, next) => {
-  const { reviewTXT, rating, songid, albumid, artistid } = req.body;
+reviewsRouter.post("/comment", async (req, res, next) => {
+  const { reviewTxT, rating, songid, albumid, artistid, user_id } = req.body;
   try {
-    console.log(req.body);
     const review = await createReview({
-      reviewTXT,
+      reviewTxT,
       rating,
       songid,
       albumid,
       artistid,
-      user_id: req.user.userid,
+      user_id,
     });
     console.log(review);
-    res.status(201).json({ review }); // <-- Sending response
+    res.status(201).json({ review });
   } catch (err) {
     next(err);
-    console.log(err);
   }
 });
+
+// reviewsRouter.post("/comment", isLoggedIn, async (req, res, next) => {
+//   const { reviewTXT, rating, songid, albumid, artistid } = req.body;
+//   try {
+//     console.log(req.body);
+//     const review = await createReview({
+//       reviewTXT,
+//       rating,
+//       songid,
+//       albumid,
+//       artistid,
+//       user_id: req.user.userid,
+//     });
+//     console.log(review);
+//     res.status(201).json({ review }); // <-- Sending response
+//   } catch (err) {
+//     next(err);
+//     console.log(err);
+//   }
+// });
 
 // //add isloggedin
 // reviewsRouter.post("/comment", async (req, res, next) => {

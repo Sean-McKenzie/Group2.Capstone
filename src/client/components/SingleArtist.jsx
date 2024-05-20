@@ -81,7 +81,7 @@ export default function SingleArtist() {
         <ReviewModal
           show={modalShow}
           artistId={artistId}
-          // userId={userId}
+          // user_id={user_id}
           close={() => setModalShow(false)}
         />
       </Container>
