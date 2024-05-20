@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { searchArtist, fetchArtist } from "../api";
-import { fetchArtistInfo } from "../../server/api/spotify";
+
 import {
   Container,
   InputGroup,

@@ -70,6 +70,69 @@ const getReviewByID = async (reviewID) => {
   }
 };
 
+const getReviewByArtistID = async (artistID) => {
+  try {
+    const {
+      rows: [review],
+    } = await db.query(
+      `
+        SELECT reviewTXT, rating FROM reviews
+        WHERE artistID=$1;`,
+      [artistID]
+    );
+
+    if (!review) {
+      return;
+    }
+    return review;
+  } catch (err) {
+    throw err;
+  }
+};
+
+const getReviewByAlbumID = async (albumID) => {
+  try {
+    const {
+      rows: [review],
+    } = await db.query(
+      `
+        SELECT reviewTXT, rating FROM reviews
+        WHERE albumID=$1;`,
+      [albumID]
+    );
+
+    if (!review) {
+      return;
+    }
+    return review;
+  } catch (err) {
+    throw err;
+  }
+};
+
+const getReviewBySongID = async (songID) => {
+  try {
+    const {
+      rows: [review],
+    } = await db.query(
+      `
+        SELECT reviewTXT, rating FROM reviews
+        WHERE songID=$1;`,
+      [songID]
+    );
+
+    if (!review) {
+      return;
+    }
+    return review;
+  } catch (err) {
+    throw err;
+  }
+};
+
+
+
+
 const getAllReviews = async () => {
   try {
     const { rows: reviews } = await db.query(
@@ -84,8 +147,77 @@ const getAllReviews = async () => {
   }
 };
 
+
+
+const getSongAverageRating = async (songID) => {
+  try {
+    const {
+      rows: [rating],
+    } = await db.query(
+      `
+        SELECT rating FROM reviews
+        WHERE songID=$1;`,
+      [songID]
+    );
+
+    if (!rating) {
+      return;
+    }
+    let avg = Math.avg.rating;
+    return avg;
+  } catch (err) {
+    throw err;
+  }
+};
+const getAlbumAverageRating = async (albumID) => {
+  try {
+    const {
+      rows: [rating],
+    } = await db.query(
+      `
+        SELECT rating FROM reviews
+        WHERE albumID=$1;`,
+      [albumID]
+    );
+
+    if (!rating) {
+      return;
+    }
+    let avg = Math.avg.rating;
+    return avg;
+  } catch (err) {
+    throw err;
+  }
+};
+const getArtistAverageRating = async (artistID) => {
+  try {
+    const {
+      rows: [rating],
+    } = await db.query(
+      `
+        SELECT rating FROM reviews
+        WHERE artistID=$1;`,
+      [artistID]
+    );
+
+    if (!rating) {
+      return;
+    }
+    let avg = Math.avg.rating;
+    return avg;
+  } catch (err) {
+    throw err;
+  }
+};
+
+
+
+
 module.exports = {
   createReview,
-  getReviewByID,
+  getReviewByArtistID,
+  getReviewByAlbumID,
+  getReviewBySongID,
   getAllReviews,
+
 };

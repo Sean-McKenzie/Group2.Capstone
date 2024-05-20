@@ -66,8 +66,40 @@ const reviews = [
     rating: 1,
     albumID: "oijOIUOIUOIJIOJOIoeioij",
     user_id: 1,
+
   },
 ];
+
+
+  },
+];
+/* const ratings = [
+  {
+    rate: 0,
+    songID: "adfaDFSFES5018540SDF",
+    user_ID: 6,
+  },
+  {
+    rate: 3,
+    albumID: "lkjlisearfslEIRSJLFK",
+    user_ID: 5,
+  },
+  {
+    rate: 10,
+    artistID: "651518sfsawfeasfeSEWE",
+    user_ID: 10,
+  },
+  {
+    rate: 0,
+    songID: "lkjiLIJLILIlkjijlkl",
+    user_ID: 3,
+  },
+  {
+    rate: 1,
+    albumID: "oijOIUOIUOIJIOJOIoeioij",
+    user_ID: 1,
+  },
+]; */
 
 const tags = [
   {
@@ -124,7 +156,9 @@ const addConstraints = async () => {
     await db.query(
       `
       ALTER TABLE reviews
+
       ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
+
       `
     );
   } catch (err) {
@@ -155,7 +189,7 @@ const insertReviews = async () => {
         albumID: review.albumID,
         artistID: review.artistID,
         user_id: review.user_id,
-        // rating_id: review.rating_id,
+
       });
     }
     console.log("seed datat inserted successfully.");
@@ -163,6 +197,7 @@ const insertReviews = async () => {
     console.error("Error inserting seed data:", error);
   }
 };
+
 const insertTags = async () => {
   try {
     for (const tag of tags) {
@@ -176,6 +211,7 @@ const insertTags = async () => {
     console.error("Error inserting seed data:", error);
   }
 };
+
 const seedDatabse = async () => {
   try {
     db.connect();
@@ -183,6 +219,7 @@ const seedDatabse = async () => {
     await createTables();
     await insertUsers();
     await insertReviews();
+
     await insertTags();
     await addConstraints();   
   } catch (err) {

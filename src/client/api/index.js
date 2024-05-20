@@ -1,8 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchArtistInfo } from "../../server/api/spotify";
+import axios from 'axios'
 
-
-export async function getSpotifyToken() {
+export async function getSpotifyTokeen() {
      const url = "https://accounts.spotify.com/api/token";
      let response = await fetch(url, {
           method: "POST",
@@ -38,7 +37,7 @@ export const searchArtist = createAsyncThunk(
      "artists/searchArtists",
      async (artistName, { rejectWithValue }) => {
           try {
-               let token = await getSpotifyToken();
+               let token = await getSpotifyTokeen();
                const response = await fetch(
                     `https://api.spotify.com/v1/search?q=${artistName}&type=artist`,
                     {
@@ -85,164 +84,121 @@ export const searchArtist = createAsyncThunk(
 // );
  
 export const fetchArtist = createAsyncThunk(
-     "artists/fetchArtists",
-     async(id) => {
-          try{
-               const artists =  await fetchArtistInfo(id);
-               return artists;
+     "artist/fetchArtist", 
+     async (id, thunkAPI) => {
+          try {
+               const response = await fetch(`/api/spotify/artistInfo/${id}`);
+               if (!response.ok) {
+                    throw new Error("Failed to fetch artist");
+               }
+               const data = await response.json();
+              
+               return data; 
           } catch (error) {
-               console.error("failed to fetch artist", error )
+               return thunkAPI.rejectWithValue(error.message); 
           }
      }
-     
 );
 
-//FETCH SINGLE ARTIST
+
 export const fetchSingleArtist = createAsyncThunk(
-  "artists/fetchSingleArtist",
-  async (artistId, { rejectWithValue }) => {
-    try {
-      let token = await getSpotifyToken();
-      const response = await fetch(
-        `https://api.spotify.com/v1/artists/${artistId}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch artists");
-      }
-      const data = await response.json();
-      console.log("artist is:", data);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
+     'artist/fetchSingleArtist',
+     async (id) => {
+     try {
+          const response = await fetch(`/api/spotify/singleArtistInfo/${id}`);
+          if (!response.ok) {
+               throw new Error("Network response was not ok");
+          }
+          const data = await response.json();
+          return data;
+     } catch (error) {
+          console.error("Failed to fetch artist", error);
+     }
+     }
 );
 
 export const fetchPlaylist = createAsyncThunk(
-     "playlists/fetchPlayList",
-     async (playlist_id, { rejectWithValue }) => {
-          try {
-               let token = await getSpotifyToken();
-               const response = await fetch(
-                    `https://api.spotify.com/v1/playlists/${playlist_id}`,
-                    {
-                         headers: {
-                              Authorization: "Bearer " + token,
-                         },
-                    }
-               );
-               if (!response.ok) {
-                    throw new Error("Failed to fetch playlist");
-               }
-               const data = await response.json();
-               console.log(data);
-               return data;
-          } catch (error) {
-               return rejectWithValue(error.message);
+     'artist/fetchPlaylist',
+
+     async (id) => {
+     try {
+          const response = await fetch(`/api/spotify/playlistInfo/${id}`);
+          if (!response.ok) {
+               throw new Error("Network response was not ok");
           }
+          const data = await response.json();
+          console.log('data',data)
+          return data;
+     } catch (error) {
+          console.error("Failed to fetch playlist", error);
      }
+}
 );
 
 export const fetchArtistAlbums = createAsyncThunk(
-  "albums/fetchArtistsAlbums",
-  async (id, { rejectWithValue }) => {
-    try {
-      let token = await getSpotifyToken();
-      const response = await fetch(
-        `https://api.spotify.com/v1/artists/${id}/albums`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch artist album");
-      }
-      const data = await response.json();
-      console.log("Artist albums:", data);
-      return data.items;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+     'artist/fetchArtistAlbums',
 
+async (id) => {
+     try {
+          const response = await fetch(`/api/spotify/artistAlbums/${id}`);
+          if (!response.ok) {
+               throw new Error("Network response was not ok");
+          }
+          const data = await response.json();
+          return data;
+     } catch (error) {
+          console.error("Failed to fetch artist", error);
+     }
+     }
+);
 export const fetchManyAlbums = createAsyncThunk(
-  "albums/fetchManyAlbums",
-  async (album_id, { rejectWithValue }) => {
-    try {
-      let token = await getSpotifyToken();
-      const response = await fetch(
-        `https://api.spotify.com/v1/albums?ids=${album_id}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch artist album");
-      }
-      const data = await response.json();
-      return data.albums;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+     'artist/fetchManyAlbums',
 
-export const fetchAlbum = createAsyncThunk(
-  "albums/fetchAlbum",
-  async (album_id, { rejectWithValue }) => {
-    try {
-      let token = await getSpotifyToken();
-      const response = await fetch(
-        `https://api.spotify.com/v1/albums/${album_id}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch artist album");
-      }
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+async (id) => {
+     try {
+          const response = await fetch(`/api/spotify/artistManyAlbums/${id}`);
+          if (!response.ok) {
+               throw new Error("Network response was not ok");
+          }
+          const data = await response.json();
+          return data;
+     } catch (error) {
+          console.error("Failed to fetch artist", error);
+     }
+     }
+)
+
+// export const fetchAlbum = async (album_id, { rejectWithValue }) => {
+//      try {
+          
+//           const response = await fetch()
+//           if (!response.ok) {
+//                throw new Error("Failed to fetch artist album");
+//           }
+//           const data = await response.json();
+//           return data;
+//      } catch (error) {
+//           return rejectWithValue(error.message);
+//      }
+// };
 
 export const fetchSingleTrack = createAsyncThunk(
-  "tracks/fetchSingleTrack",
-  async (track_id, { rejectWithValue }) => {
-    console.log("hi abby");
-    try {
-      let token = await getSpotifyToken();
-      const response = await fetch(
-        `https://api.spotify.com/v1/tracks/${track_id}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch track");
-      }
-      const data = await response.json();
-      console.log("single track:", data);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
+     'artist/fetchManyAlbums',
+
+async (track_id) => {
+     
+     try {
+          l
+          const response = await fetch(
+          );
+          if (!response.ok) {
+               throw new Error("Failed to fetch track");
+          }
+          const data = await response.json();
+          console.log("single track:", data);
+          return data;
+     } catch (error) {
+          return rejectWithValue(error.message);
+     }
+}
 );
