@@ -6,12 +6,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
 
-import Stars from "./StarsRating";
+// import Stars from "./StarsRating";
 
 //instead of passing in artist, album etc, pass in type then ID 
 export default function ReviewModal({ artistId, albumId, songId, user_id }) {
 
-export default function ReviewModal() {
   const [show, setShow] = useState(false);
   const [reviewText, setReviewText] = useState("");
   const [reviewEmail, setReviewEmail] = useState("");
@@ -179,7 +178,7 @@ export default function ReviewModal() {
     autoFocus
   />
 </Form.Group>; */
-}
+//}
 
 // import { useState } from "react";
 // import Button from "react-bootstrap/Button";

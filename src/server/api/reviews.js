@@ -8,16 +8,17 @@ const isLoggedIn = require("./authmid");
 
 reviewsRouter.get("/", async (req, res, next) => {
   console.log("reviews are:");
+});
 
 const {
-  createReview,
+  //createReview,
   getReviewByArtistID,
   getReviewByAlbumID,
   getReviewBySongID,
   getSongAverageRating,
   getAlbumAverageRating,
   getArtistAverageRating,
-  getAllReviews,
+ // getAllReviews,
   fetchArtist,
   fetchAlbum,
   fetchSingleTrack,

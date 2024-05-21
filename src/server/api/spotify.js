@@ -91,50 +91,50 @@ function refreshTokenIfNeeded() {
   });
 }
 
-export const fetchArtistInfo = async (id) => {
-  try {
-    // let token =  await getSpotifyToken()
-    // refreshTokenIfNeeded();
-    const response = await axios.get(
-      `https://api.spotify.com/v1/artists?ids=${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ` + tokenCache,
-        },
-      }
-    );
-    console.log(response.data.artists);
-    return response.data.artists;
-  } catch (error) {
-    console.error("Error fetching artist info:", error);
-    throw error;
-  }
-};
+// export const fetchArtistInfo = async (id) => {
+//   try {
+//     // let token =  await getSpotifyToken()
+//     // refreshTokenIfNeeded();
+//     const response = await axios.get(
+//       `https://api.spotify.com/v1/artists?ids=${id}`,
+//       {
+//         headers: {
+//           Authorization: `Bearer ` + tokenCache,
+//         },
+//       }
+//     );
+//     console.log(response.data.artists);
+//     return response.data.artists;
+//   } catch (error) {
+//     console.error("Error fetching artist info:", error);
+//     throw error;
+//   }
+// };
 
-export const fetchPlaylistInfo = async (playlist_id, { rejectWithValue }) => {
-  try {
-    //    let token = await getSpotifyToken();
-    // refreshTokenIfNeeded();
-    const response = await axios.get(
-      `https://api.spotify.com/v1/playlists/${playlist_id}`,
-      {
-        headers: {
-          Authorization: `Bearer ` + tokenCache,
-        },
-      }
-    );
-    return response.data;
-  } catch (error) {
-    return rejectWithValue(error.message);
-  }
-};
+// export const fetchPlaylistInfo = async (playlist_id, { rejectWithValue }) => {
+//   try {
+//     //    let token = await getSpotifyToken();
+//     // refreshTokenIfNeeded();
+//     const response = await axios.get(
+//       `https://api.spotify.com/v1/playlists/${playlist_id}`,
+//       {
+//         headers: {
+//           Authorization: `Bearer ` + tokenCache,
+//         },
+//       }
+//     );
+//     return response.data;
+//   } catch (error) {
+//     return rejectWithValue(error.message);
+//   }
+// };
 
-          res.send(artistInfo);
-     } catch (error) {
-          console.error(error);
-          res.status(500).send({ message: "Error fetching artist info" });
-     }
-});
+//           res.send(artistInfo);
+//      } catch (error) {
+//           console.error(error);
+//           res.status(500).send({ message: "Error fetching artist info" });
+//      }
+// });
 
 spotifyRouter.get(
      "/singleArtistInfo/:id",

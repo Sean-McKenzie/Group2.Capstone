@@ -71,8 +71,7 @@ const reviews = [
 ];
 
 
-  },
-];
+
 /* const ratings = [
   {
     rate: 0,
