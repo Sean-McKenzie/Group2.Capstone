@@ -70,36 +70,6 @@ const reviews = [
   },
 ];
 
-
-
-/* const ratings = [
-  {
-    rate: 0,
-    songID: "adfaDFSFES5018540SDF",
-    user_ID: 6,
-  },
-  {
-    rate: 3,
-    albumID: "lkjlisearfslEIRSJLFK",
-    user_ID: 5,
-  },
-  {
-    rate: 10,
-    artistID: "651518sfsawfeasfeSEWE",
-    user_ID: 10,
-  },
-  {
-    rate: 0,
-    songID: "lkjiLIJLILIlkjijlkl",
-    user_ID: 3,
-  },
-  {
-    rate: 1,
-    albumID: "oijOIUOIUOIJIOJOIoeioij",
-    user_ID: 1,
-  },
-]; */
-
 const tags = [
   {
     tagTXT: "Study Music",

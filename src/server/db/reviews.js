@@ -130,9 +130,6 @@ const getReviewBySongID = async (songID) => {
   }
 };
 
-
-
-
 const getAllReviews = async () => {
   try {
     const { rows: reviews } = await db.query(
@@ -146,8 +143,6 @@ const getAllReviews = async () => {
     throw err;
   }
 };
-
-
 
 const getSongAverageRating = async (songID) => {
   try {
@@ -210,14 +205,14 @@ const getArtistAverageRating = async (artistID) => {
   }
 };
 
-
-
-
 module.exports = {
   createReview,
   getReviewByArtistID,
   getReviewByAlbumID,
   getReviewBySongID,
   getAllReviews,
-
+  getArtistAverageRating,
+  getAlbumAverageRating,
+  getSongAverageRating,
+  getReviewByID,
 };

@@ -12,16 +12,18 @@ function Reviewslist() {
     
         const response = await fetch("http://localhost:3000/api/reviews"); // Example: fetch review with ID 123
         const reviewsData = await response.json();
+        console.log("reviews data", reviewsData);
         //const convertedReviewsData = Object.keys(reviewsData).map((key) => [key, reviewsData[key]])
        // console.log("reviews data", reviewsData);
         //console.log(convertedReviewsData);
         setReviews(reviewsData.reviews);
+        console.log("reviews:", reviews);
       } catch (error) {
         console.error("Error fetching reviews:", error);
       }
     };
     fetchReviews();
-    //console.log("reviews:", reviews);
+    console.log("reviews:", reviews);
 
   }, []);
 
@@ -49,69 +51,3 @@ function Reviewslist() {
 
 export default Reviewslist;
 
-// <Table striped bordered hover style={{ maxWidth: "25vw" }}>
-//   <thead>
-//     <tr>
-//       <th>A Look at recent reviews</th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//     <tr>
-//       <td style={{ display: "flex" }}>
-//         <img
-//           style={{ maxHeight: "45px" }}
-//           src=".../../../images/user_imagePlaceholder.png"
-//         />
-//         <p>ivettem23 reviews Victoria Monet</p>
-//       </td>
-//     </tr>
-{
-  /* <tr>
-          <td style={{ display: "flex" }}>
-            <img
-              style={{ maxHeight: "45px" }}
-              src=".../../../images/user_imagePlaceholder.png"
-            />
-            <p>ivettem23 reviews Victoria Monet</p>
-          </td>
-        </tr>
-        <tr>
-          <td style={{ display: "flex" }}>
-            <img
-              style={{ maxHeight: "45px" }}
-              src=".../../../images/user_imagePlaceholder.png"
-            />
-            <p>ivettem23 reviews Victoria Monet</p>
-          </td>
-        </tr>
-        <tr>
-          <td style={{ display: "flex" }}>
-            <img
-              style={{ maxHeight: "45px" }}
-              src=".../../../images/user_imagePlaceholder.png"
-            />
-            <p>ivettem23 reviews Victoria Monet</p>
-          </td>
-        </tr>
-        <tr>
-          <td style={{ display: "flex" }}>
-            <img
-              style={{ maxHeight: "45px" }}
-              src=".../../../images/user_imagePlaceholder.png"
-            />
-            <p>ivettem23 reviews Victoria Monet</p>
-          </td>
-        </tr>
-        <tr>
-          <td style={{ display: "flex" }}>
-            <img
-              style={{ maxHeight: "45px" }}
-              src=".../../../images/user_imagePlaceholder.png"
-            />
-            <p>ivettem23 reviews Victoria Monet</p>
-          </td>
-        </tr> */
-}
-
-//   </tbody>
-// </Table>
