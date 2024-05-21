@@ -1,12 +1,8 @@
 
 const express = require("express");
-const axios = require("axios");
+
 
 require("dotenv");
-
-// import express from "express";
-// import axios from "axios";
-// import qs from 'qs'
 
 const spotifyRouter = express.Router();
 

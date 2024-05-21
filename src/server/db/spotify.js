@@ -44,7 +44,7 @@ fetchAndStoreToken();
 
 const fetchArtistInfo = async (id) => {
      try {
-        //   let tokenCache = await getSpotifyToken();
+       
           const response = await axios.get(
                `https://api.spotify.com/v1/artists?ids=${id}`,
                {
