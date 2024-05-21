@@ -6,7 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
 
 import Stars from "./StarsRating";
-export default function ReviewModal(artistId, albumId, songId, user_id) {
+export default function ReviewModal({artistId, albumId, songId, user_id}) {
   const [show, setShow] = useState(false);
   const [reviewText, setReviewText] = useState("");
   // const [reviewEmail, setReviewEmail] = useState("");
@@ -57,7 +57,7 @@ export default function ReviewModal(artistId, albumId, songId, user_id) {
         show={show}
         onHide={handleClose}
         backdrop="static"
-        // keyboard={false}
+        keyboard={false}
       >
         <Modal.Header closeButton>
           <Modal.Title>Leave a review</Modal.Title>

@@ -6,9 +6,9 @@ const jwt = require("jsonwebtoken");
 const { createReview, getReviewByID, getAllReviews } = require("../db"); // Assuming you have a function to get all reviews
 const isLoggedIn = require("./authmid");
 
-reviewsRouter.get("/", async (req, res, next) => {
-  console.log("reviews are:");
-});
+// reviewsRouter.get("/", async (req, res, next) => {
+//   console.log("reviews are:");
+// });
 
 const {
   //createReview,
@@ -44,7 +44,7 @@ reviewsRouter.get("/", async (req, res, next) => {
   }
 });
 
-reviewsRouter.post("/comment", async (req, res, next) => {
+reviewsRouter.post("/comment",  async (req, res, next) => {
   const { reviewTxT, rating, songid, albumid, artistid, user_id } = req.body;
   try {
     const review = await createReview({

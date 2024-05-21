@@ -54,7 +54,7 @@ export default function SingleAlbum() {
           </Card.Text>
         </Card.Body>
       </Card>
-      <ReviewModal show={modalShow} albumID={albumId} close={() => setModalShow(false)} />
+      <ReviewModal show={modalShow} albumId={albumId} close={() => setModalShow(false)} />
     </Container>
   );
 }
