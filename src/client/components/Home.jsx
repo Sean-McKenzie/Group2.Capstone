@@ -97,9 +97,9 @@ function Homepage() {
           <Col xs={7} md={7} style={{ marginBottom: "25px" }}>
             <h2
               style={{
-                position: "absolute",
-                left: "48%",
-                top: "55%",
+                // position: "absolute",
+                // left: "48%",
+                // top: "55%",
                 color: "white",
               }}
             >
@@ -118,9 +118,9 @@ function Homepage() {
           <Col xs={7} md={7} style={{ marginBottom: "25px" }}>
             <h2
               style={{
-                position: "absolute",
-                left: "48%",
-                top: "105%",
+                // position: "absolute",
+                //left: "48%",
+                // top: "105%",
                 color: "white",
               }}
             >
@@ -139,9 +139,9 @@ function Homepage() {
           <Col xs={7} md={7} style={{ marginBottom: "25px" }}>
             <h2
               style={{
-                position: "absolute",
-                left: "48%",
-                top: "155%",
+                // position: "absolute",
+                // left: "48%",
+                // top: "155%",
                 color: "white",
               }}
             >

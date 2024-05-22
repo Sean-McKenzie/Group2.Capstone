@@ -7,8 +7,6 @@ import { useEffect, useState } from "react";
 // import { useEffect } from "react";
 import ReviewModal from "./ReviewModal";
 
-
-
 export default function SingleArtist() {
   const dispatch = useDispatch();
   const artists = useSelector((state) => state.artists.artists);
@@ -20,6 +18,8 @@ export default function SingleArtist() {
   // const [albums, setAlbums] = useState();
 
   const [modalShow, setModalShow] = useState(false);
+
+  const userId = localStorage.getItem("user_id");
 
   useEffect(() => {
     // if (artistStatus === "idle") {
@@ -41,9 +41,7 @@ export default function SingleArtist() {
   // Find the artist from the artists array
   const artist = artists.find((artist) => artist.id === artistId);
 
- 
-
- 
+  const user_id = localStorage.getItem("user_id");
 
   return (
     <>
@@ -81,7 +79,7 @@ export default function SingleArtist() {
         <ReviewModal
           show={modalShow}
           artistId={artistId}
-          // user_id={user_id}
+          user_id={userId}
           close={() => setModalShow(false)}
         />
       </Container>
@@ -89,13 +87,8 @@ export default function SingleArtist() {
   );
 }
 
-
-
-
-
-
- // const handleArtistClick = (clickedArtistId) => {
-  //   //   // Fetch albums for the clicked artist
-  //   dispatch(fetchArtistAlbums(clickedArtistId));
-  //   const albums = useSelector((state) => console.log("state is:", state));
-  // };
+// const handleArtistClick = (clickedArtistId) => {
+//   //   // Fetch albums for the clicked artist
+//   dispatch(fetchArtistAlbums(clickedArtistId));
+//   const albums = useSelector((state) => console.log("state is:", state));
+// };

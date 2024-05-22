@@ -45,10 +45,10 @@ reviewsRouter.get("/", async (req, res, next) => {
 });
 
 reviewsRouter.post("/comment",  async (req, res, next) => {
-  const { reviewTxT, rating, songid, albumid, artistid, user_id } = req.body;
+  const { reviewtxt, rating, songid, albumid, artistid, user_id } = req.body;
   try {
     const review = await createReview({
-      reviewTxT,
+      reviewtxt,
       rating,
       songid,
       albumid,

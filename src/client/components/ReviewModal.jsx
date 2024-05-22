@@ -27,7 +27,7 @@ export default function ReviewModal({artistId, albumId, songId, user_id}) {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
-            reviewTXT: reviewText,
+            reviewtxt: reviewText,
             rating: rating,
             songid: songId,
             albumid: albumId,

@@ -29,15 +29,19 @@ export default function Login() {
       });
       const result = await response.json();
       setMessage(result.message);
+      console.log("result", result)
       setMessageClass(Message.SUCCESS);
       if (!response.ok) {
         setMessageClass(Message.DANGER);
         localStorage.removeItem("token");
         localStorage.removeItem("email");
+        localStorage.removeItem("user_id"); //added may need to change
         throw result;
       }
       localStorage.setItem("token", result.token);
       localStorage.setItem("email", email);
+      localStorage.setItem("user_id", result.user_id); //added may need to change
+      console.log(localStorage.getItem("user_id", result.user_id)); //added may need to change
       setEmail("");
       setPassword("");
       location.replace("/");
@@ -46,6 +50,7 @@ export default function Login() {
       console.error(`${err.name}: ${err.message}`);
       localStorage.removeItem("token");
       localStorage.removeItem("email");
+      localStorage.removeItem("user_id"); //added may need to change
     }
   };
 

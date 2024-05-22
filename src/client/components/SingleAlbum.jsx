@@ -7,7 +7,10 @@ import { useEffect, useState } from "react";
 export default function SingleAlbum() {
   const albums = useSelector((state) => state.albums.albums);
   const { albumId } = useParams();
-    const [modalShow, setModalShow] = useState(false);
+
+  const [modalShow, setModalShow] = useState(false);
+
+  const userId = localStorage.getItem("user_id");
 
   const album = albums.find((album) => album.id === albumId);
 
@@ -54,7 +57,12 @@ export default function SingleAlbum() {
           </Card.Text>
         </Card.Body>
       </Card>
-      <ReviewModal show={modalShow} albumId={albumId} close={() => setModalShow(false)} />
+      <ReviewModal
+        show={modalShow}
+        albumId={albumId}
+        user_id={userId}
+        close={() => setModalShow(false)}
+      />
     </Container>
   );
 }
