@@ -4,21 +4,22 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
+// import { useEffect } from "react";
 
 import Reviewslist from "./ReviewsList";
+// import Granim from "granim";
 // import Recentreleasesbanner from "./Recentreleases";
 
 function Homepage() {
   return (
     <>
-      
       <Carousel>
         <Carousel.Item
           interval={2000}
           style={{ maxHeight: "300px", maxWidth: "100vw" }}
         >
           {/* all links will need to be updated */}
-          <Link c>
+          <Link>
             <img
               src=".../../../images/ArianaGrande_webbanner.png"
               alt="arianagrande"
@@ -105,7 +106,7 @@ function Homepage() {
               ARTIST
             </h2>
             {/* all links will need to be updated */}
-            <Link to="/">
+            <Link to="/artist">
               <Image
                 src=".../../../images/VM_JAG (image social) 1.webp"
                 thumbnail
@@ -126,7 +127,7 @@ function Homepage() {
               ALBUM
             </h2>
             {/* all links will need to be updated */}
-            <Link to="/">
+            <Link to="/albums">
               <Image
                 src=".../../../images/ArianaGrande_webbanner.png"
                 thumbnail
@@ -147,7 +148,7 @@ function Homepage() {
               SONG
             </h2>
             {/* all links will need to be updated */}
-            <Link to="/">
+            <Link to="/topsongs">
               <Image src=".../../../images/newFile-1.avif" thumbnail />
             </Link>
           </Col>

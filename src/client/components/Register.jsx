@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Message } from "../enum";
 
-export default function Login() {
+export default function Register() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -11,18 +12,23 @@ export default function Login() {
     setEmail(e.target.value);
   };
 
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
-  const login = async () => {
+  const register = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/users/login", {
+      const response = await fetch("http://localhost:3000/api/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          name,
           email,
           password,
         }),
@@ -51,7 +57,7 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login();
+    register();
   };
 
   return (
@@ -69,6 +75,16 @@ export default function Login() {
           />
         </div>
         <div>
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={handleNameChange}
+            required
+          />
+        </div>
+        <div>
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -78,7 +94,7 @@ export default function Login() {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
         <p
           className={"message " + messageClass}
           style={{ display: message == "" ? "none" : "block" }}
@@ -89,81 +105,3 @@ export default function Login() {
     </div>
   );
 }
-
-// import React, { useState } from 'react';
-
-// const Login = () => {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [message, setMessage] = useState('');
-
-//   const handleEmailChange = (e) => {
-//     setEmail(e.target.value);
-//   };
-
-//   const handlePasswordChange = (e) => {
-//     setPassword(e.target.value);
-//   };
-
-//   const login = async() => {
-//     try {
-//         const response = await fetch('http://localhost:3000/api/users/login', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type' : 'application/json'
-//             },
-//             body: JSON.stringify({
-//                 email,
-//                 password
-//             })
-//         });
-//         const result = await response.json();
-//         setMessage(result.message);
-//         if(!response.ok) {
-//           throw(result)
-//         }
-//         setEmail('');
-//         setPassword('');
-//     } catch (err) {
-//         console.error(`${err.name}: ${err.message}`);
-//     }
-//   }
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     login();
-//   };
-
-//   return (
-
-//     <div>
-//       <h2>Login</h2>
-//       <form onSubmit={handleSubmit}>
-//         <div>
-//           <label htmlFor='email'>Email:</label>
-//           <input
-//             type='email'
-//             id='email'
-//             value={email}
-//             onChange={handleEmailChange}
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label htmlFor='password'>Password:</label>
-//           <input
-//             type='password'
-//             id='password'
-//             value={password}
-//             onChange={handlePasswordChange}
-//             required
-//           />
-//         </div>
-//         <button type='submit'>Login</button>
-//       </form>
-//       <p>{message}</p>
-//     </div>
-//   );
-// };
-
-// export default Login;

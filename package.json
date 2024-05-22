@@ -18,6 +18,8 @@
     "bootstrap": "^5.3.3",
     "dotenv": "^16.3.1",
     "express": "^4.19.2",
+    "granim": "^2.0.0",
+    "install": "^0.13.0",
     "jsonwebtoken": "^9.0.1",
     "morgan": "^1.10.0",
     "pg": "^8.11.5",

@@ -1,10 +1,48 @@
-.App {
+/* .App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
- background-color: #DFD7F3,
+  background-color: #6b0723,
+  /* background-image: linear-gradient(to bottom right, red, yellow); */
+
+:root {
+  --gradient: linear-gradient(
+    45deg,
+    #5f0256,
+    #26025f,
+    #0a04c9,
+    #0239cf,
+    #39a1a6,
+    #71f8ff
+  );
+}
+body {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    var(--gradient);
+  background-size: 400%;
+  animation: bg-animation 15s infinite;
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.cards:hover {
+  transform: scale(1.2);
+  z-index: 2;
 }
 
 .App-header {
@@ -17,8 +55,6 @@
 }
 
 /* Add more styling for other elements if needed */
-
-
 
 .socialIcons {
   display: flex;
@@ -34,16 +70,73 @@
 
 .socialIcons a i {
   font-size: 2em;
-  color: #8E81AE;
+  color: #8e81ae;
 }
 
 .footerContainer {
-  position:sticky;
+  position: static;
   /* bottom: 0; */
   /* top: 100%; */
   width: 100vw;
   /* padding-top: 25px; */
   /* padding-bottom: 2.5rem; */
-  background-color: #8E81AE;
-  
+  background-color: #26025f;
+}
+
+.center-form {
+  align-items: center;
+  padding: 2rem;
+  max-width: 250px;
+}
+.center-form label {
+  font-weight: bold;
+  display: block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.1rem;
+}
+
+.center-form button {
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.message {
+  padding: 0.2rem;
+  font-weight: bold;
+  display: none;
+}
+
+.message-danger {
+  border: rgb(237, 28, 28);
+  background: rgb(255, 113, 113);
+}
+
+.message-success {
+  border: rgb(17, 234, 133);
+  background: rgb(0, 255, 136);
+}
+
+.message-info {
+  border: rgb(76, 27, 211);
+  background: rgb(122, 88, 214);
+}
+
+.message-warning {
+  border: rgb(237, 28, 28);
+  background: rgb(255, 113, 113);
+}
+
+.starsContainer {
+  display: flex;
+  width: 45px;
+}
+
+.star {
+  cursor: pointer;
+  transition: all 0.1s linear;
+  size: xxxlarge;
+}
+
+.star:hover {
+  transform: scale(1.1);
 }
