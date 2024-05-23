@@ -9,6 +9,9 @@ export default function SingleTrack() {
   const { trackId } = useParams();
 
   const [modalShow, setModalShow] = useState(false);
+
+  const userId = localStorage.getItem("user_id");
+
   const track = tracks.find((item) => item.track.id === trackId);
 
   if (!track) {
@@ -54,7 +57,12 @@ export default function SingleTrack() {
           ))}
         </Card.Body>
       </Card>
-      <ReviewModal show={modalShow} songId={trackId} close={() => setModalShow(false)} />
+      <ReviewModal
+        show={modalShow}
+        songId={trackId}
+        user_id={userId}
+        close={() => setModalShow(false)}
+      />
     </Container>
   );
 }

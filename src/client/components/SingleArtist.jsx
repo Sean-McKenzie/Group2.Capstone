@@ -19,6 +19,8 @@ export default function SingleArtist() {
 
   const [modalShow, setModalShow] = useState(false);
 
+  const userId = localStorage.getItem("user_id");
+
   useEffect(() => {
     // if (artistStatus === "idle") {
     //   dispatch(fetchArtist(artistId));
@@ -39,11 +41,7 @@ export default function SingleArtist() {
   // Find the artist from the artists array
   const artist = artists.find((artist) => artist.id === artistId);
 
-  const handleArtistClick = (clickedArtistId) => {
-    //   // Fetch albums for the clicked artist
-    dispatch(fetchArtistAlbums(clickedArtistId));
-    const albums = useSelector((state) => console.log("state is:", state));
-  };
+  const user_id = localStorage.getItem("user_id");
 
   return (
     <>
@@ -81,7 +79,7 @@ export default function SingleArtist() {
         <ReviewModal
           show={modalShow}
           artistId={artistId}
-          // user_id={user_id}
+          user_id={userId}
           close={() => setModalShow(false)}
         />
       </Container>
@@ -89,114 +87,8 @@ export default function SingleArtist() {
   );
 }
 
-{
-  /* <Container>
-        <Row className="mx-2 row row-cols-4">
-          {albums &&
-            albums.map((album) => (
-              <Link to={`/albums/${album.id}`} key={album.id}>
-                <Card>
-                  <Card.Img
-                    style={{ borderRadius: "50%", justifyContent: "center" }}
-                    src={album.images[0]?.url}
-                    alt={album.name}
-                  />
-                  <Card.Title>{album.name}</Card.Title>
-                </Card>
-              </Link>
-            ))}
-        </Row>
-
-    
-
-      </Container>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Leave a review
-      </Button>
-
-      <ReviewModal show={modalShow} close={() => setModalShow(false)} />
-    </>
-  );
-
-}
-
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetchSingleArtist } from "../api";
-// import { useParams } from "react-router-dom";
-// import {
-//   Container,
-//   InputGroup,
-//   FormControl,
-//   Button,
-//   Row,
-//   Card,
-// } from "react-bootstrap";
-// import { useEffect } from "react";
-
-// export default function SingleArtist() {
-//   const dispatch = useDispatch();
-//   const artist = useSelector((state) => state.artists.artists);
-//   const status = useSelector((state) => state.artists.status);
-//   const { artistId } = useParams();
-
-//   // const artistImage = artist?.images[0]?.url;
-
-//   console.log("artist is:", artist);
-
-//   useEffect(() => {
-//     if (status === "idle") {
-//       dispatch(fetchSingleArtist(artistId));
-//     }
-//   }, [dispatch, status, artistId]);
-
-//   console.log(status);
-
-//   if (status === "loading") {
-//     return <div>Loading...</div>;
-//   }
-
-//   if (status === "failed") {
-//     return <div>Error loading artist</div>;
-//   }
-
-//   return (
-//     <>
-//       <Container>
-//         {artist && (
-//           <Card key={artist.id}>
-//             <Card.Img
-//               style={{ borderRadius: "50%", justifyContent: "center" }}
-//               key={artist.images[0]?.url}
-//               src={artist.images[0]?.url}
-//               alt={artist.name}
-//               // onClick={(event) => console.log(artist.images.length)}
-//             />
-//             <Card.Body>
-//               <Card.Title>{artist.name}</Card.Title>
-
-//               {/* <Card.Text>{artistId.description}</Card.Text> */
-}
-//             </Card.Body>
-//           </Card>
-//         )}
-//       </Container>
-//     </>
-//   );
-// }
-
-{
-  /* <Link to={`/artist/albums`}>
-          <Button
-            variant="primary"
-            onClick={() => handleArtistClick(artist.id)}
-          >
-            View Artist's Albums
-          </Button>
-        </Link> */
-}
-
-{
-  /* <Button variant="primary" onClick={() => setModalShow(true)}>
-          Leave a review
-        </Button> */
-}
+// const handleArtistClick = (clickedArtistId) => {
+//   //   // Fetch albums for the clicked artist
+//   dispatch(fetchArtistAlbums(clickedArtistId));
+//   const albums = useSelector((state) => console.log("state is:", state));
+// };

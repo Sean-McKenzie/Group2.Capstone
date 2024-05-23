@@ -1,8 +1,8 @@
 const db = require("./client");
 
 const createTags = async ({
-  tagTXT,
-  songID,
+  tagtxt,
+  songid,
 
 }) => {
   try {
@@ -10,10 +10,10 @@ const createTags = async ({
       rows: [tag],
     } = await db.query(
       `
-        INSERT INTO tags(tagTXT, songID)
+        INSERT INTO tags(tagtxt, songid)
         VALUES($1, $2)
         RETURNING *`,
-      [tagTXT, songID]
+      [tagtxt, songid]
     );
 
     return tag;
