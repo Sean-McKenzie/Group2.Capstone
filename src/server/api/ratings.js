@@ -52,6 +52,6 @@ ratingsRouter.get('/song', async (req, res, next) => {
 
 
 ratingsRouter.post('/', async(req, next) => {
-  const {}
+  // const {}
 })
 module.exports = ratingsRouter;

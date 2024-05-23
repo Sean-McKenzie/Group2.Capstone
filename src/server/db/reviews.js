@@ -205,14 +205,33 @@ const getArtistAverageRating = async (artistid) => {
   }
 };
 
+const deleteReview = async (reviewID) => {
+  try {
+       const {
+            rows: [review],
+       } = await db.query(
+            `
+        DELETE FROM reviews
+        WHERE reviewID=$1;`,
+            [reviewID]
+       );
+
+       if (!review) {
+            return;
+       }
+       return review;
+  } catch (err) {
+       throw err;
+  }
+}
+
+
 module.exports = {
   createReview,
   getReviewByArtistID,
   getReviewByAlbumID,
   getReviewBySongID,
   getAllReviews,
-  getArtistAverageRating,
-  getAlbumAverageRating,
-  getSongAverageRating,
-  getReviewByID,
+  deleteReview
+
 };
