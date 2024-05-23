@@ -16,15 +16,9 @@ const findUserWithToken = async (token) => {
     throw new Error("Not authorized");
   }
 
-  // const db = new db({
-  //   connectionString: process.env.DATABASE_URL, 
-  // });
-
-  // await db.connect();
-
   try {
     const res = await db.query(
-      "SELECT user_id, email, name FROM users WHERE email = $1",
+      "SELECT user_id, email, name, role FROM users WHERE email = $1",
       [email]
     );
 
@@ -54,5 +48,23 @@ const isLoggedIn = async (req, res, next) => {
     }
 }
 
-module.exports = isLoggedIn;
+const isAdmin = async (req, res, next) => {
+     try {
+          const auth = req.headers.authorization;
+          const token = auth?.startsWith("Bearer ") ? auth.slice(7) : null;
+          req.user = await findUserWithToken(token);
+          console.log(req.user);
+
+          if (req.user.role !== "admin") {
+            return res.status(403).json({message: "not and admin"})
+          }
+
+          next();
+     } catch (error) {
+          next(error);
+     }
+};
+
+
+module.exports = isLoggedIn, isAdmin;
 
