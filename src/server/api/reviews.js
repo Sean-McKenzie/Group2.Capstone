@@ -62,48 +62,9 @@ reviewsRouter.post("/comment", isLoggedIn,  async (req, res, next) => {
   }
 });
 
-// reviewsRouter.post("/comment", isLoggedIn, async (req, res, next) => {
-//   const { reviewTXT, rating, songid, albumid, artistid } = req.body;
-//   try {
-//     console.log(req.body);
-//     const review = await createReview({
-//       reviewTXT,
-//       rating,
-//       songid,
-//       albumid,
-//       artistid,
-//       user_id: req.user.userid,
-//     });
-//     console.log(review);
-//     res.status(201).json({ review }); // <-- Sending response
-//   } catch (err) {
-//     next(err);
-//     console.log(err);
-//   }
-// });
 
-// //add isloggedin
-// reviewsRouter.post("/comment", async (req, res, next) => {
-//   // <-- Added 'res' and 'next' parameters
-//   const { reviewTxT, rating, songid, albumid, artistid, user_id, rating_id } =
-//     req.body;
-//   try {
-//     const review = await createReview({
-//       reviewTxT,
-//       rating,
-//       songid,
-//       albumid,
-//       artistid,
-//       user_id,
-//       rating_id,
-//     });
-//     // res.status(201).json({ review }); // <-- Sending response
-//   } catch (err) {
-//     next(err);
-//   }
-// });
 
-reviewsRouter.get("/artist", async (req, res, next) => {
+reviewsRouter.get("/artist/:artistid", async (req, res, next) => {
   try {
     const reviews = await getReviewByArtistID(artistid);
     res.send({ reviews }, { ArtistInfo });
@@ -133,21 +94,21 @@ reviewsRouter.get("/song", async (req, res, next) => {
   }
 });
 
-reviewsRouter.post("/comment", async (req, next) => {
-  const { reviewTxT, rating, songid, albumid, artistid, user_id } = req.body;
-  try {
-    const review = await createReview({
-      reviewTxT,
-      rating,
-      songid,
-      albumid,
-      artistid,
-      user_id,
-    });
-  } catch (err) {
-    next(err);
-  }
-});
+// reviewsRouter.post("/comment", async (req, next) => {
+//   const { reviewTxT, rating, songid, albumid, artistid, user_id } = req.body;
+//   try {
+//     const review = await createReview({
+//       reviewTxT,
+//       rating,
+//       songid,
+//       albumid,
+//       artistid,
+//       user_id,
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 
 module.exports = reviewsRouter;
