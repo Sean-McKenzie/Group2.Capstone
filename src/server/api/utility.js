@@ -1,6 +1,9 @@
 //import all the spotify functions from spotify.js, import all local db manipulation functions
 
-//ARTISTS - 
+const { fetchPlaylist } = require("../../client/api");
+const { fetchSingleArtistInfo } = require("../db");
+
+//ARTISTS -
 /* 
 {
 Artist ID, 
@@ -12,18 +15,19 @@ tags associated with songs?,
 list of albums? Maybe highest rated 2-3
 }
  */
-    const artist =
-        {
-        artistId,
-        artistName,
-        artistImage,
-        artistAvgRating,
-        artistAssocReviews,
-        };
+const artist = {
+  artistId,
+  artistName,
+  artistImage,
+  artistAvgRating,
+  artistAssocReviews,
+};
+const getArtistData = () => {
+  const artistInfo = fetchArtistInfo(artistID);
+  
+};
 
-
-        
-//ALBUMS - 
+//ALBUMS -
 /*
 {
     Album ID,
@@ -35,16 +39,15 @@ list of albums? Maybe highest rated 2-3
     
 }
 */
- const album =
- {
-    albumID,
-    artistID,
-    artistName,
-    albumImage,
-    albumAvgRating,
-    albumReviews,
- };
-//TRACKS - 
+const album = {
+  albumID,
+  artistID,
+  artistName,
+  albumImage,
+  albumAvgRating,
+  albumReviews,
+};
+//TRACKS -
 /*
 {
     song ID,
@@ -58,16 +61,16 @@ list of albums? Maybe highest rated 2-3
 }
 */
 const track = {
-    songID,
-    artistID,
-    artistName,
-    trackImage,
-    trackReviews,
-    tags,
+  songID,
+  artistID,
+  artistName,
+  trackImage,
+  trackReviews,
+  tags,
 };
 
-
-
-
+const getTrackData = () => {
+  fetchPlaylist(playlistID);
+};
 
 //create functions to call imported functions and create packages of our data and spotify data combined

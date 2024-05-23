@@ -1,17 +1,17 @@
 
-//create form to add reviews ideally a modal 
+/* //create form to add reviews ideally a modal 
 
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
 
-import Stars from "./StarsRating";
+
 
 //instead of passing in artist, album etc, pass in type then ID 
 export default function ReviewModal({ artistId, albumId, songId, user_id }) {
 
-export default function ReviewModal() {
+
   const [show, setShow] = useState(false);
   const [reviewText, setReviewText] = useState("");
   const [reviewEmail, setReviewEmail] = useState("");
@@ -26,10 +26,13 @@ export default function ReviewModal() {
       <Button variant="primary" onClick={handleShow}>
         Leave a review
       </Button>
-      <Modal show={show} onHide={handleClose} style={{ opacity: 1 }}>
+      <Modal show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}>
         <Modal.Header closeButton onClick={handleClose}>
           {" "}
-          {/* Proper binding for closing */}
+          {/* Proper binding for closing *//*
           <Modal.Title>Leave a review</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -70,17 +73,17 @@ export default function ReviewModal() {
     </>
   );
 }
+ */
 
 
 
-
-/* import { useState } from 'react';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import {
   Form
 } from 'react-bootstrap';
-
+import Stars from "./StarsRating";
 export default function ReviewModal() {
   const [show, setShow] = useState(false);
   const [reviewText, setReviewText] = useState("");
@@ -165,9 +168,9 @@ export default function ReviewModal() {
       </Modal>
     </>
   );
-}
+} 
 
-
+/*
 {
   /* <Form.Group className="mb-3" controlId="reviewForm.ControlInput1">
   <Form.Label>Email address</Form.Label>
@@ -179,7 +182,7 @@ export default function ReviewModal() {
     autoFocus
   />
 </Form.Group>; */
-}
+//}
 
 // import { useState } from "react";
 // import Button from "react-bootstrap/Button";

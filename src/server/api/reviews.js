@@ -3,11 +3,8 @@ const reviewsRouter = express.Router();
 const jwt = require("jsonwebtoken");
 
 
-const { createReview, getReviewByID, getAllReviews } = require("../db"); // Assuming you have a function to get all reviews
-const isLoggedIn = require("./authmid");
 
-reviewsRouter.get("/", async (req, res, next) => {
-  console.log("reviews are:");
+const isLoggedIn = require("./authmid");
 
 const {
   createReview,
@@ -96,8 +93,9 @@ reviewsRouter.post("/comment", async (req, res, next) => {
 
 reviewsRouter.get("/artist", async (req, res, next) => {
   try {
+    const ratingAvg = await getArtistAverageRating(artistid);
     const reviews = await getReviewByArtistID(artistid);
-    res.send({ reviews }, { ArtistInfo });
+    res.send({ reviews }, { ratingAvg });
   } catch (error) {
     console.error("Error fetching reviews:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -106,8 +104,9 @@ reviewsRouter.get("/artist", async (req, res, next) => {
 
 reviewsRouter.get("/album", async (req, res, next) => {
   try {
+    const ratingAvg = await getAlbumAverageRating(albumid);
     const reviews = await getReviewByAlbumID(albumid);
-    res.send({ reviews });
+    res.send({ reviews },{ratingAvg});
   } catch (error) {
     console.error("Error fetching reviews:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -116,8 +115,9 @@ reviewsRouter.get("/album", async (req, res, next) => {
 
 reviewsRouter.get("/song", async (req, res, next) => {
   try {
+    const ratingAvg = await getSongAverageRating(songid);
     const reviews = await getReviewBySongID(songid);
-    res.send({ reviews });
+    res.send({ reviews }, {ratingAvg});
   } catch (error) {
     console.error("Error fetching reviews:", error);
     res.status(500).json({ error: "Internal Server Error" });
