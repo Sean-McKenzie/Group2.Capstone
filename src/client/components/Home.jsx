@@ -86,7 +86,7 @@ function Homepage() {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      {/* <Reviewslist style={{display: "flex"}} /> */}
+
       <Container
         style={{ display: "flex", flexWrap: "wrap", marginTop: "50px" }}
       >

@@ -72,19 +72,19 @@ const getReviewByID = async (reviewid) => {
 
 const getReviewByArtistID = async (artistid) => {
   try {
-    const {
-      rows: [review],
-    } = await db.query(
+    const { rows } = await db.query(
       `
         SELECT reviewtxt, rating FROM reviews
         WHERE artistid=$1;`,
       [artistid]
     );
 
-    if (!review) {
-      return;
-    }
-    return review;
+    // if (!reviews) {
+
+    //   return;
+    // }
+    console.log("review rows: ", rows);
+    return rows;
   } catch (err) {
     throw err;
   }
@@ -93,7 +93,7 @@ const getReviewByArtistID = async (artistid) => {
 const getReviewByAlbumID = async (albumid) => {
   try {
     const {
-      rows: [review],
+       rows
     } = await db.query(
       `
         SELECT reviewtxt, rating FROM reviews
@@ -101,10 +101,10 @@ const getReviewByAlbumID = async (albumid) => {
       [albumid]
     );
 
-    if (!review) {
-      return;
-    }
-    return review;
+    // if (!review) {
+    //   return;
+    // }
+    return rows;
   } catch (err) {
     throw err;
   }
@@ -113,7 +113,7 @@ const getReviewByAlbumID = async (albumid) => {
 const getReviewBySongID = async (songid) => {
   try {
     const {
-      rows: [review],
+      rows
     } = await db.query(
       `
         SELECT reviewtxt, rating FROM reviews
@@ -121,10 +121,10 @@ const getReviewBySongID = async (songid) => {
       [songid]
     );
 
-    if (!review) {
-      return;
-    }
-    return review;
+    // if (!review) {
+    //   return;
+    // }
+    return rows;
   } catch (err) {
     throw err;
   }

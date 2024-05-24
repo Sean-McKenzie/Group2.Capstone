@@ -2,7 +2,6 @@ const express = require("express");
 const reviewsRouter = express.Router();
 const jwt = require("jsonwebtoken");
 
-
 const { createReview, getReviewByID, getAllReviews } = require("../db"); // Assuming you have a function to get all reviews
 const isLoggedIn = require("./authmid");
 
@@ -18,7 +17,7 @@ const {
   getSongAverageRating,
   getAlbumAverageRating,
   getArtistAverageRating,
- // getAllReviews,
+  // getAllReviews,
   fetchArtist,
   fetchAlbum,
   fetchSingleTrack,
@@ -44,7 +43,7 @@ reviewsRouter.get("/", async (req, res, next) => {
   }
 });
 
-reviewsRouter.post("/comment", isLoggedIn,  async (req, res, next) => {
+reviewsRouter.post("/comment", isLoggedIn, async (req, res, next) => {
   const { reviewtxt, rating, songid, albumid, artistid, user_id } = req.body;
   try {
     const review = await createReview({
@@ -62,32 +61,31 @@ reviewsRouter.post("/comment", isLoggedIn,  async (req, res, next) => {
   }
 });
 
-
-
-reviewsRouter.get("/artist/:artistid", async (req, res, next) => {
+reviewsRouter.get("/artists/:artistId", async (req, res, next) => {
   try {
-    const reviews = await getReviewByArtistID(artistid);
-    res.send({ reviews }, { ArtistInfo });
+    const reviews = await getReviewByArtistID(req.params.artistId);
+    // res.send({ reviews }, { ArtistInfo });
+    res.send(reviews);
   } catch (error) {
     console.error("Error fetching reviews:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-reviewsRouter.get("/album", async (req, res, next) => {
+reviewsRouter.get("/albums/:albumId", async (req, res, next) => {
   try {
-    const reviews = await getReviewByAlbumID(albumid);
-    res.send({ reviews });
+    const reviews = await getReviewByAlbumID(req.params.albumId);
+    res.send(reviews);
   } catch (error) {
     console.error("Error fetching reviews:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-reviewsRouter.get("/song", async (req, res, next) => {
+reviewsRouter.get("/topsongs/:songId", async (req, res, next) => {
   try {
-    const reviews = await getReviewBySongID(songid);
-    res.send({ reviews });
+    const reviews = await getReviewBySongID(req.params.songId);
+    res.send(reviews);
   } catch (error) {
     console.error("Error fetching reviews:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -109,6 +107,5 @@ reviewsRouter.get("/song", async (req, res, next) => {
 //     next(err);
 //   }
 // });
-
 
 module.exports = reviewsRouter;
