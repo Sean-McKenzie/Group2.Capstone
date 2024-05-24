@@ -19,7 +19,7 @@ function Homepage() {
           style={{ maxHeight: "300px", maxWidth: "100vw" }}
         >
           {/* all links will need to be updated */}
-          <Link>
+          <Link to="artist/66CXWjxzNUsdJxJ2JdwvnR">
             <img
               src=".../../../images/ArianaGrande_webbanner.png"
               alt="arianagrande"
@@ -37,7 +37,7 @@ function Homepage() {
           style={{ maxHeight: "300px", maxWidth: "100vw" }}
         >
           {/* all links will need to be updated */}
-          <Link to="/">
+          <Link to="/artist/4O15NlyKLIASxsJ0PrXPfz">
             <img
               src=".../../../images/LilUziVert_webbanner.png"
               alt="Linkin Park"
@@ -54,7 +54,7 @@ function Homepage() {
           style={{ maxHeight: "300px", maxWidth: "100vw" }}
         >
           {/* all links will need to be updated */}
-          <Link to="/">
+          <Link to="/artist/3YQKmKGau1PzlVlkL1iodx">
             <img
               src=".../../../images/TwentyOnePilots_22_1024.webp"
               alt="Twenty One Pilots"
@@ -72,7 +72,7 @@ function Homepage() {
           style={{ maxHeight: "300px", maxWidth: "100vw" }}
         >
           {/* all links will need to be updated */}
-          <Link to="/">
+          <Link to="/artist/5na1LmEmK2VzNLje9snJYW">
             <img
               src=".../../../images/therose_webbanner.png"
               alt="the rose"
@@ -86,7 +86,7 @@ function Homepage() {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      {/* <Reviewslist style={{display: "flex"}} /> */}
+
       <Container
         style={{ display: "flex", flexWrap: "wrap", marginTop: "50px" }}
       >
@@ -105,7 +105,7 @@ function Homepage() {
             >
               ARTIST
             </h2>
-            {/* all links will need to be updated */}
+
             <Link to="/artist">
               <Image
                 src=".../../../images/VM_JAG (image social) 1.webp"
@@ -126,7 +126,7 @@ function Homepage() {
             >
               ALBUM
             </h2>
-            {/* all links will need to be updated */}
+
             <Link to="/albums">
               <Image
                 src=".../../../images/ArianaGrande_webbanner.png"
@@ -147,7 +147,7 @@ function Homepage() {
             >
               SONG
             </h2>
-            {/* all links will need to be updated */}
+
             <Link to="/topsongs">
               <Image src=".../../../images/newFile-1.avif" thumbnail />
             </Link>

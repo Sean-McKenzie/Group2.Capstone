@@ -39,7 +39,7 @@ function Reviewslist() {
           reviews.map((review) => (
           <tr key={review.reviewid}>
             <td style={{ display: "flex" }}>
-              {/* Assuming you have a reviewTXT property */}
+             
               <p>{review.reviewtxt}</p>
             </td>
           </tr>

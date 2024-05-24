@@ -10,10 +10,11 @@ import ReviewModal from "./ReviewModal";
 export default function SingleArtist() {
   const dispatch = useDispatch();
   const artists = useSelector((state) => state.artists.artists);
-  // const albums = useSelector((state) => state.artists.albums);
+  // // const albums = useSelector((state) => state.artists.albums);
   const artistStatus = useSelector((state) => state.artists.status);
   const albumsStatus = useSelector((state) => state.artists.albumsStatus);
   const { artistId } = useParams();
+  const [reviews, setReviews] = useState([]);
 
   // const [albums, setAlbums] = useState();
 
@@ -22,13 +23,25 @@ export default function SingleArtist() {
   const userId = localStorage.getItem("user_id");
 
   useEffect(() => {
-    // if (artistStatus === "idle") {
-    //   dispatch(fetchArtist(artistId));
-    // }
-    if (albumsStatus === "idle") {
-      dispatch(fetchArtistAlbums(artistId));
-    }
-  }, [dispatch, artistStatus, albumsStatus, artistId]);
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/reviews/artists/${artistId}`
+        ); // Example: fetch review with ID 123
+        const reviewsData = await response.json();
+        console.log("reviews data", reviewsData);
+        //const convertedReviewsData = Object.keys(reviewsData).map((key) => [key, reviewsData[key]])
+        // console.log("reviews data", reviewsData);
+        //console.log(convertedReviewsData);
+        setReviews(reviewsData);
+        console.log("reviews:", reviews);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    };
+    fetchReviews();
+    console.log("reviews:", reviews);
+  }, []);
 
   if (artistStatus === "loading" || albumsStatus === "loading") {
     return <div>Loading...</div>;
@@ -41,7 +54,19 @@ export default function SingleArtist() {
   // Find the artist from the artists array
   const artist = artists.find((artist) => artist.id === artistId);
 
-  const user_id = localStorage.getItem("user_id");
+  const renderStars = (rating) => {
+    const totalStars = 5;
+    const filledStars = Math.round(rating);
+    const starsArray = Array.from({ length: totalStars }, (_, index) => (
+      <span
+        key={index}
+        style={{ color: index < filledStars ? "green" : "gray" }}
+      >
+        {index < filledStars ? "★" : "☆"}
+      </span>
+    ));
+    return starsArray;
+  };
 
   return (
     <>
@@ -75,6 +100,24 @@ export default function SingleArtist() {
             </Card.Body>
           </Card>
         )}
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <Card key={review.reviewid}>
+              <Card.Body>
+                <Card.Title>{review.reviewtxt}</Card.Title>
+                <Card.Title>{renderStars(review.rating)}</Card.Title>
+              </Card.Body>
+            </Card>
+          ))
+        ) : (
+          <Card>
+            <Card.Body>
+              <Card.Title>
+                No reviews yet, be the first to leave a review
+              </Card.Title>
+            </Card.Body>
+          </Card>
+        )}
 
         <ReviewModal
           show={modalShow}
@@ -92,3 +135,12 @@ export default function SingleArtist() {
 //   dispatch(fetchArtistAlbums(clickedArtistId));
 //   const albums = useSelector((state) => console.log("state is:", state));
 // };
+
+// useEffect(() => {
+//   // if (artistStatus === "idle") {
+//   //   dispatch(fetchArtist(artistId));
+//   // }
+//   if (albumsStatus === "idle") {
+//     dispatch(fetchArtistAlbums(artistId));
+//   }
+// }, [dispatch, artistStatus, albumsStatus, artistId]);

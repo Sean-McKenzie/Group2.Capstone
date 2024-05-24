@@ -7,12 +7,26 @@ import { useEffect, useState } from "react";
 export default function SingleTrack() {
   const tracks = useSelector((state) => state.playlist.playlist?.tracks?.items);
   const { trackId } = useParams();
-
+  const [reviews, setReviews] = useState([]);
   const [modalShow, setModalShow] = useState(false);
-
   const userId = localStorage.getItem("user_id");
 
-  const track = tracks.find((item) => item.track.id === trackId);
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/reviews/topsongs/${trackId}`
+        );
+        const reviewsData = await response.json();
+        setReviews(reviewsData);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    };
+    fetchReviews();
+  }, [trackId]);
+
+  const track = tracks?.find((item) => item.track.id === trackId);
 
   if (!track) {
     return <div>Track not found</div>;
@@ -20,8 +34,22 @@ export default function SingleTrack() {
 
   const { name, artists, album } = track.track;
 
+  const renderStars = (rating) => {
+    const totalStars = 5;
+    const filledStars = Math.round(rating);
+    const starsArray = Array.from({ length: totalStars }, (_, index) => (
+      <span
+        key={index}
+        style={{ color: index < filledStars ? "green" : "gray" }}
+      >
+        {index < filledStars ? "★" : "☆"}
+      </span>
+    ));
+    return starsArray;
+  };
+
   return (
-    <Container stlye={{ maxWidth: "400px", color: "blue" }}>
+    <Container style={{ maxWidth: "400px", color: "blue" }}>
       <Card style={{ background: "none", stroke: "none", padding: "15px" }}>
         <Card.Img
           src={album.images[0]?.url}
@@ -57,6 +85,24 @@ export default function SingleTrack() {
           ))}
         </Card.Body>
       </Card>
+      {reviews.length > 0 ? (
+        reviews.map((review) => (
+          <Card key={review.reviewid}>
+            <Card.Body>
+              <Card.Title>{review.reviewtxt}</Card.Title>
+              <Card.Text>{renderStars(review.rating)}</Card.Text>
+            </Card.Body>
+          </Card>
+        ))
+      ) : (
+        <Card>
+          <Card.Body>
+            <Card.Title>
+              No reviews yet, be the first to leave a review
+            </Card.Title>
+          </Card.Body>
+        </Card>
+      )}
       <ReviewModal
         show={modalShow}
         songId={trackId}
@@ -67,107 +113,4 @@ export default function SingleTrack() {
   );
 }
 
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetchSingleTrack } from "../api";
-// import { useParams } from "react-router-dom";
-// import { Container, Card } from "react-bootstrap";
-// import { useEffect } from "react";
 
-// export default function SingleTrack() {
-//   const dispatch = useDispatch();
-//   const track = useSelector((state) => state.tracks.track);
-//   const status = useSelector((state) => state.tracks.status);
-//   const { trackId } = useParams();
-
-//   useEffect(() => {
-//     if (status === "idle") {
-//       dispatch(fetchSingleTrack(trackId));
-//     }
-
-//     // Cleanup function
-//     return () => {
-//       // Reset the track state to null when the component unmounts
-//       dispatch({ type: "RESET_TRACK" });
-//     };
-//   }, [dispatch, status, trackId]);
-
-//   if (status === "loading") {
-//     return <div>Loading...</div>;
-//   }
-
-//   if (status === "failed") {
-//     return <div>Error loading track</div>;
-//   }
-
-//   return (
-//     <Container>
-//       {track && (
-//         <Card key={track.id}>
-//           {/* <Card.Img
-//             key={track.album.images[0]?.url}
-//             src={track.album.images[0]?.url}
-//             alt={track.name}
-//           /> */}
-//           <Card.Body>
-//             <Card.Title>{track.name}</Card.Title>
-//             {/* <Card.Text>{track.artists[0]?.name}</Card.Text> */}
-//           </Card.Body>
-//         </Card>
-//       )}
-//     </Container>
-//   );
-// }
-
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetchSingleTrack } from "../api";
-// import { useParams } from "react-router-dom";
-// import { Container, Card } from "react-bootstrap";
-// import { useEffect } from "react";
-
-// export default function SingleTrack() {
-//   const dispatch = useDispatch();
-//   const track = useSelector((state) => state.tracks.tracks);
-//   const status = useSelector((state) => state.tracks.status);
-//   const { trackId } = useParams();
-
-//   // const artistImage = artist?.images[0]?.url;
-
-//   console.log("track is:", track);
-//   console.log("status is:", status);
-
-//   useEffect(() => {
-//     if (status === "idle") {
-//       dispatch(fetchSingleTrack(trackId));
-//     }
-//     return () => {} //reset the state to null when the component unmounts
-//   }, [dispatch, status, trackId]);
-
-//   if (status === "loading") {
-//     return <div>Loading...</div>;
-//   }
-
-//   if (status === "failed") {
-//     return <div>Error loading artist</div>;
-//   }
-
-//   return (
-//     <>
-//       <Container>
-//         {track && (
-//           <Card key={track.id}>
-//             <Card.Img
-//               key={track.album.images[0]?.url}
-//               src={track.album.images[0]?.url}
-//               art={track.name}
-//             />
-//             <Card.Body>
-//               <Card.Title>{track.name}</Card.Title>
-
-//               <Card.Text>{track.artists[0]?.name}</Card.Text>
-//             </Card.Body>
-//           </Card>
-//         )}
-//       </Container>
-//     </>
-//   );
-// }
