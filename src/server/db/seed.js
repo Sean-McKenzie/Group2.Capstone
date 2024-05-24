@@ -40,80 +40,85 @@ const users = [
           password: "password123",
           role: "user",
      },
+     {
+          name: "mike jones",
+          email: "emily@example.com",
+          password: "securepass",
+          role: "admin",
+     },
+     {
+          name: "guy mcface",
+          email: "liu@example.com",
+          password: "strongpass",
+          role: "user",
+     },
+     {
+          name: "human name",
+          email: "bella@example.com",
+          password: "pass1234",
+          role: "user",
+     },
+     {
+          name: "person person",
+          email: "mohammed@example.com",
+          password: "mysecretpassword",
+          role: "user",
+     },
+     {
+          name: "Craig Pelton",
+          email: "john@example.com",
+          password: "password123",
+          role: "user",
+     },
+     {
+          name: "Jhon Pelton",
+          email: "craig@example.com",
+          password: "password123",
+          role: "user",
+     },
 ];
 
 const reviews = [
   {
-    reviewTXT: "Trash",
+    reviewtxt: "Trash",
     rating: 0,
-    songID: "adfaDFSFES5018540SDF",
+    songid: "adfaDFSFES5018540SDF",
     user_id: 6,
   },
   {
-    reviewTXT: "mid",
+    reviewtxt: "mid",
     rating: 3,
-    albumID: "lkjlisearfslEIRSJLFK",
+    albumid: "lkjlisearfslEIRSJLFK",
     user_id: 5,
   },
   {
-    reviewTXT: "litty",
+    reviewtxt: "litty",
     rating: 10,
-    artistID: "651518sfsawfeasfeSEWE",
+    artistid: "651518sfsawfeasfeSEWE",
     user_id: 10,
   },
   {
-    reviewTXT: "hot garbage",
+    reviewtxt: "hot garbage",
     rating: 0,
-    songID: "lkjiLIJLILIlkjijlkl",
+    songid: "lkjiLIJLILIlkjijlkl",
     user_id: 3,
   },
   {
-    reviewTXT: "good",
+    reviewtxt: "good",
     rating: 1,
-    albumID: "oijOIUOIUOIJIOJOIoeioij",
+    albumid: "oijOIUOIUOIJIOJOIoeioij",
     user_id: 1,
-
   },
 ];
 
-
-
-/* const ratings = [
-  {
-    rate: 0,
-    songID: "adfaDFSFES5018540SDF",
-    user_ID: 6,
-  },
-  {
-    rate: 3,
-    albumID: "lkjlisearfslEIRSJLFK",
-    user_ID: 5,
-  },
-  {
-    rate: 10,
-    artistID: "651518sfsawfeasfeSEWE",
-    user_ID: 10,
-  },
-  {
-    rate: 0,
-    songID: "lkjiLIJLILIlkjijlkl",
-    user_ID: 3,
-  },
-  {
-    rate: 1,
-    albumID: "oijOIUOIUOIJIOJOIoeioij",
-    user_ID: 1,
-  },
-]; */
-
 const tags = [
   {
-    tagTXT: "Study Music",
-    songID: "lkjiLIJLILIlkjijlkl",
+    tagtxt: "Study Music",
+    songid: "lkjiLIJLILIlkjijlkl",
   },
   {
-    tagTXT: "Programming Music",
-    songID: "adfaDFSFES5018540SDF",
+    tagtxt: "Programming Music",
+    songid: "adfaDFSFES5018540SDF",
   },
 ];
 
@@ -137,20 +142,22 @@ const createTables = async () => {
             email VARCHAR(255) UNIQUE NOT NULL,
             password VARCHAR(255) NOT NULL,
             role VARCHAR(255) NULL NULL
+            password VARCHAR(255) NOT NULL,
+            role VARCHAR(255) NULL NULL
         );
         CREATE TABLE reviews(
-          reviewID SERIAL PRIMARY KEY,
-          reviewTXT VARCHAR(255) NOT NULL,
+          reviewid SERIAL PRIMARY KEY,
+          reviewtxt VARCHAR(255) NOT NULL,
           rating INT,
-          songID VARCHAR(255),
-          albumID VARCHAR(255),
-          artistID VARCHAR(255),
+          songid VARCHAR(255),
+          albumid VARCHAR(255),
+          artistid VARCHAR(255),
           user_id INT NOT NULL
       );
         CREATE TABLE tags(
-          tagID SERIAL PRIMARY KEY,
-          tagTXT VARCHAR(255) NOT NULL,
-          songID VARCHAR(255)
+          tagid SERIAL PRIMARY KEY,
+          tagtxt VARCHAR(255) NOT NULL,
+          songid VARCHAR(255)
         );
         `);
   } catch (err) {
@@ -179,6 +186,7 @@ const insertUsers = async () => {
         email: user.email,
         password: user.password,
         role: user.role,
+        role: user.role,
       });
     }
     console.log("Seed data inserted successfully.");
@@ -190,13 +198,12 @@ const insertReviews = async () => {
   try {
     for (const review of reviews) {
       await createReview({
-        reviewTXT: review.reviewTXT,
+        reviewtxt: review.reviewtxt,
         rating: review.rating,
-        songID: review.songID,
-        albumID: review.albumID,
-        artistID: review.artistID,
+        songid: review.songid,
+        albumid: review.albumid,
+        artistid: review.artistid,
         user_id: review.user_id,
-
       });
     }
     console.log("seed datat inserted successfully.");
@@ -209,8 +216,8 @@ const insertTags = async () => {
   try {
     for (const tag of tags) {
       await createTags({
-        tagTXT: tag.tagTXT,
-        songID: tag.songID,
+        tagtxt: tag.tagtxt,
+        songid: tag.songid,
       });
     }
     console.log("seed data inserted successfully.");

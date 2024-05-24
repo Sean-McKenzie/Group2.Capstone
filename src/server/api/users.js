@@ -40,10 +40,11 @@ usersRouter.post("/login", async (req, res, next) => {
           expiresIn: "1w",
         }
       );
-
+      console.log("logged in user is,", user);
       res.send({
         message: "Login successful!",
         token,
+        user_id: JSON.stringify(user.user_id), //reference this from local storage
       });
     } else {
       next({

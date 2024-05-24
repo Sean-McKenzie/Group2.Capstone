@@ -10,23 +10,38 @@ import ReviewModal from "./ReviewModal";
 export default function SingleArtist() {
   const dispatch = useDispatch();
   const artists = useSelector((state) => state.artists.artists);
-  // const albums = useSelector((state) => state.artists.albums);
+  // // const albums = useSelector((state) => state.artists.albums);
   const artistStatus = useSelector((state) => state.artists.status);
   const albumsStatus = useSelector((state) => state.artists.albumsStatus);
   const { artistId } = useParams();
+  const [reviews, setReviews] = useState([]);
 
   // const [albums, setAlbums] = useState();
 
   const [modalShow, setModalShow] = useState(false);
 
+  const userId = localStorage.getItem("user_id");
+
   useEffect(() => {
-    // if (artistStatus === "idle") {
-    //   dispatch(fetchArtist(artistId));
-    // }
-    if (albumsStatus === "idle") {
-      dispatch(fetchArtistAlbums(artistId));
-    }
-  }, [dispatch, artistStatus, albumsStatus, artistId]);
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/reviews/artists/${artistId}`
+        ); // Example: fetch review with ID 123
+        const reviewsData = await response.json();
+        console.log("reviews data", reviewsData);
+        //const convertedReviewsData = Object.keys(reviewsData).map((key) => [key, reviewsData[key]])
+        // console.log("reviews data", reviewsData);
+        //console.log(convertedReviewsData);
+        setReviews(reviewsData);
+        console.log("reviews:", reviews);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    };
+    fetchReviews();
+    console.log("reviews:", reviews);
+  }, []);
 
   if (artistStatus === "loading" || albumsStatus === "loading") {
     return <div>Loading...</div>;
@@ -39,10 +54,18 @@ export default function SingleArtist() {
   // Find the artist from the artists array
   const artist = artists.find((artist) => artist.id === artistId);
 
-  const handleArtistClick = (clickedArtistId) => {
-    //   // Fetch albums for the clicked artist
-    dispatch(fetchArtistAlbums(clickedArtistId));
-    const albums = useSelector((state) => console.log("state is:", state));
+  const renderStars = (rating) => {
+    const totalStars = 5;
+    const filledStars = Math.round(rating);
+    const starsArray = Array.from({ length: totalStars }, (_, index) => (
+      <span
+        key={index}
+        style={{ color: index < filledStars ? "green" : "gray" }}
+      >
+        {index < filledStars ? "★" : "☆"}
+      </span>
+    ));
+    return starsArray;
   };
 
   return (
@@ -77,11 +100,29 @@ export default function SingleArtist() {
             </Card.Body>
           </Card>
         )}
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <Card key={review.reviewid}>
+              <Card.Body>
+                <Card.Title>{review.reviewtxt}</Card.Title>
+                <Card.Title>{renderStars(review.rating)}</Card.Title>
+              </Card.Body>
+            </Card>
+          ))
+        ) : (
+          <Card>
+            <Card.Body>
+              <Card.Title>
+                No reviews yet, be the first to leave a review
+              </Card.Title>
+            </Card.Body>
+          </Card>
+        )}
 
         <ReviewModal
           show={modalShow}
           artistId={artistId}
-          // user_id={user_id}
+          user_id={userId}
           close={() => setModalShow(false)}
         />
       </Container>
@@ -89,114 +130,17 @@ export default function SingleArtist() {
   );
 }
 
-{
-  /* <Container>
-        <Row className="mx-2 row row-cols-4">
-          {albums &&
-            albums.map((album) => (
-              <Link to={`/albums/${album.id}`} key={album.id}>
-                <Card>
-                  <Card.Img
-                    style={{ borderRadius: "50%", justifyContent: "center" }}
-                    src={album.images[0]?.url}
-                    alt={album.name}
-                  />
-                  <Card.Title>{album.name}</Card.Title>
-                </Card>
-              </Link>
-            ))}
-        </Row>
+// const handleArtistClick = (clickedArtistId) => {
+//   //   // Fetch albums for the clicked artist
+//   dispatch(fetchArtistAlbums(clickedArtistId));
+//   const albums = useSelector((state) => console.log("state is:", state));
+// };
 
-    
-
-      </Container>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Leave a review
-      </Button>
-
-      <ReviewModal show={modalShow} close={() => setModalShow(false)} />
-    </>
-  );
-
-}
-
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetchSingleArtist } from "../api";
-// import { useParams } from "react-router-dom";
-// import {
-//   Container,
-//   InputGroup,
-//   FormControl,
-//   Button,
-//   Row,
-//   Card,
-// } from "react-bootstrap";
-// import { useEffect } from "react";
-
-// export default function SingleArtist() {
-//   const dispatch = useDispatch();
-//   const artist = useSelector((state) => state.artists.artists);
-//   const status = useSelector((state) => state.artists.status);
-//   const { artistId } = useParams();
-
-//   // const artistImage = artist?.images[0]?.url;
-
-//   console.log("artist is:", artist);
-
-//   useEffect(() => {
-//     if (status === "idle") {
-//       dispatch(fetchSingleArtist(artistId));
-//     }
-//   }, [dispatch, status, artistId]);
-
-//   console.log(status);
-
-//   if (status === "loading") {
-//     return <div>Loading...</div>;
+// useEffect(() => {
+//   // if (artistStatus === "idle") {
+//   //   dispatch(fetchArtist(artistId));
+//   // }
+//   if (albumsStatus === "idle") {
+//     dispatch(fetchArtistAlbums(artistId));
 //   }
-
-//   if (status === "failed") {
-//     return <div>Error loading artist</div>;
-//   }
-
-//   return (
-//     <>
-//       <Container>
-//         {artist && (
-//           <Card key={artist.id}>
-//             <Card.Img
-//               style={{ borderRadius: "50%", justifyContent: "center" }}
-//               key={artist.images[0]?.url}
-//               src={artist.images[0]?.url}
-//               alt={artist.name}
-//               // onClick={(event) => console.log(artist.images.length)}
-//             />
-//             <Card.Body>
-//               <Card.Title>{artist.name}</Card.Title>
-
-//               {/* <Card.Text>{artistId.description}</Card.Text> */
-}
-//             </Card.Body>
-//           </Card>
-//         )}
-//       </Container>
-//     </>
-//   );
-// }
-
-{
-  /* <Link to={`/artist/albums`}>
-          <Button
-            variant="primary"
-            onClick={() => handleArtistClick(artist.id)}
-          >
-            View Artist's Albums
-          </Button>
-        </Link> */
-}
-
-{
-  /* <Button variant="primary" onClick={() => setModalShow(true)}>
-          Leave a review
-        </Button> */
-}
+// }, [dispatch, artistStatus, albumsStatus, artistId]);

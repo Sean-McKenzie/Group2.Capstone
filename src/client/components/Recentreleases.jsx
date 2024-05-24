@@ -16,7 +16,7 @@ function Recentreleasesbanner() {
           style={{ maxHeight: "300px", maxWidth: "100vw" }}
         >
           {/* all links will need to be updated */}
-          <Link c>
+          <Link to="/artist/66CXWjxzNUsdJxJ2JdwvnR">
             <img
               src=".../../../images/ArianaGrande_webbanner.png"
               alt="arianagrande"
@@ -34,7 +34,7 @@ function Recentreleasesbanner() {
           style={{ maxHeight: "300px", maxWidth: "100vw" }}
         >
           {/* all links will need to be updated */}
-          <Link to="/">
+          <Link to="/artist/4O15NlyKLIASxsJ0PrXPfz">
             <img
               src=".../../../images/LilUziVert_webbanner.png"
               alt="Linkin Park"
@@ -51,7 +51,7 @@ function Recentreleasesbanner() {
           style={{ maxHeight: "300px", maxWidth: "100vw" }}
         >
           {/* all links will need to be updated */}
-          <Link to="/">
+          <Link to="/artist/3YQKmKGau1PzlVlkL1iodx">
             <img
               src=".../../../images/TwentyOnePilots_22_1024.webp"
               alt="Twenty One Pilots"
@@ -69,7 +69,7 @@ function Recentreleasesbanner() {
           style={{ maxHeight: "300px", maxWidth: "100vw" }}
         >
           {/* all links will need to be updated */}
-          <Link to="/">
+          <Link to="/artist/5na1LmEmK2VzNLje9snJYW">
             <img
               src=".../../../images/therose_webbanner.png"
               alt="the rose"
