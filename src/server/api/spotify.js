@@ -1,5 +1,8 @@
 const express = require("express");
+
+
 require("dotenv");
+
 const spotifyRouter = express.Router();
 const {
      fetchArtistInfo,

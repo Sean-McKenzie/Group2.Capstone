@@ -1,6 +1,5 @@
 const axios = require("axios");
 const qs = require("qs");
-const { Await } = require("react-router-dom");
 
 
 const getSpotifyToken = async () => {
@@ -45,7 +44,7 @@ fetchAndStoreToken();
 
 const fetchArtistInfo = async (id) => {
      try {
-        //   let tokenCache = await getSpotifyToken();
+       
           const response = await axios.get(
                `https://api.spotify.com/v1/artists?ids=${id}`,
                {

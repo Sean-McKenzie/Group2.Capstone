@@ -11,6 +11,7 @@ const findUserWithToken = async (token) => {
     const payload = await jwt.verify(token, process.env.JWT_SECRET);
     email = payload.email;
     console.log("payload is:", payload);
+    
   } catch (error) {
     console.error("Error verifying JWT:", error);
     throw new Error("Not authorized");
@@ -18,6 +19,7 @@ const findUserWithToken = async (token) => {
 
   try {
     const res = await db.query(
+      "SELECT user_id, email, name, role FROM users WHERE email = $1",
       "SELECT user_id, email, name, role FROM users WHERE email = $1",
       [email]
     );
@@ -50,21 +52,27 @@ const isLoggedIn = async (req, res, next) => {
 
 const isAdmin = async (req, res, next) => {
      try {
+      console.log('hello')
           const auth = req.headers.authorization;
           const token = auth?.startsWith("Bearer ") ? auth.slice(7) : null;
           req.user = await findUserWithToken(token);
-          console.log(req.user);
-
-          if (req.user.role !== "admin") {
-            return res.status(403).json({message: "not and admin"})
+          
+          console.log('user', req.user);
+          console.log(req.user.role);
+          
+          if (req.user.role !== 'admin') {
+            res.status(401).json({ message: "Not an admin" });
+          } else {
+            
+            next()
           }
-
-          next();
+         
+         
      } catch (error) {
           next(error);
      }
 };
 
 
-module.exports = isLoggedIn, isAdmin;
+module.exports = {isLoggedIn, isAdmin};
 

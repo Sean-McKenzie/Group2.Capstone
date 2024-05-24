@@ -3,7 +3,7 @@ const usersRouter = express.Router();
 
 const { createUser, getAllUsers, getUser, getUserByEmail } = require("../db");
 
-const isLoggedIn = require("../api/authmid");
+const {isLoggedIn} = require("../api/authmid");
 
 const jwt = require("jsonwebtoken");
 

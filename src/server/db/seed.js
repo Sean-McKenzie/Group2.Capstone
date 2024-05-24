@@ -40,6 +40,42 @@ const users = [
           password: "password123",
           role: "user",
      },
+     {
+          name: "mike jones",
+          email: "emily@example.com",
+          password: "securepass",
+          role: "admin",
+     },
+     {
+          name: "guy mcface",
+          email: "liu@example.com",
+          password: "strongpass",
+          role: "user",
+     },
+     {
+          name: "human name",
+          email: "bella@example.com",
+          password: "pass1234",
+          role: "user",
+     },
+     {
+          name: "person person",
+          email: "mohammed@example.com",
+          password: "mysecretpassword",
+          role: "user",
+     },
+     {
+          name: "Craig Pelton",
+          email: "john@example.com",
+          password: "password123",
+          role: "user",
+     },
+     {
+          name: "Jhon Pelton",
+          email: "craig@example.com",
+          password: "password123",
+          role: "user",
+     },
 ];
 
 const reviews = [
@@ -106,6 +142,8 @@ const createTables = async () => {
             email VARCHAR(255) UNIQUE NOT NULL,
             password VARCHAR(255) NOT NULL,
             role VARCHAR(255) NULL NULL
+            password VARCHAR(255) NOT NULL,
+            role VARCHAR(255) NULL NULL
         );
         CREATE TABLE reviews(
           reviewid SERIAL PRIMARY KEY,
@@ -147,6 +185,7 @@ const insertUsers = async () => {
         name: user.name,
         email: user.email,
         password: user.password,
+        role: user.role,
         role: user.role,
       });
     }
@@ -196,7 +235,7 @@ const seedDatabse = async () => {
     await insertReviews();
 
     await insertTags();
-    // await addConstraints();
+    // await addConstraints();   
   } catch (err) {
     throw err;
   } finally {

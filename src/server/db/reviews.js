@@ -24,6 +24,28 @@ const createReview = async ({
   }
 };
 
+const updateReview = async ({
+  reviewID,
+  reviewTXT,
+  rating,
+}) => {
+  try {
+    const {
+      rows: [updateReview],
+    } = await db.query(
+      `
+      UPDATE reviews
+      SET reviewTXT=$1, rating=$2
+      WHERE id=$3
+      RETURNING *
+      `,
+      [reviewTXT, rating, reviewID]
+    );
+  } catch(err) {
+    throw err;
+  }
+}
+
 // const createReview = async ({
 //   reviewTXT,
 //   rating,
@@ -212,7 +234,9 @@ const deleteReview = async (reviewID) => {
        } = await db.query(
             `
         DELETE FROM reviews
-        WHERE reviewID=$1;`,
+        WHERE reviewID=$1
+        RETURNING *`,
+        
             [reviewID]
        );
 
@@ -227,11 +251,15 @@ const deleteReview = async (reviewID) => {
 
 
 module.exports = {
-  createReview,
-  getReviewByArtistID,
-  getReviewByAlbumID,
-  getReviewBySongID,
-  getAllReviews,
-  deleteReview
-
+     createReview,
+     getReviewByArtistID,
+     getReviewByAlbumID,
+     getReviewBySongID,
+     getAllReviews,
+     deleteReview,
+     updateReview,
+     getArtistAverageRating,
+     getAlbumAverageRating,
+     getSongAverageRating,
+     getReviewByID,
 };
