@@ -24,6 +24,28 @@ const createReview = async ({
   }
 };
 
+const updateReview = async ({
+  reviewID,
+  reviewTXT,
+  rating,
+}) => {
+  try {
+    const {
+      rows: [updateReview],
+    } = await db.query(
+      `
+      UPDATE reviews
+      SET reviewTXT=$1, rating=$2
+      WHERE id=$3
+      RETURNING *
+      `,
+      [reviewTXT, rating, reviewID]
+    );
+  } catch(err) {
+    throw err;
+  }
+}
+
 // const createReview = async ({
 //   reviewTXT,
 //   rating,
@@ -210,7 +232,27 @@ const getArtistAverageRating = async (artistID) => {
   }
 };
 
+const deleteReview = async (reviewID) => {
+  try {
+       const {
+            rows: [review],
+       } = await db.query(
+            `
+        DELETE FROM reviews
+        WHERE reviewID=$1
+        RETURNING *`,
+        
+            [reviewID]
+       );
 
+       if (!review) {
+            return;
+       }
+       return review;
+  } catch (err) {
+       throw err;
+  }
+}
 
 
 module.exports = {
@@ -219,5 +261,7 @@ module.exports = {
   getReviewByAlbumID,
   getReviewBySongID,
   getAllReviews,
+  deleteReview,
+  updateReview
 
 };

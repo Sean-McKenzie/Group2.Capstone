@@ -4,6 +4,7 @@ const express = require('express');
 const router = require('vite-express');
 const app = express();
 const path = require('path');
+const isAdmin = require('./api/authmid')
 // const pg = require('pg');
 
 // const client = new pg.Client(process.env.DATABASE_URL || 'http://localhost:3000/api')
