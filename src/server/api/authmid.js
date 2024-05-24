@@ -20,7 +20,6 @@ const findUserWithToken = async (token) => {
   try {
     const res = await db.query(
       "SELECT user_id, email, name, role FROM users WHERE email = $1",
-      "SELECT user_id, email, name, role FROM users WHERE email = $1",
       [email]
     );
 
@@ -43,7 +42,7 @@ const isLoggedIn = async (req, res, next) => {
         const auth = req.headers.authorization;
         const token = auth?.startsWith("Bearer ")? auth.slice(7) : null;
         req.user = await findUserWithToken(token);
-        console.log(req.user)
+        
         next();
     } catch(error) {
         next(error);
@@ -52,13 +51,11 @@ const isLoggedIn = async (req, res, next) => {
 
 const isAdmin = async (req, res, next) => {
      try {
-      console.log('hello')
+      
           const auth = req.headers.authorization;
           const token = auth?.startsWith("Bearer ") ? auth.slice(7) : null;
           req.user = await findUserWithToken(token);
           
-          console.log('user', req.user);
-          console.log(req.user.role);
           
           if (req.user.role !== 'admin') {
             res.status(401).json({ message: "Not an admin" });

@@ -30,9 +30,6 @@ export default function SingleArtist() {
         ); // Example: fetch review with ID 123
         const reviewsData = await response.json();
         console.log("reviews data", reviewsData);
-        //const convertedReviewsData = Object.keys(reviewsData).map((key) => [key, reviewsData[key]])
-        // console.log("reviews data", reviewsData);
-        //console.log(convertedReviewsData);
         setReviews(reviewsData);
         console.log("reviews:", reviews);
       } catch (error) {
