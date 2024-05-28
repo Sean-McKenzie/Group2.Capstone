@@ -26,7 +26,7 @@ export default function SingleArtist() {
     const fetchReviews = async () => {
       try {
         const response = await fetch(
-          `postgres://tune_talk_user:WpfPaFxhqDgwK9j012wcQqgnBZq6MIzZ@dpg-cpahv1m3e1ms739q90bg-a.ohio-postgres.render.com/tune_talk:3000/api/reviews/artists/${artistId}`
+          `http://tune_talk_user:WpfPaFxhqDgwK9j012wcQqgnBZq6MIzZ@dpg-cpahv1m3e1ms739q90bg-a.ohio-postgres.render.com/tune_talk:3000/api/reviews/artists/${artistId}`
         ); // Example: fetch review with ID 123
         const reviewsData = await response.json();
         console.log("reviews data", reviewsData);
