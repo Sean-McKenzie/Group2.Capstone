@@ -5,6 +5,7 @@ export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("user");
   const [message, setMessage] = useState("");
   const [messageClass, setMessageClass] = useState(Message.SUCCESS);
 
@@ -31,6 +32,7 @@ export default function Register() {
           name,
           email,
           password,
+          role
         }),
       });
       const result = await response.json();
@@ -57,6 +59,7 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     register();
   };
 
