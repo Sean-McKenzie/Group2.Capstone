@@ -82,6 +82,7 @@ export default function Artist({ artistId }) {
                   >
                     {artist.name}
                   </Card.Title>
+                  
                 </Card>
               </Link>
             ))}
