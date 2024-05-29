@@ -11,7 +11,7 @@ function Profile() {
       try {
         const token = localStorage.getItem("token");
         console.log("token: " + token);
-        const response = await fetch("https://dpg-cpahv1m3e1ms739q90bg-a.ohio-postgres.render.com/tune_talk:3000/api/users/me", {
+        const response = await fetch("https://tune-talk-capstone.onrender.com/api/users/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

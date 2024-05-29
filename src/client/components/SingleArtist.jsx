@@ -26,7 +26,7 @@ export default function SingleArtist() {
     const fetchReviews = async () => {
       try {
         const response = await fetch(
-          `https://dpg-cpahv1m3e1ms739q90bg-a.ohio-postgres.render.com/tune_talk:3000/api/reviews/artists/${artistId}`
+          `https://tune-talk-capstone.onrender.com/api/reviews/artists/${artistId}`
         ); // Example: fetch review with ID 123
         const reviewsData = await response.json();
         console.log("reviews data", reviewsData);

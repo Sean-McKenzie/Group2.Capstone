@@ -23,7 +23,7 @@ export default function Register() {
 
   const register = async () => {
     try {
-      const response = await fetch("https://dpg-cpahv1m3e1ms739q90bg-a.ohio-postgres.render.com/tune_talk:3000/api/users/register", {
+      const response = await fetch("https://tune-talk-capstone.onrender.com/api/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

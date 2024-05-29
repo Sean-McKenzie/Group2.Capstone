@@ -27,7 +27,7 @@ export default function ReviewModal({ artistId, albumId, songId, user_id }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://dpg-cpahv1m3e1ms739q90bg-a.ohio-postgres.render.com/tune_talk:3000/api/reviews/comment",
+        "https://tune-talk-capstone.onrender.com/api/reviews/comment",
         {
           method: "POST",
           headers: {

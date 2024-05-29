@@ -16,7 +16,7 @@ export default function SingleAlbum() {
     const fetchReviews = async () => {
       try {
         const response = await fetch(
-          `https://dpg-cpahv1m3e1ms739q90bg-a.ohio-postgres.render.com/tune_talk:3000/api/reviews/albums/${albumId}`
+          `https://tune-talk-capstone.onrender.com/api/reviews/albums/${albumId}`
         );
         const reviewsData = await response.json();
         setReviews(reviewsData);
