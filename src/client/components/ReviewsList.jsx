@@ -10,7 +10,7 @@ function Reviewslist() {
     const fetchReviews = async () => {
       try {
     
-        const response = await fetch("https://tune-talk-capstone.onrender.com/api/reviews "); // Example: fetch review with ID 123
+        const response = await fetch("https://tune-talk-capstone.onrender.com/api/reviews/"); // Example: fetch review with ID 123
         const reviewsData = await response.json();
         console.log("reviews data", reviewsData);
         //const convertedReviewsData = Object.keys(reviewsData).map((key) => [key, reviewsData[key]])
