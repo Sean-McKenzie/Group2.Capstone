@@ -21,7 +21,7 @@ function Homepage() {
           {/* all links will need to be updated */}
           <Link to="artist/66CXWjxzNUsdJxJ2JdwvnR">
             <img
-              src=".../../../images/ArianaGrande_webbanner.png"
+              src="/opt/render/project/images/ArianaGrande_webbanner.png"
               alt="arianagrande"
               style={{ width: "100vw" }}
             />
