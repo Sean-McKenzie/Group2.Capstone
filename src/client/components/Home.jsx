@@ -21,7 +21,7 @@ function Homepage() {
           {/* all links will need to be updated */}
           <Link to="artist/66CXWjxzNUsdJxJ2JdwvnR">
             <img
-              src="/opt/render/project/images/ArianaGrande_webbanner.png"
+              src="images/ArianaGrande_webbanner.png"
               alt="arianagrande"
               style={{ width: "100vw" }}
             />
@@ -39,7 +39,7 @@ function Homepage() {
           {/* all links will need to be updated */}
           <Link to="/artist/4O15NlyKLIASxsJ0PrXPfz">
             <img
-              src=".../../../images/LilUziVert_webbanner.png"
+              src="images/LilUziVert_webbanner.png"
               alt="Linkin Park"
               style={{ width: "100vw" }}
             />
@@ -56,7 +56,7 @@ function Homepage() {
           {/* all links will need to be updated */}
           <Link to="/artist/3YQKmKGau1PzlVlkL1iodx">
             <img
-              src=".../../../images/TwentyOnePilots_22_1024.webp"
+              src="images/TwentyOnePilots_22_1024.webp"
               alt="Twenty One Pilots"
               style={{ width: "100vw" }}
             />
@@ -74,7 +74,7 @@ function Homepage() {
           {/* all links will need to be updated */}
           <Link to="/artist/5na1LmEmK2VzNLje9snJYW">
             <img
-              src=".../../../images/therose_webbanner.png"
+              src="/images/therose_webbanner.png"
               alt="the rose"
               style={{ width: "100vw" }}
             />
@@ -108,7 +108,7 @@ function Homepage() {
 
             <Link to="/artist">
               <Image
-                src=".../../../images/VM_JAG (image social) 1.webp"
+                src="/images/VM_JAG (image social) 1.webp"
                 thumbnail
               />
             </Link>
@@ -129,7 +129,7 @@ function Homepage() {
 
             <Link to="/albums">
               <Image
-                src=".../../../images/ArianaGrande_webbanner.png"
+                src="/images/ArianaGrande_webbanner.png"
                 thumbnail
               />
             </Link>
@@ -149,7 +149,7 @@ function Homepage() {
             </h2>
 
             <Link to="/topsongs">
-              <Image src=".../../../images/newFile-1.avif" thumbnail />
+              <Image src="/images/newFile-1.avif" thumbnail />
             </Link>
           </Col>
         </Row>
