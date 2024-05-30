@@ -20,6 +20,7 @@ export default function SearchBar() {
   console.log(`status is: ${status}`);
   useEffect(() => {
     if (status === "idle") {
+      console.log(searchInput);
       dispatch(searchArtist(searchInput));
     }
   }, [dispatch, searchInput, status]);
