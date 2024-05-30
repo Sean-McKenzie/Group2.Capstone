@@ -16,7 +16,7 @@ export default function SearchBar() {
   const dispatch = useDispatch();
   const artists = useSelector((state) => state.artists.artists);
   const status = useSelector((state) => state.artists.status);
-
+  console.log(state.artists.status);
   useEffect(() => {
     if (status === "idle") {
       dispatch(searchArtist(searchInput));
