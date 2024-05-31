@@ -12,11 +12,11 @@ const {
      fetchManyAlbumsInfo,
      searchArtist,
 } = require("../db");
-spotifyRouter.get("/searchartist/:name", async (req, res, next) => {
+spotifyRouter.get("/searchartist/:id", async (req, res, next) => {
      try {
-          console.log("made it in route");
-          const name = req.params.name;
-          const artistInfo = await searchArtist(name);
+        
+          const id = req.params.id;
+          const artistInfo = await searchArtist(id);
           console.log(artistInfo);
           res.send(artistInfo);
          

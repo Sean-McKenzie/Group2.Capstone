@@ -16,7 +16,7 @@ export const searchArtist = createAsyncThunk(
                }
                const data = await response.json();
                console.log(data);
-               return data.artists.items;
+               return data;
 
           } catch (error) {
                return rejectWithValue(error.message);
